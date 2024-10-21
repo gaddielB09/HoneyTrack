@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+    background-color: #7752fe;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+    transition: all .3s ease;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.active {
+    width: 220px;
+}
+
+
+#btn {
+    color: #fff;
+    font-size: 24px;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.nav-links {
+    position: relative;
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.nav-links li.logout{
+    margin-top: auto;
+    margin-bottom: 1em;
+}
+
+.nav-links li {
+    position: relative;
+    height: 50px;
+    list-style-type: none;
+    margin: 0.8em auto;
+    width: 90%;
+}
+
+.nav-links li a {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links li span {
+    opacity: 0;
+}
+
+.sidebar.active .nav-links li span {
+    opacity: 1;
+}
+
+.nav-links li a:hover {
+    background-color: #402f7e;
+    color: white;
+    transition: background-color 0.3 ease;
+}
+
+.nav-links li a i {
+    min-width: 40px;
+    text-align: center;
+    height: 40px;
+    border-radius: 12px;
+    line-height: 40px;
+    margin-right: 10px;
+}
+.content {
+    transition: margin-left 0.3s ease; /* Suaviza el movimiento */
+    margin-left: 100px; /* Margen inicial, puede ajustarse según el ancho de la barra lateral */
+}
+
+.sidebar.active + .content {
+    margin-left: 220px; /* Ajusta según el ancho de la barra lateral activa */
+}

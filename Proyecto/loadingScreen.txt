@@ -1,0 +1,165 @@
+        //CODIGO PARA PANTALLA DE CARGA\\
+
+        //Poner esto en el html
+
+            <div id="loadingScreen">
+                <h1 class="loadingText">Loading</h1>
+            </div>
+
+        //LINK DE CSS\\
+
+            <link rel="stylesheet" href="../css/loading.css">
+
+        //LINK DE JS\\
+            <script src="../js/loading.js" defer></script>
+
+
+        //Sidebar\\
+                <nav class="sidebar">
+        <div class="logo"> 
+            <i id="btn" class="fa-solid fa-bars">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 8l16 0" />
+                <path d="M4 16l16 0" />
+              </svg>
+            </i>
+        </div>
+        
+        <ul class="nav-links">
+            <li>
+                <a href="../html/adminMain.html">
+                    <i class="fa-solid fa-house"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                      </svg></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Message</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-sliders">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                          </svg>
+                    </i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="../html/login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
+                            <path d="M15 12h-12l3 -3" />
+                            <path d="M6 15l-3 -3" />
+                          </svg>
+                    </i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+        //Sidebar CSS\\
+            * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+    background-color: #7752fe;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+    transition: all .3s ease;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.active {
+    width: 220px;
+}
+
+
+#btn {
+    color: #fff;
+    font-size: 24px;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.nav-links {
+    position: relative;
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links li {
+    position: relative;
+    height: 50px;
+    list-style-type: none;
+    margin: 0.8em auto;
+    width: 90%;
+}
+
+.nav-links a {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-links li span {
+    opacity: 0;
+}
+
+.sidebar.active .nav-links li span {
+    opacity: 1;
+}
+
+.nav-links li a:hover {
+    background-color: white;
+    color: black;
+}
+
+.nav-links li a i {
+    min-width: 65px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+}
+.content {
+    transition: margin-left 0.3s ease; /* Suaviza el movimiento */
+    margin-left: 100px; /* Margen inicial, puede ajustarse según el ancho de la barra lateral */
+}
+
+.sidebar.active + .content {
+    margin-left: 220px; /* Ajusta según el ancho de la barra lateral activa */
+}
+

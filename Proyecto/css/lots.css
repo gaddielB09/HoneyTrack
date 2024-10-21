@@ -1,0 +1,88 @@
+body{
+    background-color: rgb(2, 2, 120);
+}
+.wrapper{
+    margin-top: 50px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.tittle{
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.activity{
+    border: 1px solid gray;
+    width: 80%; 
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#search-bar {
+    width: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    transition: width 0.7s ease, padding 0.3s ease;
+    color: #000;
+    font-size: 16px;
+    border-bottom: 2px solid #000;
+    outline: none;
+}
+
+.icon-search {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #000;
+}
+
+.search-container:hover #search-bar {
+    width: 200px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.activity {
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Bordes de las celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+}
+
+th {
+    background-color: rgb(2, 2, 120); /* Color de fondo del encabezado */
+    color: white; /* Color del texto del encabezado */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de las filas pares */
+}
+
+tr:hover {
+    background-color: #ddd; /* Color al pasar el ratón sobre las filas */
+}
