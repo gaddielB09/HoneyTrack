@@ -130,10 +130,10 @@
         </button>
     </nav>
     
-    <div id="format1" class="format" style="display: block;">
+    <div id="format1" class="format" style="display: none;">
         
         <!-- users forms -->
-        <form action="" method="post">
+        <form action="../php/insertUser.php" method="post">
             <h1 class="tittleU">Add Users</h1>
             
             <section class="data">
@@ -144,43 +144,43 @@
                         <div class="personalData">
                         
                             <div class="input-container">
-                                <input type="text" id="name" class="onlyLetters" placeholder="Name" required>
+                                <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" required>
                                 <span id="error-name" class="error">Only Letters are Allowed</span>
                             </div>
                             
                             <div class="input-container">
-                                <input type="text" id="ap" class="onlyLetters" placeholder="Last Name (Paternal)" required>
+                                <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" required>
                                 <span id="error-ap" class="error">Only Letters are Allowed</span>
                             </div>
                             
                             <div class="input-container">
-                                <input type="text" id="am" class="onlyLetters" placeholder="Last Name (Maternal)" required>
+                                <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" required>
                                 <span id="error-am" class="error">Only Letters are Allowed</span>
                             </div>
                             
                             <div class="input-container">
-                                <input type="text" id="rfc" placeholder="RFC" required>
+                                <input type="text" id="rfc" name="rfc" placeholder="RFC" required>
                                 <span id="error-rfc" class="error">RFC Format is not Allowed</span>
                             </div>
                             
                             <div class="input-container">
-                                <input type="email" id="email" placeholder="Email" required>
+                                <input type="email" id="email" name="email" placeholder="Email" required>
                                 <span id="error-email" class="error">Email Format is not Allowed</span>
                             </div>
 
                             <div class="input-container">
-                                <input type="tel" id="phone" placeholder="Contact Number" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Contact Number" required>
                                 <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
                             </div>
                         </div>
 
                     <h2 class="subtittle2">User Data</h2>
                         <div class="userData">
-                            <input type="text" placeholder="Username" required>
+                            <input type="text" id="username" name="username" placeholder="Username" required>
                             
-                            <input type="password" placeholder="Password" required>
+                            <input type="password" id="password" name="password" placeholder="Password" required>
 
-                            <select class="roles" id="role">
+                            <select class="roles" id="role" name="role" >
                                 <option value="">Role</option>
                                 <option value="ADM">Administrador</option>
                                 <option value="VER">Verificador</option>
@@ -194,7 +194,7 @@
                 
             </form>
         </div>
-        <div id="format2" class="format" style="display: none;"> <!-- Formulario para buscar usuarios -->
+        <div id="format2" class="format" style="display: block;"> <!-- Formulario para buscar usuarios -->
             <h2 class="tittleS">Search Users</h2>
             <div class="searchPanel">
                 

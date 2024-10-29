@@ -20,7 +20,7 @@ inputLetters.forEach(input =>{
 
                 /* VISUALIZAR LOS DISTINTOS FORMULARIOS */
 /* Mostrar automaticamente el formulario de registrar al ingresar al HTML */
-formats[0].style.display = 'block'; 
+formats[1].style.display = 'block'; 
 
 /* Mostrar el formulario correspondiente al boton que se presiono */
 buttons.forEach((button, index) => {

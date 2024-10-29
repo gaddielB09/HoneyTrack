@@ -27,6 +27,7 @@ recoverUserForm.addEventListener('submit', (event) => {
     container.classList.remove("right-panel-active");
 });
 
+/*
 // Manejo de eventos para el formulario de inicio de sesión
 signInForm.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevenir el envío del formulario
@@ -36,3 +37,5 @@ signInForm.addEventListener('submit', (event) => {
     // Redirigir al nuevo HTML
     window.location.href = "../html/adminMain.html"; // Cambia "dashboard.html" a la página de destino
 });
+*/
+
