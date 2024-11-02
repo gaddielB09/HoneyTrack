@@ -1,0 +1,139 @@
+:root{
+    --blk: #000000;
+    --whi: #ffffff;
+    --gold: #ffc107;
+    --do: #ff9800;
+    --dg: #333333;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar {
+    background-color: var(--blk);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+    transition: all .3s ease;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 2;
+}
+
+.sidebar.active {
+    width: 220px;
+}
+
+
+#btn {
+    color: #fff;
+    font-size: 24px;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.nav-links {
+    position: relative;
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.nav-links li.logout{
+    margin-top: auto;
+    margin-bottom: 1em;
+}
+
+.nav-links li {
+    position: relative;
+    height: 50px;
+    list-style-type: none;
+    margin: 0.8em auto;
+    width: 90%;
+}
+
+.nav-links li a {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links li span {
+    opacity: 0;
+}
+
+.sidebar.active .nav-links li span {
+    opacity: 1;
+}
+
+.nav-links li a:hover {
+    background-color: var(--dg);
+    color: white;
+    transition: background-color 0.3 ease;
+}
+
+.nav-links li a i {
+    min-width: 40px;
+    text-align: center;
+    height: 40px;
+    border-radius: 12px;
+    line-height: 40px;
+    margin-right: 10px;
+}
+.content {
+    transition: margin-left 0.3s ease; /* Suaviza el movimiento */
+    margin-left: 120px; /* Margen izquierdo que se alinea con la barra lateral cuando está en su estado inactivo */
+    margin-right: 10px; /* Pequeño margen derecho */
+    width: calc(100% - 170px); /* Ajusta el ancho considerando el margen izquierdo y derecho */
+    height: 800px;
+    background-color: #ffffff; /* Color de fondo gris claro */
+    border: 3px solid #d3d3d3; /* Borde gris claro */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de cuadro */
+    padding: 20px; /* Espacio interior para el contenido */
+    margin-top: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar.active + .content {
+    margin-left: 230px; /* Mayor margen izquierdo cuando la barra lateral está expandida */
+    width: calc(100% - 240px); /* Ajuste de ancho considerando el ancho expandido de la barra lateral */
+}
+
+.body-container {
+    display: flex;
+    justify-content: center; /* Esto centra el contenido */
+    width: 100%;
+}
+
+.tittle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Abarca todo el ancho de la pantalla */
+    height: 200px; /* Ajusta la altura para que el fondo dorado cubra un poco de .content */
+    background-color: var(--gold);
+    z-index: 0; /* Fondo dorado detrás del contenido principal */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
