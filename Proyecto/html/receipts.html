@@ -4,101 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/receipts.css">
     <link rel="stylesheet" href="../css/sidebar.css">
+<<<<<<< Updated upstream:Proyecto/html/receipts.html
     <link rel="stylesheet" href="../css/receipts.css">
     <title>Document</title>
+=======
+    <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>INBOUND</title>
+>>>>>>> Stashed changes:HoneyTrack/html/receipts.html
 </head>
 <body>
     <div id="loadingScreen">
         <h1 class="loadingText">Loading</h1>
     </div>
 
+<div class="body-container">
+
     <nav class="sidebar">
         <div class="logo"> 
-            <i id="btn" class="fa-solid fa-bars">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M4 8l16 0" />
-                <path d="M4 16l16 0" />
-              </svg>
-            </i>
+            <i id="btn" class="fa-solid fa-bars"></i>
         </div>
         
         <ul class="nav-links">
             <li>
                 <a href="adminMain.html">
-                    <i class="fa-solid fa-house"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                      </svg></i>
-                    <span>Main Menu</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="users.html" id="linkUsers">
-                    <i><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                      </svg></i>
-                      <span>Users</span>
-                    </a>
-            </li>
-
-            <li>
-                <a href="areas.html" id="linkUsers">
-                    <i>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                      </svg></i>
-                      <span>Areas</span>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="applications.html">
-                    <i><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                    <path d="M9 8h6" />
-                  </svg></i>
-                  <span>Applications</span>
+                <a href="#">
+                    <i class="fas fa-comments"></i>
+                    <span>Message</span>
                 </a>
             </li>
             <li>
-                <a href="analysis.html">
-                    <i><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-bar" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M9 8m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M15 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M4 20l14 0" />
-                    </svg></i>
-                    <span>Analysis</span>
+                <a href="#">
+                    <i class="fa-solid fa-sliders">
+                        
+                    </i>
+                    <span></span>
                 </a>
             </li>
-
             <li class="logout">
-                <a href="login.html">
-                    <i><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
-                        <path d="M15 12h-12l3 -3" />
-                        <path d="M6 15l-3 -3" />
-                      </svg></i>
-                      <span>Logout</span>
+                <a href="../html/login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
                 </a>
             </li>
         </ul>
     </nav>
 
+<<<<<<< Updated upstream:Proyecto/html/receipts.html
     <div class="content">
         <h1 class="tittle">RECEIPTS</h1>
         <h3 class="option">Select an Option</h3>
@@ -129,8 +90,29 @@
                 </a>
             </nav>
         </div>
+=======
+    <div class="tittle-container">
+        <h1 class="tittle">HONEY TRACK</h1>
+>>>>>>> Stashed changes:HoneyTrack/html/receipts.html
     </div>
 
+    <div class="content">
+        <h3 class="subtittle">Inbound</h3>
+
+            <nav class="menu">
+                <a href="lots.html">
+                    <i class="fas fa-cubes"></i>
+                    <span>Lots</span>
+                    </a>
+                    
+                    <a href="verification.html">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Verification</span>
+                    </a>
+            </nav>
+    </div>
+</div>
+        
     <script src="../js/loading.js" defer></script>
     <script src="../js/sidebar.js"></script>
 </body>

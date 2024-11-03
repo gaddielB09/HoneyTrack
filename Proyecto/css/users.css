@@ -40,6 +40,15 @@ body {
     background-position: center;
     font-family: Arial, sans-serif;
 }
+
+.tittle {
+    font-size: 75px;
+    color: var(--blk);
+    margin-bottom: 50px;
+    text-align: center;
+    z-index: 1;
+    font-family: "Monserrat", sans-serif;
+}
 .roles{
     border-radius: 50px;
 }
@@ -47,37 +56,42 @@ body {
 .userOption {
     display: flex;
     justify-content: center; /* Centra el menú de navegación */
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 15px;
-    gap: 20px; /* Espacio entre los botones */
+    gap: 50px; /* Espacio entre los botones */
 }
 
 /* Estilo individual para los botones del menú de navegación */
 .userOption button {
-    background-color: #40c0cb;
+    background-color: var(--gold);
     border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 90px; /* Tamaño ajustado del botón */
+    height: 90px; /* Tamaño ajustado del botón */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.userOption button:hover {
-    background-color: #00a8c6; /* Cambia de color al pasar el cursor */
+.userOption button i {
+    font-size: 32px; /* Tamaño ajustado del icono */
+    color: white; /* Color del icono */
+    display: inline-flex; /* Asegura que el ícono sea un elemento flex */
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px; /* Ajusta este valor para mover el icono a la derecha */
 }
 
-.userOption svg {
-    stroke: white;
+.userOption button:hover {
+    background-color: var(--do); /* Cambia de color al pasar el cursor */
 }
 
 /* Título principal */
 .tittleU {
     text-align: center;
-    color: white;
+    color: var(--blk);
     font-size: 36px;
     margin-bottom: 20px;
 }
@@ -96,9 +110,9 @@ body {
 }
 
 /* Subtítulo de la sección */
-.subtittle {
+.subtittle1 {
     font-size: 24px;
-    color: #000000;
+    color: var(--blk);
     margin-bottom: 20px;
     text-align: center;
 }
