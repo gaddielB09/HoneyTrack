@@ -28,24 +28,13 @@ body::before {
 }
 
 .tittle {
-<<<<<<< HEAD
     font-size: 50px;
-=======
-    font-size: 75px;
->>>>>>> origin/Gaddi
     color: var(--blk);
     margin-bottom: 20px;
     text-align: center;
     z-index: 1;
-<<<<<<< HEAD
 }
 .home{
-=======
-    font-family: "Monserrat", sans-serif;
-}
-
-.subtittle{
->>>>>>> origin/Gaddi
     text-align: left;
     color: var(--blk);
     font-size: 50px;
@@ -74,23 +63,12 @@ body::before {
     border-radius: 20px;
     margin: 50px ;
     margin-top: 150px;
-<<<<<<< HEAD
     transition: transform 0.3s ease, background-color 0.3s ease;
     width: 35%;
     height: 175px;
 }
-=======
-    transition: transform 0.4s ease, background-color 0.4s ease, clip-path 0.4s ease;
-    width: 35%;
-    height: 175px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
->>>>>>> origin/Gaddi
 
 .menu a:hover {
     background-color: var(--do);
     transform: scale(1.1);
-<<<<<<< HEAD
-=======
-    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
->>>>>>> origin/Gaddi
 }
