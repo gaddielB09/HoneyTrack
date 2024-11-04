@@ -5,18 +5,21 @@
 }
 
 body {
-    background: rgba(2, 2, 120);
+    background: rgb(255,193,7);
+    background: linear-gradient(52deg, rgba(255,193,7,1) 36%, rgba(255,152,0,1) 61%);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: "Monserrat", sans-serif;
     height: 100vh;
-    margin: -20px 0 50px;
+    margin: 0;
+    overflow-x: hidden;
 }
 
 .honeyTrack {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
 }
 
 h1 {
@@ -46,9 +49,9 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #7752fe;
-    background-color: #7752fe;
-    color: #ffffff;
+    border: 1px solid var(--gold);
+    background-color: var(--gold);
+    color: var(--blk);
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -59,7 +62,7 @@ button {
 }
 
 button:hover {
-    background-color: #6444d6;
+    background-color: var(--do);
     transition: background 0.3s ease;
 }
 
@@ -72,13 +75,13 @@ button:focus {
 }
 
 button.ghost {
-    background-color: transparent;
+    background-color: var(--whi);
     border-color: #ffffff;
     cursor: pointer;
 }
 
 .ghost:hover {
-    background: #6444d6;
+    background: var(--wg);
     transition: background 0.3s ease;
 }
 
@@ -88,7 +91,7 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 50px;
+    padding: 20px 40px;
     height: 100%;
     text-align: center;
 }
@@ -96,10 +99,11 @@ form {
 input {
     background-color: #eee;
     border: none;
-    padding: 12px 15px;
+    padding: 15px 20px;
     margin: 8px 0;
     width: 100%;
     border-radius: 20px;
+    font-size: 16px;
 }
 
 .container {
@@ -108,9 +112,9 @@ input {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
+    width: 80vw;
+    max-width: 900px;
+    min-height: 60vh;
 }
 
 .form-container {
@@ -171,9 +175,9 @@ input {
 }
 
 .overlay {
-    background: #7752fe;
-    background: -webkit-linear-gradient(to right, #7752fe, #6a41fe);
-    background: linear-gradient(to right, #7752fe, #6a41fe);
+    background: var(--gold);
+    background: -webkit-linear-gradient(to right, var(--gold), var(--gold));
+    background: linear-gradient(to right, var(--gold), var(--gold));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -220,4 +224,18 @@ input {
 
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%; /* Reducir el ancho en pantallas pequeñas */
+    }
+
+    form {
+        padding: 10px 20px; /* Reducir el padding en pantallas pequeñas */
+    }
+
+    input {
+        font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
+    }
 }
