@@ -40,6 +40,38 @@ body {
     background-position: center;
     font-family: Arial, sans-serif;
 }
+
+.wrapper {
+    transition: margin-left 0.5s ease, width 0.5s ease; /* Suaviza el movimiento */
+    margin-left: calc(120px + 10px); /* Margen izquierdo que se alinea con la barra lateral cuando está en su estado inactivo */
+    margin-right: 10px; /* Pequeño margen derecho */
+    width: calc(100% - 160px); /* Ajusta el ancho considerando el margen izquierdo y derecho */
+    height: 800px;
+    background-color: var(--whi); /* Color de fondo gris claro */
+    border: 3px solid #d3d3d3; /* Borde gris claro */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de cuadro */
+    padding: 20px; /* Espacio interior para el contenido */
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+}
+.tittle {
+    font-size: 50px;
+    color: var(--blk);
+    margin-bottom: 20px;
+    text-align: center;
+    z-index: 1;
+}
+
+.home{
+    text-align: center;
+    color: var(--blk);
+    font-size: 50px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
 .roles{
     border-radius: 50px;
 }
@@ -47,18 +79,18 @@ body {
 .userOption {
     display: flex;
     justify-content: center; /* Centra el menú de navegación */
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 15px;
     gap: 20px; /* Espacio entre los botones */
 }
 
 /* Estilo individual para los botones del menú de navegación */
 .userOption button {
-    background-color: #40c0cb;
+    background-color: var(--gold);
     border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,9 +99,14 @@ body {
 }
 
 .userOption button:hover {
-    background-color: #00a8c6; /* Cambia de color al pasar el cursor */
+    background-color: var(--do); /* Cambia de color al pasar el cursor */
 }
 
+.userOption i{
+    font-size: 24px;
+    margin-left: 6px;
+    color: var(--whi);
+}
 .userOption svg {
     stroke: white;
 }
@@ -194,9 +231,10 @@ input:focus {
 
 .searchPanel{
     border: 1px solid gray;
-    width: 80%; /* Ajustado para que no sea tan ancho */
-    max-width: 1200px;
+    width: 150vw; /* Ajustado para que no sea tan ancho */
+    max-width: 1500px;
     height: auto;
+    max-height: 1080px;
     margin: 0 auto; /* Centra el contenedor */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
@@ -211,7 +249,7 @@ input:focus {
 }
 .deletePanel{
     border: 1px solid gray;
-    width: 80%; /* Ajustado para que no sea tan ancho */
+    width: 100%; /* Ajustado para que no sea tan ancho */
     max-width: 1200px;
     height: auto;
     margin: 0 auto; /* Centra el contenedor */
@@ -265,14 +303,14 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd; /* Bordes de las celdas */
+    border: 1px solid var(--blk); /* Bordes de las celdas */
     padding: 8px; /* Espaciado interno */
     text-align: left; /* Alineación del texto */
 }
 
 th {
-    background-color: rgb(2, 2, 120); /* Color de fondo del encabezado */
-    color: white; /* Color del texto del encabezado */
+    background-color: var(--gold); /* Color de fondo del encabezado */
+    color: var(--blk); /* Color del texto del encabezado */
 }
 
 tr:nth-child(even) {

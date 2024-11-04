@@ -1,3 +1,4 @@
+-- Active: 1728679034835@@127.0.0.1@3306@HoneyTrack
 -- phpMyAdmin SQL Dump
 -- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
@@ -22,7 +23,6 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `AREA`
 --
@@ -161,6 +161,7 @@ INSERT INTO `EDO_VERIFICACION` (`codigo`, `descripcion`) VALUES
 ('TRM', 'Terminado');
 
 -- --------------------------------------------------------
+
 
 --
 -- Estructura de tabla para la tabla `EMPLEADO`

@@ -27,6 +27,7 @@ body::before {
     z-index: -1;
 }
 
+
 .tittle {
     font-size: 50px;
     color: var(--blk);

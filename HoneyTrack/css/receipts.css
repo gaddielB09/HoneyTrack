@@ -1,18 +1,8 @@
-:root {
-    --blueLight: #a4dbe4;
-    --orange: #fa990e;
-    --yellow: #fecc47;
-    --greenLight: #5b8d27;
-    --greenDark: #114b0b;
-    --gray: rgb(164, 164, 167);
-    --grayDark: rgb(105, 103, 103);
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 body {
@@ -21,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: rgb(2, 2, 120); /* url(../images/fondoMainMenu.webp) no-repeat center center */
+    background: var(--wg);
     background-size: cover;
     position: relative;
 }
@@ -39,69 +29,46 @@ body::before {
 
 .tittle {
     font-size: 50px;
-    color: var(--gray);
+    color: var(--blk);
     margin-bottom: 20px;
     text-align: center;
     z-index: 1;
-    font-family: 'Times New Roman', Times, serif;
 }
-.option{
-    text-align: center;
-    color: var(--gray);
-    font-size: 20px;
+.home{
+    text-align: left;
+    color: var(--blk);
+    font-size: 50px;
     margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 60vw; /* Ancho más grande para acomodar el menú horizontal */
-    height: 40vh; /* Altura más pequeña para acomodar el contenido */
-    position: relative;
+    margin-left: 20px;
 }
 
 .menu {
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos se ajusten a varias filas */
     align-items: center;
-    justify-content: space-evenly; /* Distribuye los elementos de manera uniforme */
+    justify-content: center; /* Distribuye los elementos de manera uniforme */
     width: 100%;
 }
 
 .menu a {
-    display: flex;
+    display: grid;
+    text-align: center;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: var(--gray);
+    color: var(--blk);
     font-size: 34px;
     padding: 15px;
-    margin: 10px;
-    background-color: transparent;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
-    flex-direction: row;
+    background-color: var(--gold);
+    border-radius: 20px;
+    margin: 50px ;
+    margin-top: 150px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 35%;
+    height: 175px;
 }
 
 .menu a:hover {
-    background-color: var(--grayDark);
-    border-radius: 20px;
+    background-color: var(--do);
+    transform: scale(1.1);
 }
-
-.menu a svg {
-    margin-right: 10px; /* Espacio entre el icono y el texto */
-}
-
-.menu a span{
-    flex-grow: 1;
-}
-

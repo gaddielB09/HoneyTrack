@@ -21,71 +21,74 @@
 
         <nav class="sidebar">
             <div class="logo"> 
-                <i id="btn" class="fa-solid fa-bars"></i>
+                <i id="btn" class="fa-solid fa-bars fa-lg"></i>
             </div>
             
             <ul class="nav-links">
                 <li>
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-home fa-lg"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-comments fa-lg"></i>
                         <span>Message</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa-solid fa-sliders">
-                            
-                        </i>
-                        <span></span>
+                        <i class="fas fa-user fa-lg"></i>
+                        <span>Profile</span>
                     </a>
                 </li>
                 <li class="logout">
                     <a href="../html/login.html">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-sign-out-alt fa-lg"></i>
                         <span>Logout</span>
                     </a>
                 </li>
             </ul>
         </nav>
 
+    <div class="content">
+
+        
         <div class="tittle-container">
-            <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200">
+            <h1 class="tittle">HONEY TRACK</h1>
+            <!-- <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200"> -->
         </div>
-        <div class="content">
+        <div class="wrapper">
             <h3 class="home">Home</h3>
-                
-                <nav class="menu">
                     
-                    <a href="users.php" id="linkUsers">
-                        <i class="fas fa-users"></i>
-                        <span>Users</span></a>
-                        
+            <nav class="menu">
+                
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span></a>
+                    
                     <a href="areas.html" id="linkUsers">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span> Areas</span></a>
-                        
-                    <a href="applications.html">
-                        <i class="fas fa-receipt"></i>
-                    <span>Applications</span></a>
-                    
-                    <a href="analysis.html">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Analysis</span></a>
+                            <span> Areas</span></a>
                             
-                    <a href="receipts.html">
-                        <i class="fas fa-receipt"></i>
-                        <span>Inbound</span></a>
-                </nav>
-            </div>
+                            <a href="applications.html">
+                                <i class="fas fa-receipt"></i>
+                                <span>Applications</span></a>
+                                
+                                <a href="analysis.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Analysis</span></a>
+                                    
+                                    <a href="receipts.html">
+                                        <i class="fas fa-receipt"></i>
+                                        <span>Inbound</span></a>
+                                    </nav>
+                                </div>
+    </div>
 </div>
-                    
-    <script src="../js/sidebar.js"></script>
-    <script src="../js/loading.js" defer></script>
+
+<script src="../js/sidebar.js"></script>
+<script src="../js/loading.js" defer></script>
 </body>
 </html>

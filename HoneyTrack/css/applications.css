@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: var(--whi);
+    background: var(--wg);
     background-size: cover;
     position: relative;
 }
@@ -29,16 +29,17 @@ body::before {
 
 .tittle {
     font-size: 50px;
-    color: var(--white);
+    color: var(--blk);
     margin-bottom: 20px;
     text-align: center;
     z-index: 1;
 }
-.option{
-    text-align: center;
-    color: var(--white);
-    font-size: 20px;
+.home{
+    text-align: left;
+    color: var(--blk);
+    font-size: 50px;
     margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 .menu {
@@ -48,7 +49,6 @@ body::before {
     justify-content: center; /* Distribuye los elementos de manera uniforme */
     width: 100%;
 }
-
 
 .menu a {
     display: grid;
@@ -62,9 +62,10 @@ body::before {
     background-color: var(--gold);
     border-radius: 20px;
     margin: 50px ;
+    margin-top: 150px;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    width: 25%;
-    height: 150px;
+    width: 35%;
+    height: 175px;
 }
 
 .menu a:hover {
