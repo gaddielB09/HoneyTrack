@@ -142,9 +142,9 @@
                                         
                                         <select class="roles" id="role" name="role" >
                                             <option value="">Role</option>
-                                            <option value="ADMIN">Administrador</option>
-                                            <option value="RECEP">Verificador</option>
-                                            <option value="ANAL">Analista</option>
+                                            <option value="ADMIN">Administrator</option>
+                                            <option value="RECEP">Verifyer</option>
+                                            <option value="ANAL">Analyst</option>
                                         </select>
                                         
                                         <input type="submit" class="submit-button">
@@ -173,12 +173,12 @@
                                     <th>Name</th>
                                     <th>Alias</th>
                                     <th>Password</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>RFC</th>
-                                        <th>Role</th>
-                                    </tr>
-                                </thead>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>RFC</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
                                 <tbody id="activityTableBody">
                                     <!-- Aquí se agregarán las filas dinámicamente -->
                                     <?php 

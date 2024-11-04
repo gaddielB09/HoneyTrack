@@ -19,7 +19,7 @@
     <div class="container" id="container">
     <!-- Formulario de Sign Up (Recuperar Usuario) -->
     <div class="form-container sign-up-container">
-        <form id="recoverUserForm">
+        <form id="recoverUserForm" autocomplete="off">
             <h1>Forgot User</h1> <!-- Cambié el título a "Forgot User" -->
             <input type="email" placeholder="Enter your email to recover" required> <!-- Placeholder para ingresar email -->
             <button type="submit">Recover</button>
@@ -28,7 +28,7 @@
     
     <!-- Formulario de Sign In (Iniciar Sesión) -->
     <div class="form-container sign-in-container">
-        <form action="../php/validateLogin.php" method="post" id="signInForm">
+        <form action="../php/validateLogin.php" method="post" id="signInForm" autocomplete="off">
             <h1>Sign In</h1>
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
