@@ -177,6 +177,7 @@
                                     <th>Email</th>
                                     <th>RFC</th>
                                     <th>Role</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                                 <tbody id="activityTableBody">
@@ -195,6 +196,10 @@
                 <td><?php echo $row["correoElectronico"] ?></td>
                 <td><?php echo $row["rfc"] ?></td>
                 <td><?php echo $row["descripcion"] ?></td>
+                <td class="buttons">    
+                    <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button> 
+                    <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                </td>
             </tr>
 
             <?php } ?>
