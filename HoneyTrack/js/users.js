@@ -77,28 +77,23 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-// Selecciona la barra de búsqueda y el cuerpo de la tabla
 const searchBar = document.getElementById('search-bar');
 const tableBody = document.getElementById('activityTableBody');
 
-// Evento de entrada para filtrar la tabla mientras el usuario escribe
 searchBar.addEventListener('input', function() {
     const filterText = searchBar.value.toLowerCase();
     const rows = tableBody.getElementsByTagName('tr');
 
-    // Itera sobre cada fila de la tabla
     Array.from(rows).forEach(row => {
         const cells = row.getElementsByTagName('td');
         let match = false;
 
-        // Revisa cada celda para ver si alguna coincide con el texto de búsqueda
         Array.from(cells).forEach(cell => {
             if (cell.textContent.toLowerCase().includes(filterText)) {
                 match = true;
             }
         });
 
-        // Muestra la fila si hay coincidencia, o la oculta si no
         row.style.display = match ? '' : 'none';
     });
 });
