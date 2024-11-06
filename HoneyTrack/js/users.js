@@ -3,18 +3,17 @@ const buttons = document.querySelectorAll('.userOption button');
 const formats = document.querySelectorAll('.format');
 
                     /* VALIDACIONES DE INPUTS*/
-/*Validacion de letras y espacios  */
 inputLetters.forEach(input =>{
     const errorMessage = document.getElementById(`error-${input.id}`);
         input.addEventListener('input', function (e){
             let valor = e.target.value;
 
-            if(/[^A-Za-z]/.test(valor)){ /* se quito es \s para evaluar igual los espacios, agregarlo en [^A-Za-z\s]*/
+            if(/[^A-Za-z]/.test(valor)){ /* Se quito es \s para evaluar igual los espacios, agregarlo en [^A-Za-z\s]*/
                 errorMessage.style.display = 'block';
             }else{
                 errorMessage.style.display = 'none';
             }
-            e.target.value = valor.replace(/[^A-Za-z]/g, ''); /* se quito de aqui tambien */
+            e.target.value = valor.replace(/[^A-Za-z]/g, ''); /* Se quito de aqui tambien */
         });
 });
 
@@ -37,16 +36,14 @@ buttons.forEach((button, index) => {
 
 
 //Copia de la tabla en lots
-// Espera a que el contenido del DOM se cargue completamente
 document.addEventListener("DOMContentLoaded", function() {
     // Realiza una solicitud para obtener los datos desde el archivo PHP
-    fetch('selectUsers.php') // Ruta a tu archivo PHP que obtiene los datos de la base de datos
+    fetch('selectUsers.php') // Ruta al archivo PHP que obtiene los datos de la base de datos
         .then(response => {
-            // Verifica si la respuesta es exitosa (código de estado 200)
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            // Convierte la respuesta a formato JSON
             return response.json();
         })
         .then(data => {
@@ -97,6 +94,3 @@ searchBar.addEventListener('input', function() {
         row.style.display = match ? '' : 'none';
     });
 });
-
-
-

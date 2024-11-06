@@ -104,41 +104,41 @@
                                 <div class="personalData">
                                     
                                     <div class="input-container">
-                                        <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" required>
+                                        <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
                                         <span id="error-name" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" required>
+                                        <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
                                         <span id="error-ap" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" required>
+                                        <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
                                         <span id="error-am" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="rfc" name="rfc" placeholder="RFC" required>
+                                        <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
                                         <span id="error-rfc" class="error">RFC Format is not Allowed</span>
                                     </div>
                                     
                                         <div class="input-container">
-                                            <input type="email" id="email" name="email" placeholder="Email" required>
+                                            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
                                             <span id="error-email" class="error">Email Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" required>
+                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
                                             <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
                                         </div>
                                     </div>
                                     
                                     <h2 class="subtittle2">User Data</h2>
                                     <div class="userData">
-                                        <input type="text" id="username" name="username" placeholder="Username" required>
+                                        <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
                                         
-                                        <input type="password" id="password" name="password" placeholder="Password" required>
+                                        <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
                                         
                                         <select class="roles" id="role" name="role" >
                                             <option value="">Role</option>
@@ -166,13 +166,13 @@
                                 <path d="M21 21l-6 -6" />
                             </svg></span>
                         </div>
+                        <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
                                     <th>Number</th>
                                     <th>Name</th>
                                     <th>Alias</th>
-                                    <th>Password</th>
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>RFC</th>
@@ -191,7 +191,6 @@
                 <td><?php echo $row["num"] ?></td>
                 <td><?php echo $row["nombre"] ?></td>
                 <td><?php echo $row["alias"] ?></td>
-                <td><?php echo $row["contraseña"] ?></td>
                 <td><?php echo $row["numCont"] ?></td>
                 <td><?php echo $row["correoElectronico"] ?></td>
                 <td><?php echo $row["rfc"] ?></td>
@@ -204,8 +203,10 @@
 
             <?php } ?>
             </tbody>
-            </table>  
+            </table> 
+            </div> 
             </div>
+            
                 </div>
                 <div id="format3" class="format" style="display: none;"> <!-- Formulario para eliminar usuarios -->
                     <h2 class="home">Delete Users</h2>

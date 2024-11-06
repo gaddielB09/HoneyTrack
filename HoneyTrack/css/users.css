@@ -69,7 +69,28 @@
         margin-left: 20px;
     }
 
-    .btn-edit{
+    .btn-edit, .btn-x {
+        flex: 0 1 auto;
+        padding: 5px 10px;
+        font-size: 12px;
+        max-width: 100px;
+        min-width: 70px;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-edit {
+        background-color: var(--gold);
+        color: var(--blk);
+    }
+    
+    .btn-x {
+        background-color: red;
+        color: var(--blk);
+    }
+    /* .btn-edit{
         width: 28%;
         height: auto;
         background-color: var(--gold);
@@ -81,16 +102,17 @@
         height: auto;
         background-color: red;
         color: var(--blk);
+    } */
+
+    .btn-edit:hover {
+        background-color: rgba(255, 223, 102, 0.8);
+        transform: scale(1.1);
+    }
+    .btn-x:hover {
+        background-color: rgba(255, 69, 69, 0.8); 
+        transform: scale(1.1);
     }
 
-    .btn-edit :hover{
-        background-color: yellow;
-        color: var(--blk);
-    }
-
-    .btn-x :hover{
-        background-color: rgb(175, 1, 1);
-    }
     .btn-edit i{
         font-size: 16px;
         padding: 2px;
@@ -103,7 +125,7 @@
     .buttons {
         display: flex;
         justify-content: center;
-        gap: 10px; /* Espacio entre los botones */
+        gap: 10px; 
         align-items: center;
     }
     
@@ -129,11 +151,13 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
     }
 
     .userOption button:hover {
         background-color: var(--do);
+        transform: scale(1.1);
     }
 
     .userOption i{
@@ -260,7 +284,7 @@
 
     .searchPanel{
         border: 1px solid gray;
-        width: 150vw; /* Ajustado para que no sea tan ancho */
+        width: 100%; /* Ajustado para que no sea tan ancho */
         max-width: 1500px;
         height: auto;
         max-height: 1080px;
@@ -269,6 +293,7 @@
         background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
     }
     .tittleS{
         text-align: center;
@@ -325,30 +350,49 @@
         background-color: transparent;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+.table-container {
+    max-height: 40vh; /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto; /* Scroll vertical en la tabla */
+    margin-top: 20px;
+    position: relative;
+}
 
-    th, td {
-        border: 1px solid var(--blk); /* Bordes de las celdas */
-        padding: 8px; /* Espaciado interno */
-        text-align: left; /* Alineación del texto */
-    }
 
-    th {
-        background-color: var(--gold); /* Color de fondo del encabezado */
-        color: var(--blk); /* Color del texto del encabezado */
-    }
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2; /* Color de las filas pares */
-    }
+th, td {
+    border: 1px solid var(--blk); 
+    padding: 8px; 
+    text-align: left; 
+}
 
-    tr:hover {
-        background-color: #ddd; /* Color al pasar el ratón sobre las filas */
-    }
+th {
+    background-color: var(--gold); 
+    color: var(--blk); 
+
+}
+
+thead {
+    background-color: #f2f2f2;
+    position: sticky; /* Mantiene la cabecera en su lugar al desplazarse */
+    top: 0;
+    z-index: 2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+tr:hover {
+    background-color: #ddd; 
+}
+
         
     @media (max-width: 768px) {
         #search-bar {
@@ -360,11 +404,11 @@
         }
 
         #search-bar::placeholder {
-            display: none; /* Esconde el texto en versión pequeña */
+            display: none;
         }
 
         .search-container:hover #search-bar::placeholder {
-            display: block; /* Muestra el texto cuando está expandido */
+            display: block;
         }
     }
 
