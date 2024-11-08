@@ -358,7 +358,6 @@
 }
 
 
-/* Estilos de la tabla */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -379,7 +378,7 @@ th {
 
 thead {
     background-color: #f2f2f2;
-    position: sticky; /* Mantiene la cabecera en su lugar al desplazarse */
+    position: sticky; 
     top: 0;
     z-index: 2;
 }
@@ -393,7 +392,6 @@ tr:hover {
     background-color: #ddd; 
 }
 
-        
     @media (max-width: 768px) {
         #search-bar {
             width: 0;

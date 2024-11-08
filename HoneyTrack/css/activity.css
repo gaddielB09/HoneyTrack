@@ -102,7 +102,7 @@ th, td {
 
 th {
     background-color: var(--gold); /* Color de fondo del encabezado */
-    color: white; /* Color del texto del encabezado */
+    color: var(--blk); /* Color del texto del encabezado */
 }
 
 tr:nth-child(even) {
