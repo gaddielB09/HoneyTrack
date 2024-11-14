@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
                     </a>
                 </li>
                 <li class="logout">
-                    <a href="../html/login.html">
+                    <a href="../html/login.php">
                         <i class="fas fa-sign-out-alt fa-lg"></i>
                         <span>Logout</span>
                     </a>

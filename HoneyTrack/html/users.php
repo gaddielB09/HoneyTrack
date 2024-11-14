@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if ($_SESSION["user"]!="") {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,14 +58,14 @@
             </li>
 
             <li>
-                <a href="users.html" id="linkUsers">
+                <a href="users.php" id="linkUsers">
                     <i class="fas fa-receipt fa-lg"></i>
                       <span>Inbound</span>
                     </a>
             </li>
 
             <li class="logout">
-                <a href="login.html">
+                <a href="login.php">
                     <i class="fas fa-sign-out-alt fa-lg"></i>
                       <span>Logout</span>
                 </a>
@@ -84,10 +88,8 @@
                     <button onclick="showFormat(format2)">
                         <i class="fas fa-user-edit"></i>
                     </button>
-                    <!-- Button 3 -->
-                    <button onclick="showFormat(format3)">
-                        <i class="fas fa-user-minus"></i>
-                    </button>
+                    
+                    
                 </nav>
             
                 <div id="format1" class="format" style="display: none;">
@@ -143,8 +145,9 @@
                                         <select class="roles" id="role" name="role" >
                                             <option value="">Role</option>
                                             <option value="ADMIN">Administrator</option>
-                                            <option value="RECEP">Verifyer</option>
-                                            <option value="ANAL">Analyst</option>
+                                            <option value="ANAIN">Analyst</option>
+                                            <option value="GRDMP">Item Manager</option>
+                                            <option value="RECEP">Receptionist</option>
                                         </select>
                                         
                                         <input type="submit" class="submit-button">
@@ -177,6 +180,7 @@
                                     <th>Email</th>
                                     <th>RFC</th>
                                     <th>Role</th>
+                                    <th>State</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -186,25 +190,25 @@
                                         include "../php/selectUsers.php";
                                         
                                         while($row = mysqli_fetch_assoc($response)) {?>
+                                <tr>
+                                    <td><?php echo $row["num"] ?></td>
+                                    <td><?php echo $row["nombre"] ?></td>
+                                    <td><?php echo $row["alias"] ?></td>
+                                    <td><?php echo $row["contraseña"] ?></td>
+                                    <td><?php echo $row["numCont"] ?></td>
+                                    <td><?php echo $row["correoElectronico"] ?></td>
+                                    <td><?php echo $row["rfc"] ?></td>
+                                    <td><?php echo $row["descripcion"] ?></td>
+                                    <td><?php echo $row["estado"] ?></td>
+                                    <td class="buttons">
 
-            <tr>
-                <td><?php echo $row["num"] ?></td>
-                <td><?php echo $row["nombre"] ?></td>
-                <td><?php echo $row["alias"] ?></td>
-                <td><?php echo $row["contraseña"] ?></td>
-                <td><?php echo $row["numCont"] ?></td>
-                <td><?php echo $row["correoElectronico"] ?></td>
-                <td><?php echo $row["rfc"] ?></td>
-                <td><?php echo $row["descripcion"] ?></td>
-                <td class="buttons">    
-                    <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button> 
-                    <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
-                </td>
-            </tr>
-
-            <?php } ?>
-            </tbody>
-            </table>  
+                                        <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
+                                        <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                            </table>  
             </div>
                 </div>
                 <div id="format3" class="format" style="display: none;"> <!-- Formulario para eliminar usuarios -->
@@ -230,3 +234,9 @@
 <script src="../js/loading.js"></script>
 </body>
 </html>
+<?php
+    }
+    else{
+        header("Location: login.php");
+    }
+?>

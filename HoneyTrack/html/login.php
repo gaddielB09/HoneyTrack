@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    print_r($_SESSION);
+    $_SESSION["user"]="";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +38,9 @@
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Sign In</button>
+
+            <!--Mensaje que indica si hubo un error para iniciar-->
+            <p class="error"><?php if ($_GET) echo $_GET["msg"]; ?></p>
         </form>
     </div>
 

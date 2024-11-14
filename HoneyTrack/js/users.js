@@ -99,4 +99,3 @@ searchBar.addEventListener('input', function() {
 });
 
 
-

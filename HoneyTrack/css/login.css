@@ -239,3 +239,9 @@ input {
         font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
     }
 }
+
+.error{
+    color: var(--gold);
+    font-size: x-large;
+
+}
