@@ -103,7 +103,7 @@ body::before {
 .tittle {
     font-size: 50px;
     color: var(--blk);
-    margin-top: 175px;
+    margin-top: 90px;
     text-align: center;
     z-index: 1;
 }
