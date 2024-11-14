@@ -142,3 +142,145 @@
     align-items: center;
     justify-content: center;
 }
+
+/* DISPOSITIVOS MOVILES */
+@media (max-width: 768px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .sidebar {
+        background-color: var(--blk);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20vh;
+        transition: all .5s ease;
+        padding: 0.6rem 0.8rem;
+        display: flex;
+        align-items: center;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 0px;
+        z-index: 3;
+    }
+    
+    .sidebar.active {
+        width: 220px;
+    }
+    
+    
+    #btn {
+        margin-top: 20px;
+        color: #fff;
+        font-size: 24px;
+        transition: all .5s ease;
+        cursor: pointer;
+    }
+    
+    .nav-links {
+        position: relative;
+        margin-top: 2em;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-grow: 1;
+    }
+    
+    .nav-links li.logout{
+        margin-top: auto;
+        margin-bottom: 1em;
+    }
+    
+    .nav-links li {
+        position: relative;
+        height: 50px;
+        list-style-type: none;
+        margin: 0.8em auto;
+        width: 90%;
+    }
+    
+    .nav-links li a {
+        border-radius: 15px;
+        height: 100%;
+        width: 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 10px;
+        justify-content: center;
+    }
+    
+    .nav-links li span {
+        opacity: 0;
+    }
+    
+    .sidebar.active .nav-links li span {
+        opacity: 1;
+    }
+    
+    .nav-links li a:hover {
+        background-color: var(--dg);
+        color: white;
+        transition: background-color 0.3 ease;
+    }
+    
+    .nav-links li a i {
+        min-width: 10px;
+        text-align: center;
+        height: 40px;
+        border-radius: 12px;
+        line-height: 40px;
+        margin-right: 6px;
+    }
+    .wrapper {
+        margin-left: 20px; 
+        margin-right: 10px;
+        width: 90%;
+        height: 78%;
+        background-color: var(--whi);
+        border: 3px solid #d3d3d3; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        padding: 20px; 
+        margin-top: 300px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .content{
+        width: 100%;
+    }
+    
+    .sidebar.active + .content .wrapper{
+        margin-left: calc(220px + 10px); /* Mayor margen izquierdo cuando la barra lateral está expandida */
+        width: calc(100% - 240px); /* Ajuste de ancho considerando el ancho expandido de la barra lateral */
+        transition: margin-left 0.5s ease, width 0.5s ease;
+    }
+    
+    .body-container {
+        display: flex;
+        justify-content: center; /* Esto centra el contenido */
+        width: 100%;
+    }
+    
+    .tittle-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Abarca todo el ancho de la pantalla */
+        height: 300px; /* Ajusta la altura para que el fondo dorado cubra un poco de .content */
+        background-color: var(--gold);
+        z-index: 0; /* Fondo dorado detrás del contenido principal */
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

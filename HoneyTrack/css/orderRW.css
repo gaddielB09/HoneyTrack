@@ -21,6 +21,11 @@ body {
     z-index: 2;
 }
 
+.cont {
+    display: flex;
+    justify-content: space-between;
+}
+
 .tittle {
     font-size: 50px;
     color: var(--blk);
@@ -35,22 +40,17 @@ body {
     font-size: 50px;
     margin-bottom: 20px;
     margin-left: 20px;
-}
-
-.gadi {
-    display: flex;
-    justify-content: space-between;
-}
+}               
 
 .orderRW{
     border: 1px solid gray;
-    width: 100%; /* Ajustado para que no sea tan ancho */
+    width: 100%; 
     max-width: 1500px;
     height: auto;
     max-height: 1080px;
-    margin: 0 auto; /* Centra el contenedor */
+    margin: 0 auto; 
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    background-color: rgba(255, 255, 255, 0.8); 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -83,7 +83,6 @@ body {
     color: #000;
 }
 
-/* Expande la barra de búsqueda cuando se pasa el cursor sobre el contenedor */
 .search-container:hover #search-bar {
     width: 200px;
     padding: 5px;
@@ -107,9 +106,10 @@ body {
     font-size: 34px;
     cursor: pointer;
 }
+
 .table-container {
-    max-height: 40vh; /* Ajusta esta altura según tus necesidades */
-    overflow-y: auto; /* Scroll vertical en la tabla */
+    max-height: 40vh; 
+    overflow-y: auto;
     margin-top: 20px;
     position: relative;
 }
