@@ -27,6 +27,20 @@ recoverUserForm.addEventListener('submit', (event) => {
     container.classList.remove("right-panel-active");
 });
 
+const mobileRecoverButton = document.getElementById('mobileRecoverButton');
+
+// Manejo de evento para el botón "Forgot User" en móviles
+mobileRecoverButton.addEventListener('click', () => {
+    container.classList.add("show-recover");
+});
+
+// Al enviar el formulario de recuperación, vuelve al formulario de inicio de sesión
+recoverUserForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alert('A recovery email has been sent.');
+    container.classList.remove("show-recover");
+});
+
 /*
 // Manejo de eventos para el formulario de inicio de sesión
 signInForm.addEventListener('submit', (event) => {

@@ -92,7 +92,7 @@
                                     <path d="M21 21l-6 -6" />
                                     </svg></span>
                         </div>  
-                        
+                        <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -130,6 +130,7 @@
                                 <?php } ?>
                             </tbody>
                         </table>  
+                        </div>
                 </div>
         </div>
     </div>
