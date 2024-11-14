@@ -42,6 +42,11 @@ body {
     margin-left: 20px;
 }               
 
+.gadi {
+    display: flex;
+    justify-content: space-between;
+}
+
 .orderRW{
     border: 1px solid gray;
     width: 100%; 
