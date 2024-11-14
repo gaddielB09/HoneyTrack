@@ -37,7 +37,11 @@ body {
     margin-left: 20px;
 }
 
+<<<<<<< HEAD
 .cont {
+=======
+.gadi {
+>>>>>>> origin/Gaddi
     display: flex;
     justify-content: space-between;
 }
