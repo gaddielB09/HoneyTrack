@@ -82,15 +82,9 @@
             <div class="wrapper">
                 <h3 class="home">ORDER RAW MATERIAL</h3>
                 <div class="orderRW">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <div class="cont">
-=======
                     <div class="up-container">
->>>>>>> origin/Gaddi
-=======
+
                     <div class="cont">
->>>>>>> origin/Gaddi
                         
                         <div class="search-container">
                             <input type="search" id="search-bar" placeholder="Nombre o ID" required>
@@ -99,26 +93,15 @@
                                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                                 <path d="M21 21l-6 -6" />
                                 </svg></span>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
                         </div>  
                                 <div>
                                     <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
 
                                 </div>
-=======
-                                <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
-                        </div>  
->>>>>>> origin/Gaddi
-=======
 
-                        </div>  
-                                <div>
-                                    <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
 
-                                </div>
->>>>>>> origin/Gaddi
+
                     </div>
 
                             <div class="table-container">

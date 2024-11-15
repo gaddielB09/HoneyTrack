@@ -84,7 +84,7 @@
                                     <span>Analysis</span></a>
                                     
                                     <a href="receipts.html">
-                                        <i class="fas fa-receipt"></i>
+                                        <i class="fas fa-truck-loading"></i>
                                         <span>Inbound</span></a>
                                     </nav>
                                 </div>

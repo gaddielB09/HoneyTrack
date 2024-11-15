@@ -46,14 +46,6 @@ body {
     margin-bottom: 20px;
     margin-left: 20px;
 }               
-<<<<<<< HEAD
-
-.gadi {
-    display: flex;
-    justify-content: space-between;
-}
-=======
->>>>>>> origin/Gaddi
 
 .orderRW{
     border: 1px solid gray;
@@ -121,44 +113,45 @@ body {
 }
 
 .table-container {
-    max-height: 40vh; 
-    overflow-y: auto;
-    margin-top: 20px;
-    position: relative;
+  max-height: 40vh; /* Ajusta esta altura según tus necesidades */
+  overflow-y: auto; /* Scroll vertical en la tabla */
+  margin-top: 20px;
+  position: relative;
 }
 
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 th, td {
-    border: 1px solid var(--blk); 
-    padding: 8px; 
-    text-align: left; 
+  border: 1px solid var(--blk); 
+  padding: 8px; 
+  text-align: left; 
 }
 
 th {
-    background-color: var(--gold); 
-    color: var(--blk); 
+  background-color: var(--gold); 
+  color: var(--blk); 
 
 }
 
 thead {
-    background-color: #f2f2f2;
-    position: sticky; 
-    top: 0;
-    z-index: 2;
+  background-color: #f2f2f2;
+  position: sticky; 
+  top: 0;
+  z-index: 2;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 
 tr:hover {
-    background-color: #ddd; 
+  background-color: #ddd; 
 }
 
 @media (max-width: 768px) {
