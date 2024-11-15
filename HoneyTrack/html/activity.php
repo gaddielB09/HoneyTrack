@@ -28,49 +28,49 @@
                 <li>
                     <a href="adminMain.html">
                         <i class="fas fa-house fa-lg"></i>
-                        <span>Main Menu</span>
+                        <!-- <span>Main Menu</span> -->
                     </a>
                 </li>
     
                 <li>
-                    <a href="users.html" id="linkUsers">
+                    <a href="users.php" id="linkUsers">
                         <i class="fas fa-users fa-lg"></i>
-                          <span>Users</span>
+                          <!-- <span>Users</span> -->
                         </a>
                 </li>
     
                 <li>
                     <a href="areas.html" id="linkUsers">
                         <i class="fas fa-map-marker-alt fa-lg"></i>
-                          <span>Areas</span>
+                          <!-- <span>Areas</span> -->
                     </a>
                 </li>
 
                 <li>
                     <a href="applications.html">
                         <i class="fas fa-receipt fa-lg"></i>
-                        <span>Applications</span>
+                        <!-- <span>Applications</span> -->
                     </a>
                 </li>
     
                 <li>
                     <a href="analysis.html">
                         <i class="fas fa-chart-bar fa-lg"></i>
-                        <span>Analysis</span>
+                        <!-- <span>Analysis</span> -->
                     </a>
                 </li>
     
                 <li>
                     <a href="receipts.html">
                         <i class="fas fa-receipt fa-lg"></i>
-                      <span>Receipts</span>
+                      <!-- <span>Receipts</span> -->
                     </a>
                 </li>
     
                 <li class="logout">
                     <a href="login.html">
                         <i class="fas fa-sign-out-alt fa-lg"></i>
-                          <span>Logout</span>
+                          <!-- <span>Logout</span> -->
                     </a>
                 </li>
             </ul>
