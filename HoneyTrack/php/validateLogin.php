@@ -1,5 +1,6 @@
 <?php
     require "../php/connection.php";
+    $msg = "";
     $db = connectdb();
 
     if ($_POST) {
@@ -16,21 +17,46 @@
         //Se valida que sea la misma contraseña
         if ($password == $row[0]) {
             //Ahora se busca el rol para saber a qué Main enviarlo
-            $query = "SELECT rol FROM USUARIO WHERE alias = '$username'";
-            $response = mysqli_query($db, $query);
-            $row = mysqli_fetch_row($response);
-            if ($row[0] == "ADMIN") {
-                header("Location: ../html/adminMain.html");
-            }
-            elseif ($row[0] == "ANA") {
-                header("Location: ../html/analystMain.html");
-            }
-            else {
-                header("Location: ../html/verificatorMain.html");
-            }
+            $query = "SELECT u.rol AS rol, e.edoEmpleado AS estado FROM USUARIO AS u INNER JOIN EMPLEADO AS e ON e.num = u.empleado WHERE alias = '$username'";
+            $responseU = mysqli_query($db, $query);
+            //Validación si está activo y el tipo de rol
+            while ($row = mysqli_fetch_assoc($responseU)) {
+                if ($row["estado"] == "ACTIV") {
+
+                    if ($row["rol"] == "ADMIN") {
+                        session_start();
+                        $_SESSION['user'] = $username;
+                        header("Location: ../html/adminMain.php");
+                    }
+                    elseif ($row["rol"] == "ANAIN") {
+                        session_start();
+                        $_SESSION['user'] = $username;
+                        header("Location: ../html/analystMain.html");
+                    }
+                    elseif ($row["rol"] == "RECEP") {
+                        session_start();
+                        $_SESSION['user'] = $username;
+                        header("Location: ../html/receptionistMain.html");
+                    }
+                    elseif ($row["rol"] == "GRDMP") {
+                        session_start();
+                        $_SESSION['user'] = $username;
+                        header("Location: ../html/managerMain.html");
+                    }
+                    else {
+                        $msg = "User Rol not found";
+                        header("Location: ../html/login.php?msg=$msg");
+                    }
+                }
+                else {
+                    $msg = "Disabled user";
+                    header("Location: ../html/login.php?msg=$msg");
+                }
+            } 
         }
         else {
-            header("Location: ../html/login.html");
+            $msg = "Unvalid user";
+            header("Location: ../html/login.php?msg=$msg");
         }
     }
 ?>

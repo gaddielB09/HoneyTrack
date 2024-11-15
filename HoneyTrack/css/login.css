@@ -268,3 +268,9 @@ input {
         width: 100%;
     }
 }
+
+.error{
+    color: var(--gold);
+    font-size: x-large;
+
+}

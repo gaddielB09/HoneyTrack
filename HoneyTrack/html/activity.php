@@ -19,6 +19,7 @@
 
 <div class="body-container">
 
+<<<<<<< HEAD
 <nav class="sidebar">
             <div class="logo"> 
                 <i id="btn" class="fas fa-bars fa-lg"></i>
@@ -29,6 +30,25 @@
                     <a href="adminMain.html">
                         <i class="fas fa-house fa-lg"></i>
                         <!-- <span>Main Menu</span> -->
+=======
+    <nav class="sidebar">
+        <div class="logo"> 
+            <i id="btn" class="fas fa-bars fa-lg"></i>
+        </div>
+        
+        <ul class="nav-links">
+            <li>
+                <a href="adminMain.html">
+                    <i class="fas fa-house fa-lg"></i>
+                    <span>Main Menu</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-users fa-lg"></i>
+                      <span>Users</span>
+>>>>>>> origin/Andres
                     </a>
                 </li>
     
@@ -46,6 +66,7 @@
                     </a>
                 </li>
 
+<<<<<<< HEAD
                 <li>
                     <a href="applications.html">
                         <i class="fas fa-receipt fa-lg"></i>
@@ -75,6 +96,37 @@
                 </li>
             </ul>
         </nav>
+=======
+            <li>
+                <a href="areas.html" id="linkUsers">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                      <span>Areas</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="analysis.html">
+                    <i class="fas fa-receipt fa-lg"></i>
+                    <span>Applications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="receipts.html">
+                    <i class="fas fa-receipt fa-lg"></i>
+                  <span>Receipts</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="login.php">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                      <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+>>>>>>> origin/Andres
 
     <div class="content">
         <div class="tittle-container">

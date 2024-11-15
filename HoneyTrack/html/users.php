@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if ($_SESSION["user"]!="") {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,7 @@
 <div class="body-container">
 
 <nav class="sidebar">
+<<<<<<< HEAD
             <div class="logo"> 
                 <i id="btn" class="fas fa-bars fa-lg"></i>
             </div>
@@ -30,6 +35,45 @@
                     <a href="adminMain.html">
                         <i class="fas fa-house fa-lg"></i>
                         <!-- <span>Main Menu</span> -->
+=======
+        <div class="logo"> 
+            <i id="btn" class="fas fa-bars fa-lg"></i>
+        </div>
+        
+        <ul class="nav-links">
+            <li>
+                <a href="adminMain.html">
+                    <i class="fas fa-house fa-lg"></i>
+                    <span>Main Menu</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="areas.html" id="linkUsers">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                      <span>Areas</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="receipts.html">
+                    <i class="fas fa-receipt fa-lg"></i>
+                  <span>Applications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="analysis.html">
+                    <i class="fas fa-chart-bar fa-lg"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-receipt fa-lg"></i>
+                      <span>Inbound</span>
+>>>>>>> origin/Andres
                     </a>
                 </li>
     
@@ -47,6 +91,7 @@
                     </a>
                 </li>
 
+<<<<<<< HEAD
                 <li>
                     <a href="applications.html">
                         <i class="fas fa-receipt fa-lg"></i>
@@ -76,6 +121,16 @@
                 </li>
             </ul>
         </nav>
+=======
+            <li class="logout">
+                <a href="login.php">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                      <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+>>>>>>> origin/Andres
     <div class="content">
                 <div class="tittle-container">
                     <h1 class="tittle">HONEY TRACK</h1>
@@ -92,6 +147,11 @@
                     <button onclick="showFormat(format2)">
                         <i class="fas fa-user-edit"></i>
                     </button>
+<<<<<<< HEAD
+=======
+                    
+                    
+>>>>>>> origin/Andres
                 </nav>
             
                 <div id="format1" class="format" style="display: none;">
@@ -147,8 +207,9 @@
                                         <select class="roles" id="role" name="role" >
                                             <option value="">Role</option>
                                             <option value="ADMIN">Administrator</option>
-                                            <option value="RECEP">Verifyer</option>
-                                            <option value="ANAL">Analyst</option>
+                                            <option value="ANAIN">Analyst</option>
+                                            <option value="GRDMP">Item Manager</option>
+                                            <option value="RECEP">Receptionist</option>
                                         </select>
                                         
                                         <input type="submit" class="submit-button">
@@ -182,6 +243,7 @@
                                     <th>Email</th>
                                     <th>RFC</th>
                                     <th>Role</th>
+                                    <th>State</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -191,7 +253,19 @@
                                         include "../php/selectUsers.php";
                                         
                                         while($row = mysqli_fetch_assoc($response)) {?>
+                                <tr>
+                                    <td><?php echo $row["num"] ?></td>
+                                    <td><?php echo $row["nombre"] ?></td>
+                                    <td><?php echo $row["alias"] ?></td>
+                                    <td><?php echo $row["contraseña"] ?></td>
+                                    <td><?php echo $row["numCont"] ?></td>
+                                    <td><?php echo $row["correoElectronico"] ?></td>
+                                    <td><?php echo $row["rfc"] ?></td>
+                                    <td><?php echo $row["descripcion"] ?></td>
+                                    <td><?php echo $row["estado"] ?></td>
+                                    <td class="buttons">
 
+<<<<<<< HEAD
             <tr>
                 <td><?php echo $row["num"] ?></td>
                 <td><?php echo $row["nombre"] ?></td>
@@ -211,6 +285,15 @@
             </tbody>
             </table> 
             </div> 
+=======
+                                        <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
+                                        <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                            </table>  
+>>>>>>> origin/Andres
             </div>
             
                 </div>
@@ -224,3 +307,9 @@
 <script src="../js/functions.js"></script>
 </body>
 </html>
+<?php
+    }
+    else{
+        header("Location: login.php");
+    }
+?>
