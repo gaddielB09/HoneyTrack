@@ -1,63 +1,159 @@
 body {
-    background: var(--whi); /* Por si se quiere usar despues... url(../images/fondoMainMenu.webp) */
-    background-size: cover;
-    background-position: center;
-    font-family: Arial, sans-serif;
+  background: var(
+    --whi
+  ); /* Por si se quiere usar despues... url(../images/fondoMainMenu.webp) */
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
 }
 
-.wrapper {
-    transition: margin-left 0.5s ease, width 0.5s ease; /* Suaviza el movimiento */
-    margin-left: calc(120px + 10px); /* Margen izquierdo que se alinea con la barra lateral cuando está en su estado inactivo */
-    margin-right: 10px; /* Pequeño margen derecho */
-    width: calc(100% - 160px); /* Ajusta el ancho considerando el margen izquierdo y derecho */
+/* .wrapper {
+    transition: margin-left 0.5s ease, width 0.5s ease; 
+    margin-left: calc(120px + 10px); 
+    margin-right: 10px; 
+    width: calc(100% - 160px); 
     height: 800px;
-    background-color: var(--whi); /* Color de fondo gris claro */
-    border: 3px solid #d3d3d3; /* Borde gris claro */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de cuadro */
-    padding: 20px; /* Espacio interior para el contenido */
+    background-color: var(--whi); 
+    border: 3px solid #d3d3d3; 
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 20px;
     margin-top: 135px;
     position: relative;
     z-index: 2;
-}
+} */
 
 .tittle {
+  font-size: 50px;
+  color: var(--blk);
+  margin-bottom: 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+.home {
+  text-align: center;
+  color: var(--blk);
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-top: 50px;
+}
+
+.view-activity {
+  border: 1px solid gray;
+  width: 100%; /* Ajustado para que no sea tan ancho */
+  max-width: 1500px;
+  height: auto;
+  max-height: 1080px;
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 20px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fondo blanco semi-transparente */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#search-bar {
+  width: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  transition: width 0.7s ease, padding 0.3s ease;
+  color: #000;
+  font-size: 16px;
+  border-bottom: 2px solid #000;
+  outline: none;
+}
+
+.icon-search {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+  color: #000;
+}
+
+/* Expande la barra de búsqueda cuando se pasa el cursor sobre el contenedor */
+.search-container:hover #search-bar {
+  width: 200px;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.table-container {
+  max-height: 40vh; /* Ajusta esta altura según tus necesidades */
+  overflow-y: auto; /* Scroll vertical en la tabla */
+  margin-top: 20px;
+  position: relative;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid var(--blk);
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--gold);
+  color: var(--blk);
+}
+
+thead {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .tittle {
     font-size: 50px;
     color: var(--blk);
     margin-bottom: 20px;
     text-align: center;
     z-index: 1;
-}
+    margin-top: 75px;
+  }
 
-.home{
+  .home {
     text-align: center;
     color: var(--blk);
-    font-size: 50px;
-    margin-bottom: 50px;
-    margin-left: 20px;
-    margin-top: 50px;
-}
-
-.view-activity{
-    border: 1px solid gray;
-    width: 100vw; 
-    max-width: 1500px;
-    height: auto;
-    max-height: 1080px;
-    margin: 0 auto; 
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.search-container {
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-left: auto;
+  }
+  .search-container {
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 30px;
-}
+  }
 
-#search-bar {
+  #search-bar {
     width: 0;
     padding: 0;
     border: none;
@@ -67,48 +163,59 @@ body {
     font-size: 16px;
     border-bottom: 2px solid #000;
     outline: none;
-}
+  }
 
-.icon-search {
+  .icon-search {
     cursor: pointer;
     font-size: 20px;
     margin-left: 10px;
     color: #000;
-}
+  }
 
-.search-container:hover #search-bar {
+  /* Expande la barra de búsqueda cuando se pasa el cursor sobre el contenedor */
+  .search-container:hover #search-bar {
     width: 200px;
     padding: 5px;
     background-color: transparent;
-}
+  }
 
-.activity {
+  .table-container {
+    max-height: 35vh; /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto; /* Scroll vertical en la tabla */
     margin-top: 20px;
-    width: 100%;
-    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
-}
+    position: relative;
+  }
 
-table {
+  table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
+  }
 
-th, td {
-    border: 1px solid var(--blk); /* Bordes de las celdas */
-    padding: 8px; /* Espaciado interno */
-    text-align: left; /* Alineación del texto */
-}
+  th,
+  td {
+    border: 1px solid var(--blk);
+    padding: 8px;
+    text-align: left;
+  }
 
-th {
-    background-color: var(--gold); /* Color de fondo del encabezado */
-    color: white; /* Color del texto del encabezado */
-}
+  th {
+    background-color: var(--gold);
+    color: var(--blk);
+  }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2; /* Color de las filas pares */
-}
+  thead {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
 
-tr:hover {
-    background-color: #ddd; /* Color al pasar el ratón sobre las filas */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
 }

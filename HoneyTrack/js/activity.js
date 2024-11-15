@@ -35,3 +35,24 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error:', error);
         });
 });
+
+const searchBar = document.getElementById('search-bar');
+const tableBody = document.getElementById('activityTableBody');
+
+searchBar.addEventListener('input', function() {
+    const filterText = searchBar.value.toLowerCase();
+    const rows = tableBody.getElementsByTagName('tr');
+
+    Array.from(rows).forEach(row => {
+        const cells = row.getElementsByTagName('td');
+        let match = false;
+
+        Array.from(cells).forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(filterText)) {
+                match = true;
+            }
+        });
+
+        row.style.display = match ? '' : 'none';
+    });
+});

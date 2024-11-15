@@ -22,55 +22,62 @@
 
 <div class="body-container">
 
-    <nav class="sidebar">
-        <div class="logo"> 
-            <i id="btn" class="fas fa-bars fa-lg"></i>
-        </div>
-        
-        <ul class="nav-links">
-            <li>
-                <a href="adminMain.html">
-                    <i class="fas fa-house fa-lg"></i>
-                    <span>Main Menu</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="users.php" id="linkUsers">
-                    <i class="fas fa-users fa-lg"></i>
-                      <span>Users</span>
+<nav class="sidebar">
+            <div class="logo"> 
+                <i id="btn" class="fas fa-bars fa-lg"></i>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="adminMain.php">
+                        <i class="fas fa-house fa-lg"></i>
+                        <!-- <span>Main Menu</span> -->
                     </a>
-            </li>
+                </li>
+    
+                <li>
+                    <a href="users.php" id="linkUsers">
+                        <i class="fas fa-users fa-lg"></i>
+                          <!-- <span>Users</span> -->
+                        </a>
+                </li>
+    
+                <li>
+                    <a href="areas.html" id="linkUsers">
+                        <i class="fas fa-map-marker-alt fa-lg"></i>
+                          <!-- <span>Areas</span> -->
+                    </a>
+                </li>
 
-            <li>
-                <a href="areas.html" id="linkUsers">
-                    <i class="fas fa-map-marker-alt fa-lg"></i>
-                      <span>Areas</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="analysis.html">
-                    <i class="fas fa-receipt fa-lg"></i>
-                    <span>Applications</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="receipts.html">
-                    <i class="fas fa-receipt fa-lg"></i>
-                  <span>Receipts</span>
-                </a>
-            </li>
-
-            <li class="logout">
-                <a href="login.php">
-                    <i class="fas fa-sign-out-alt fa-lg"></i>
-                      <span>Logout</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+                <li>
+                    <a href="applications.html">
+                        <i class="fas fa-receipt fa-lg"></i>
+                        <!-- <span>Applications</span> -->
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="analysis.html">
+                        <i class="fas fa-chart-bar fa-lg"></i>
+                        <!-- <span>Analysis</span> -->
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="receipts.html">
+                        <i class="fas fa-receipt fa-lg"></i>
+                      <!-- <span>Receipts</span> -->
+                    </a>
+                </li>
+    
+                <li class="logout">
+                    <a href="login.php">
+                        <i class="fas fa-sign-out-alt fa-lg"></i>
+                          <!-- <span>Logout</span> -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
     <div class="content">
         <div class="tittle-container">
@@ -88,15 +95,15 @@
                                     <path d="M21 21l-6 -6" />
                                     </svg></span>
                         </div>  
-                        
+                        <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Movimiento</th>
-                                    <th>Artículo</th>
-                                    <th>Cantidad</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Movement</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody id="activityTableBody">
@@ -126,6 +133,7 @@
                                 <?php } ?>
                             </tbody>
                         </table>  
+                        </div>
                 </div>
         </div>
     </div>

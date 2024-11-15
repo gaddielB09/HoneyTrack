@@ -226,17 +226,46 @@ input {
     transform: translateX(20%);
 }
 
+#mobileRecoverButton {
+    display: none;
+    background-color: var(--gold);
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10px auto;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer; 
+    font-size: 14px;   
+    font-weight: bold;
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+/* Estilos específicos para dispositivos móviles */
 @media (max-width: 600px) {
-    .container {
-        width: 90%; /* Reducir el ancho en pantallas pequeñas */
+    /* Oculta el overlay y muestra el botón de cambio */
+    .overlay-container {
+        display: none;
     }
-
-    form {
-        padding: 10px 20px; /* Reducir el padding en pantallas pequeñas */
+    
+    .sign-in-container, .sign-up-container {
+        width: 100%;
     }
-
-    input {
-        font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
+    
+    /* Botón para cambiar a "Forgot User" en móviles */
+    #mobileRecoverButton {
+        display: block;   
+    }
+    
+    /* Muestra solo el formulario de inicio de sesión o el de recuperación según la clase */
+    .container.show-recover .sign-in-container {
+        display: none;
+    }
+    
+    .container.show-recover .sign-up-container {
+        display: block;
+        width: 100%;
     }
 }
 
