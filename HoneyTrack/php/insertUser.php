@@ -14,13 +14,15 @@
         $password = $_POST["password"];
         $role = $_POST["role"];
         //Se inserta el nuevo empleado
-        $query = "INSERT INTO EMPLEADO(nombrePila,primApell,segApell,numCont,correoElectronico,rfc, puesto,edo_puesto) VALUES('$name','$ap','$am','$phone','$email','$rfc','$role','ACT')";
+        $query = "INSERT INTO EMPLEADO(nombrePila,primApell,segApell,numCont,correoElectronico,rfc, puesto,edoEmpleado)
+                VALUES('$name','$ap','$am','$phone','$email','$rfc','$role','ACTIV')";
         
         if (mysqli_query($db, $query)) {
             echo "Employee created successfully";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($db);
         }
+
         //Se solicita el num del nuevo empleado para insertarlo con el usuario
         $query = "SELECT num FROM EMPLEADO ORDER BY num DESC";
         $response = mysqli_query($db, $query);
