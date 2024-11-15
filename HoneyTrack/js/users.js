@@ -34,8 +34,6 @@ buttons.forEach((button, index) => {
     });
 });
 
-<<<<<<< HEAD
-=======
 
 //Copia de la tabla en lots
 // Espera a que el contenido del DOM se cargue completamente
@@ -100,4 +98,3 @@ searchBar.addEventListener('input', function() {
 });
 
 
->>>>>>> origin/Andres

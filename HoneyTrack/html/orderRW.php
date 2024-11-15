@@ -24,7 +24,7 @@
             
             <ul class="nav-links">
                 <li>
-                    <a href="adminMain.html">
+                    <a href="adminMain.php">
                         <i class="fas fa-house fa-lg"></i>
                         <!-- <span>Main Menu</span> -->
                     </a>
@@ -66,7 +66,7 @@
                 </li>
     
                 <li class="logout">
-                    <a href="login.html">
+                    <a href="login.php">
                         <i class="fas fa-sign-out-alt fa-lg"></i>
                           <!-- <span>Logout</span> -->
                     </a>
@@ -138,7 +138,23 @@
                                         </tr>
                                     </thead>
                                     <tbody class="orderRWTableBody">
-                                        
+                                        <!-- Aquí se agregarán las filas dinámicamente -->
+                                        <?php 
+                                        include "../php/selectRawMaterialOrder.php";
+
+                                        while($row = mysqli_fetch_assoc($response)) {?>
+                                        <tr>
+                                            <td><?php echo $row["descripcion"] ?></td>
+                                            <td><?php echo $row["num"] ?></td>
+                                            <td><?php echo $row["fecha"] ?></td>
+                                            <td><?php echo $row["cant"] ?></td>
+                                            <td><?php echo $row["subtotal"] ?></td>
+                                            <td><?php echo $row["IVA"] ?></td>
+                                            <td><?php echo $row["total"] ?></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
