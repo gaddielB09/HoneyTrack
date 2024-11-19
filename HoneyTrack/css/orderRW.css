@@ -26,6 +26,11 @@ body {
     justify-content: space-between;
 }
 
+.cont {
+    display: flex;
+    justify-content: space-between;
+}
+
 .tittle {
     font-size: 50px;
     color: var(--blk);
@@ -41,6 +46,14 @@ body {
     margin-bottom: 20px;
     margin-left: 20px;
 }               
+<<<<<<< HEAD
+
+.gadi {
+    display: flex;
+    justify-content: space-between;
+}
+=======
+>>>>>>> origin/Gaddi
 
 .orderRW{
     border: 1px solid gray;
