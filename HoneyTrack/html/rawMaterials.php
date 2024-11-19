@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Products</title>
-        <link rel="stylesheet" href="../css/users.css">
+        <link rel="stylesheet" href="../css/rawMaterials.css">
         <link rel="stylesheet" href="../css/loading.css">
         <link rel="stylesheet" href="../css/sidebar2.css">
         <link rel="stylesheet" href="../css/colors.css">
@@ -176,6 +176,9 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Cost</th>
+                                        <th>Lenght</th>
+                                        <th>Height</th>
+                                        <th>Width</th>
                                         <th>Volume</th>
                                         <th>Weight</th>
                                         <th>Stock</th>
@@ -194,6 +197,9 @@
                                                 <td><?php echo $row["nombre"] ?></td>
                                                 <td><?php echo $row["descripcion"] ?></td>
                                                 <td><?php echo $row["costo"] ?></td>
+                                                <td><?php echo $row["largo"] ?></td>
+                                                <td><?php echo $row["alto"] ?></td>
+                                                <td><?php echo $row["ancho"] ?></td>
                                                 <td><?php echo $row["volumen"] ?></td>
                                                 <td><?php echo $row["peso"] ?></td>
                                                 <td><?php echo $row["stock"] ?></td>
