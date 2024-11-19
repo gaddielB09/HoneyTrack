@@ -111,8 +111,7 @@
                                             <th>Subtotal</th>
                                             <th>IVA</th>
                                             <th>Total</th>
-                                            <th>No. Lot</th>
-                                            <th>Lot</th>
+                                            <th>Empleado</th>
                                         </tr>
                                     </thead>
                                     <tbody class="orderRWTableBody">
@@ -129,8 +128,8 @@
                                             <td><?php echo $row["subtotal"] ?></td>
                                             <td><?php echo $row["IVA"] ?></td>
                                             <td><?php echo $row["total"] ?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $row["alias"] ?></td>
+
                                         </tr>
                                         <?php } ?>
                                     </tbody>
