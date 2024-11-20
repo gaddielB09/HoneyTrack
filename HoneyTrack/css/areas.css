@@ -29,12 +29,8 @@ body::before {
 
 
 .tittle {
-    font-size: 50px;
-    color: var(--blk);
-    margin-bottom: 20px;
-    text-align: center;
-    z-index: 1;
-}
+    margin-bottom: 75px;
+    }
 .home{
     text-align: left;
     color: var(--blk);
@@ -101,12 +97,8 @@ body::before {
 
 
 .tittle {
-    font-size: 50px;
-    color: var(--blk);
-    margin-top: 175px;
-    margin-top: 80px;
-    text-align: center;
-    z-index: 1;
+    margin-top: 110px;
+    width: 350px;
 }
 .home{
     text-align: center;

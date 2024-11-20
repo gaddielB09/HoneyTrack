@@ -29,13 +29,8 @@ body::before {
 }
 
 .tittle {
-    font-size: 50px;
-    color: rgb(164, 164, 167);
-    margin-bottom: 20px;
-    text-align: center;
-    z-index: 1;
-    font-family: 'Times New Roman', Times, serif;
-}
+    margin-bottom: 75px;
+    }
 .option{
     text-align: center;
     color: rgb(164, 164, 167);
@@ -176,4 +171,11 @@ body::before {
 
 .sidebar.active + .content {
     margin-left: 220px; /* Ajusta según el ancho de la barra lateral activa */
+}
+
+@media (max-width: 768px){
+    .tittle {
+        margin-top: 110px;
+        width: 350px;
+    }
 }

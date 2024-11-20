@@ -81,7 +81,7 @@
             </nav>
         <div class="content">
                     <div class="tittle-container">
-                        <h1 class="tittle">HONEY TRACK</h1>
+                    <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
                     </div>
     
                 <div class="wrapper">
