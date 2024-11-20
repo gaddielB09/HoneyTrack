@@ -31,17 +31,17 @@
                     elseif ($row["rol"] == "ANAIN") {
                         session_start();
                         $_SESSION['user'] = $username;
-                        header("Location: ../html/analystMain.html");
+                        header("Location: ../html/analystMain.php");
                     }
                     elseif ($row["rol"] == "RECEP") {
                         session_start();
                         $_SESSION['user'] = $username;
-                        header("Location: ../html/receptionistMain.html");
+                        header("Location: ../html/receptionistMain.php");
                     }
                     elseif ($row["rol"] == "GRDMP") {
                         session_start();
                         $_SESSION['user'] = $username;
-                        header("Location: ../html/managerMain.html");
+                        header("Location: ../html/managerMain.php");
                     }
                     else {
                         $msg = "User Rol not found";

@@ -10,7 +10,7 @@
         $descripcion = $_POST["description"];
         $largo = $_POST["lenght"];
         $alto = $_POST["height"];
-        $ancho = $_POST["widht"];
+        $ancho = $_POST["width"];
         $peso = $_POST["weight"];
 
 
