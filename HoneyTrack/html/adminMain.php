@@ -59,8 +59,7 @@
 
         
         <div class="tittle-container">
-            <h1 class="tittle">HONEY TRACK</h1>
-            <!-- <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200"> -->
+            <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">            <!-- <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200"> -->
         </div>
         <div class="wrapper">
             <h3 class="home">Home</h3>
@@ -84,7 +83,7 @@
                                     <span>Analysis</span></a>
                                     
                                     <a href="receipts.html">
-                                        <i class="fas fa-receipt"></i>
+                                        <i class="fas fa-truck-loading"></i>
                                         <span>Inbound</span></a>
                                     </nav>
                                 </div>

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/analysis.css">
+    <link rel="stylesheet" href="../css/applications.css">
+    <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
-    <title>Analysis</title>
+    <title>Applications</title>
 </head>
 <body>
+
     <div id="loadingScreen">
         <h1 class="loadingText">Loading</h1>
     </div>
@@ -39,28 +40,28 @@
             </li>
 
             <li>
-                <a href="areas.html" id="linkUsers">
+                <a href="areas.php" id="linkUsers">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
                       <!-- <span>Areas</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="applications.html">
+                <a href="applications.php">
                     <i class="fas fa-receipt fa-lg"></i>
                     <!-- <span>Applications</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="analysis.html">
+                <a href="analysis.php">
                     <i class="fas fa-chart-bar fa-lg"></i>
                     <!-- <span>Analysis</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="receipts.html">
+                <a href="receipts.php">
                     <i class="fas fa-receipt fa-lg"></i>
                   <!-- <span>Receipts</span> -->
                 </a>
@@ -81,24 +82,24 @@
         </div>
         
         <div class="wrapper">
-            <h3 class="home">Analysis</h3>
+            <h3 class="home">Applications</h3>
 
-                <nav class="menu">
-                    <a href="activity.php">
-                        <i class="fas fa-history"></i>
-                        <span>Activity Tracking</span>
-                    </a>
-
-                    <a href="reports.html">
-                        <i class="fas fa-clipboard"></i>
-                        <span>Reports</span>
-                    </a>
-                </nav>
+            <nav class="menu">
+                <a href="orderRW.php">
+                    <i class="fas fa-truck"></i>
+                    <span>Order Raw Material</span>
+                </a>
+                <a href="orderFP.html">
+                    <i class="fas fa-truck"></i>
+                    <span>Order Final Products</span>
+                </a>
+            </nav>
         </div>
     </div>
 </div>
 
-    <script src="../js/loading.js"></script>
+
     <script src="../js/sidebar.js"></script>
+    <script src="../js/loading.js"></script>
 </body>
 </html>

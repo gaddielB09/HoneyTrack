@@ -38,28 +38,28 @@
                 </li>
     
                 <li>
-                    <a href="areas.html" id="linkUsers">
+                    <a href="areas.php" id="linkUsers">
                         <i class="fas fa-map-marker-alt fa-lg"></i>
                           <!-- <span>Areas</span> -->
                     </a>
                 </li>
 
                 <li>
-                    <a href="applications.html">
+                    <a href="applications.php">
                         <i class="fas fa-receipt fa-lg"></i>
                         <!-- <span>Applications</span> -->
                     </a>
                 </li>
     
                 <li>
-                    <a href="analysis.html">
+                    <a href="analysis.php">
                         <i class="fas fa-chart-bar fa-lg"></i>
                         <!-- <span>Analysis</span> -->
                     </a>
                 </li>
     
                 <li>
-                    <a href="receipts.html">
+                    <a href="receipts.php">
                         <i class="fas fa-receipt fa-lg"></i>
                       <!-- <span>Receipts</span> -->
                     </a>
@@ -82,15 +82,10 @@
             <div class="wrapper">
                 <h3 class="home">Order Final Products</h3>
                 <div class="orderRW">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                     <div class="cont">
-=======
                     <div class="gadi">
->>>>>>> origin/Gaddi
-=======
                     <div class="cont">
->>>>>>> origin/Gaddi
                         <div class="search-container">
                             <input type="search" id="search-bar" placeholder="Nombre o ID" required>
                             <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -362,6 +362,39 @@
     position: relative;
 }
 
+.success-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 24px;
+    z-index: 9999;
+}
+
+#backToSearchBtn {
+    position: absolute;
+    top: 40px;  
+    left: 40px;  
+    padding: 10px 20px; 
+    background-color: var(--gold); 
+    color: var(--blk); 
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#backToSearchBtn:hover {
+    background-color: #e67e22;  
+    transform: scale(1.1);
+}
 
 table {
     width: 100%;
@@ -397,6 +430,27 @@ tr:hover {
     background-color: #ddd; 
 }
 
+#message-container {
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+#message-container p {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.submit-button:disabled {
+    background-color: #c59504; /* color de fondo cuando está deshabilitado */
+    color: var(--whi); /* color del texto cuando está deshabilitado */
+    cursor: not-allowed; /* cambia el cursor */
+}
+
+
 @media (max-width: 768px) {
     .error {
         color: red;
@@ -422,11 +476,7 @@ tr:hover {
         padding: 10px;
         font-size: 14px;
         margin-bottom: 5px;
-<<<<<<< HEAD
-        width: 93%; 
-=======
         width: 90%; 
->>>>>>> origin/Gaddi
         height: 40px;
         border: 2px solid #ccc;
         border-radius: 5px;
@@ -588,11 +638,7 @@ tr:hover {
 
     .addUsers {
         border: 1px solid gray;
-<<<<<<< HEAD
-        width: 80%; 
-=======
         width: 100%; 
->>>>>>> origin/Gaddi
         max-width: 1200px;
         height: auto;
         margin: 0 auto; 
@@ -610,30 +656,18 @@ tr:hover {
     }
 
     .personalData {
-<<<<<<< HEAD
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 20px; 
-=======
         display: flex;
         /* grid-template-columns: repeat(2, 1fr);  */
         flex-direction: column;
         gap: 7px; 
->>>>>>> origin/Gaddi
         width: 100%; 
         box-sizing: border-box; 
     }
 
     .personalData input {
-<<<<<<< HEAD
-        width: 100%; 
-        padding: 10px;
-        font-size: 16px;
-=======
         width: 90%; 
         padding: 10px;
         font-size: 14px;
->>>>>>> origin/Gaddi
         height: 40px;
         border: 2px solid #ccc;
         border-radius: 5px;
@@ -650,16 +684,10 @@ tr:hover {
 
     /* Ajuste de la sección de datos de usuario */
     .userData {
-<<<<<<< HEAD
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
-        gap: 20px; /* Espacio entre los inputs */
-=======
         display: flex;
         /* grid-template-columns: repeat(2, 1fr); Crea dos columnas iguales */
         flex-direction: column;
         gap: 30px; /* Espacio entre los inputs */
->>>>>>> origin/Gaddi
         width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
         box-sizing: border-box;
 
@@ -681,11 +709,7 @@ tr:hover {
     }
 
     .roles {
-<<<<<<< HEAD
-        width: 100%; /* Que ocupe todo el ancho disponible */
-=======
         width: 90%; /* Que ocupe todo el ancho disponible */
->>>>>>> origin/Gaddi
         height: 45px; /* Altura igual que los inputs */
         background: transparent; /* Fondo transparente */
         border: 2px solid gray; /* Borde del mismo color que los inputs */
@@ -695,10 +719,7 @@ tr:hover {
         color: var(--third); /* Color del texto */
         text-align: center;
         cursor:pointer;
-<<<<<<< HEAD
-=======
         margin-left: 13px;
->>>>>>> origin/Gaddi
     }
 
     .submit-button {
@@ -711,10 +732,7 @@ tr:hover {
         cursor: pointer; /* Cambiar cursor al pasar el mouse */
         font-size: 16px; /* Tamaño de fuente */
         transition: background-color 0.3s; /* Transición suave para el color de fondo */
-<<<<<<< HEAD
-=======
         margin: auto;
->>>>>>> origin/Gaddi
     }
 
     .submit-button:hover {
@@ -802,6 +820,39 @@ tr:hover {
     margin-top: 20px;
     position: relative;
 }
+
+.success-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 24px;
+    z-index: 9999;
+}
+
+#backToSearchBtn {
+    position: absolute;
+    top: 10px;  /* Ajusta el valor según necesites */
+    left: 10px;  /* Ajusta el valor según necesites */
+    padding: 10px 20px;  /* Ajusta el tamaño del botón */
+    background-color: #f39c12;  /* Color de fondo */
+    color: white;  /* Color del texto */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#backToSearchBtn:hover {
+    background-color: #e67e22;  /* Cambio de color al pasar el mouse */
+}
+
 
 
 table {

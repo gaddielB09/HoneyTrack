@@ -38,28 +38,28 @@
                 </li>
     
                 <li>
-                    <a href="areas.html" id="linkUsers">
+                    <a href="areas.php" id="linkUsers">
                         <i class="fas fa-map-marker-alt fa-lg"></i>
                           <!-- <span>Areas</span> -->
                     </a>
                 </li>
 
                 <li>
-                    <a href="applications.html">
+                    <a href="applications.php">
                         <i class="fas fa-receipt fa-lg"></i>
                         <!-- <span>Applications</span> -->
                     </a>
                 </li>
     
                 <li>
-                    <a href="analysis.html">
+                    <a href="analysis.php">
                         <i class="fas fa-chart-bar fa-lg"></i>
                         <!-- <span>Analysis</span> -->
                     </a>
                 </li>
     
                 <li>
-                    <a href="receipts.html">
+                    <a href="receipts.php">
                         <i class="fas fa-receipt fa-lg"></i>
                       <!-- <span>Receipts</span> -->
                     </a>
@@ -82,15 +82,9 @@
             <div class="wrapper">
                 <h3 class="home">ORDER RAW MATERIAL</h3>
                 <div class="orderRW">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <div class="cont">
-=======
                     <div class="up-container">
->>>>>>> origin/Gaddi
-=======
+
                     <div class="cont">
->>>>>>> origin/Gaddi
                         
                         <div class="search-container">
                             <input type="search" id="search-bar" placeholder="Nombre o ID" required>
@@ -99,26 +93,15 @@
                                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                                 <path d="M21 21l-6 -6" />
                                 </svg></span>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
                         </div>  
                                 <div>
                                     <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
 
                                 </div>
-=======
-                                <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
-                        </div>  
->>>>>>> origin/Gaddi
-=======
 
-                        </div>  
-                                <div>
-                                    <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
 
-                                </div>
->>>>>>> origin/Gaddi
+
                     </div>
 
                             <div class="table-container">
@@ -162,5 +145,6 @@
             </div>
         </div>
     </div>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>

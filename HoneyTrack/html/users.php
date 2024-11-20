@@ -32,7 +32,7 @@
                 <li>
                     <a href="adminMain.php">
                         <i class="fas fa-house fa-lg"></i>
-                        <span>Main Menu</span>
+                        <!-- <span>Main Menu</span> -->
                     </a>
                 </li>
     
@@ -44,28 +44,28 @@
                 </li>
     
                 <li>
-                    <a href="areas.html" id="linkUsers">
+                    <a href="areas.php" id="linkUsers">
                         <i class="fas fa-map-marker-alt fa-lg"></i>
                           <span>Areas</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="applications.html">
+                    <a href="applications.php">
                         <i class="fas fa-receipt fa-lg"></i>
                         <span>Applications</span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="analysis.html">
+                    <a href="analysis.php">
                         <i class="fas fa-chart-bar fa-lg"></i>
                         <span>Analysis</span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="receipts.html">
+                    <a href="receipts.php">
                         <i class="fas fa-receipt fa-lg"></i>
                       <span>Receipts</span>
                     </a>
@@ -79,7 +79,6 @@
                 </li>
             </ul>
         </nav>
->>>>>>>>> Temporary merge branch 2
     <div class="content">
                 <div class="tittle-container">
                     <h1 class="tittle">HONEY TRACK</h1>
@@ -99,71 +98,79 @@
                 </nav>
             
                 <div id="format1" class="format" style="display: none;">
-                    
-                    <!-- users forms -->
-                    <form action="../php/insertUser.php" method="post">
-                        <h1 class="home">Add Users</h1>
-                        
-                        <section class="data">
-                            <div class="addUsers">
-                                
-                                <h2 class="subtittle">Personal Data</h2>
-                                
-                                <div class="personalData">
-                                    
-                                    <div class="input-container">
-                                        <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
-                                        <span id="error-name" class="error">Only Letters are Allowed</span>
-                                    </div>
-                                    
-                                    <div class="input-container">
-                                        <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
-                                        <span id="error-ap" class="error">Only Letters are Allowed</span>
-                                    </div>
-                                    
-                                    <div class="input-container">
-                                        <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
-                                        <span id="error-am" class="error">Only Letters are Allowed</span>
-                                    </div>
-                                    
-                                    <div class="input-container">
-                                        <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
-                                        <span id="error-rfc" class="error">RFC Format is not Allowed</span>
-                                    </div>
+                        <!-- users forms -->
+                        <form action="../php/insertUser.php" method="post">
+                            <h1 class="home">Add Users</h1>
+                            <section class="data">
+                                <div class="addUsers">
+                                    <h2 class="subtittle">Personal Data</h2>
+                                    <div class="personalData">
+
                                     
                                         <div class="input-container">
-                                            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
-                                            <span id="error-email" class="error">Email Format is not Allowed</span>
+                                            <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
+                                            <span id="error-name" class="error" style="display: none; color: red;">Error message</span>
                                         </div>
-                                        
+
+                                        <div class="input-container">
+                                            <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
+                                            <span id="error-ap" class="error" style="display: none; color: red;">Error message</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
+                                            <span id="error-am" class="error" style="display: none; color: red;">Error message</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
+                                            <span id="error-rfc" class="error" style="display: none; color: red;">Error message</span>
+                                        </div>
+
                                         <div class="input-container">
                                             <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
-                                            <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
+                                            <span id="error-phone" class="error" style="display: none; color: red;">Error message</span>
                                         </div>
+
+                                        <div class="input-container">
+                                            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
+                                            <span id="error-email" class="error" style="display: none; color: red;">Error message</span>
+                                        </div>
+
                                     </div>
-                                    
+
                                     <h2 class="subtittle2">User Data</h2>
                                     <div class="userData">
+                                    <div class="input-container">
                                         <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
-                                        
-                                        <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
-                                        
-                                        <select class="roles" id="role" name="role" >
-                                            <option value="">Role</option>
+                                            <span id="error-username" class="error" style="display: none; color: red;">Error message</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
+                                            <span id="error-password" class="error" style="display: none; color: red;">Error message</span>
+                                            
+                                        </div>
+
+                                        <select class="roles" id="role" name="role" required>
+                                            <option value="" disabled selected>Role</option>
                                             <option value="ADMIN">Administrator</option>
                                             <option value="ANAIN">Analyst</option>
                                             <option value="GRDMP">Item Manager</option>
                                             <option value="RECEP">Receptionist</option>
                                         </select>
-                                        
-                                        <input type="submit" class="submit-button">
+
+                                        <button type="submit" id="add" class="submit-button" disabled>Submit</button>
                                     </div>
-                            </div>
-                        </section>
-                        
-                    </form>
-                </div>
-                <div id="format2" class="format" style="display: block;"> <!-- Formulario para buscar usuarios -->
+                                </div>
+                            </section>
+                        </form>
+                        <div id="message-container" style="display: none;">
+                            <p id="message-text"></p>
+                        </div>
+                    </div>
+                <div id="format2" class="format" style="display: block;">
+                    <form action="searchUsersForm">
                     <h2 class="home">Search Users</h2>
                     <div class="searchPanel">
                         
@@ -209,8 +216,8 @@
                                             <td><?php echo $row["estado"] ?></td>
                                             <td class="buttons">
 
-                                            <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                            <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                                            <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
+                                            <button class="btn-x" ><i class="fa-solid fa-user-xmark"></i></button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -218,7 +225,80 @@
                             </table>  
                         </div>
                     </div>
+                    
                 </div>
+
+                    <!-- Formulario Edit Users -->
+                    <div id="editUserForm" style="display: none;" class="format">
+                        <form id="updateForm" action="#" method="post">
+                        <button id="backToSearchBtn" type="button" onclick="backToSearch()">Back to Search</button>
+                            <h1 class="home">Edit User</h1>
+                            <input type="hidden" id="userId" name="userId">
+                            
+                            <section class="data">
+                            <div class="addUsers">
+                                
+                                <h2 class="subtittle">Personal Data</h2>
+                                
+                                <div class="personalData">
+                                    
+                                    <div class="input-container">
+                                        <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
+                                        <span id="error-name" class="error">Only Letters are Allowed</span>
+                                    </div>
+                                    
+                                    <div class="input-container">
+                                        <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
+                                        <span id="error-ap" class="error">Only Letters are Allowed</span>
+                                    </div>
+                                    
+                                    <div class="input-container">
+                                        <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
+                                        <span id="error-am" class="error">Only Letters are Allowed</span>
+                                    </div>
+                                    
+                                    <div class="input-container">
+                                        <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
+                                        <span id="error-rfc" class="error">RFC Format is not Allowed</span>
+                                    </div>
+                                    
+                                        <div class="input-container">
+                                            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
+                                            <span id="error-email" class="error">Email Format is not Allowed</span>
+                                        </div>
+                                        
+                                        <div class="input-container">
+                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
+                                            <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <h2 class="subtittle2">User Data</h2>
+                                    <div class="userData">
+                                        <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+                                        
+                                        <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
+                                        
+                                        <select class="roles" id="role" name="role" required>
+                                            <option value="">Role</option required>
+                                            <option value="ADMIN">Administrator</option required>
+                                            <option value="ANAIN">Analyst</option required>
+                                            <option value="GRDMP">Item Manager</option required>
+                                            <option value="RECEP">Receptionist</option required>
+                                        </select>
+                                        
+                                        <input type="submit" class="submit-button" value="Update">
+                                    </div>
+                            </div>
+                        </section>
+                        </form>
+                    </div>
+
+                    <div id="successMessage" style="display: none;" class="success-message">
+                        <p>User has been successfully updated!</p>
+                    </div>
+
+
             </div>
     </div>
 <script src="../js/users.js"></script>

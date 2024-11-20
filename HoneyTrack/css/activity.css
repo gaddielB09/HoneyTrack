@@ -1,7 +1,5 @@
 body {
-  background: var(
-    --whi
-  ); /* Por si se quiere usar despues... url(../images/fondoMainMenu.webp) */
+  background: var(--whi); /* Por si se quiere usar despues... url(../images/fondoMainMenu.webp) */
   background-size: cover;
   background-position: center;
   font-family: Arial, sans-serif;

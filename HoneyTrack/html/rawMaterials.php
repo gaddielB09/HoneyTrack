@@ -44,28 +44,28 @@
                     </li>
         
                     <li>
-                        <a href="areas.html" id="linkUsers">
+                        <a href="areas.php" id="linkUsers">
                             <i class="fas fa-map-marker-alt fa-lg"></i>
                               <!-- <span>Areas</span> -->
                         </a>
                     </li>
     
                     <li>
-                        <a href="applications.html">
+                        <a href="applications.php">
                             <i class="fas fa-receipt fa-lg"></i>
                             <!-- <span>Applications</span> -->
                         </a>
                     </li>
         
                     <li>
-                        <a href="analysis.html">
+                        <a href="analysis.php">
                             <i class="fas fa-chart-bar fa-lg"></i>
                             <!-- <span>Analysis</span> -->
                         </a>
                     </li>
         
                     <li>
-                        <a href="receipts.html">
+                        <a href="receipts.php">
                             <i class="fas fa-receipt fa-lg"></i>
                           <!-- <span>Receipts</span> -->
                         </a>

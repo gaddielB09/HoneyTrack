@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/lots.css">
+    <link rel="stylesheet" href="../css/reports.css">
     <link rel="stylesheet" href="../css/colors.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
     <title>Document</title>
 </head>
 <body>
-
     <div id="loadingScreen">
         <h1 class="loadingText">Loading</h1>
     </div>
+
+<div class="body-container">
 
     <nav class="sidebar">
         <div class="logo"> 
@@ -37,28 +39,28 @@
             </li>
 
             <li>
-                <a href="areas.html" id="linkUsers">
+                <a href="areas.php" id="linkUsers">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
                       <!-- <span>Areas</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="applications.html">
+                <a href="applications.php">
                     <i class="fas fa-receipt fa-lg"></i>
                     <!-- <span>Applications</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="analysis.html">
+                <a href="analysis.php">
                     <i class="fas fa-chart-bar fa-lg"></i>
                     <!-- <span>Analysis</span> -->
                 </a>
             </li>
 
             <li>
-                <a href="receipts.html">
+                <a href="receipts.php">
                     <i class="fas fa-receipt fa-lg"></i>
                   <!-- <span>Receipts</span> -->
                 </a>
@@ -72,46 +74,29 @@
             </li>
         </ul>
     </nav>
-    <div class="content">
 
+    <div class="content">
+        <div class="tittle-container">
+            <h1 class="tittle">HONEY TRACK</h1>
+        </div>
         <div class="wrapper">
-            <h1 class="tittle">Verification</h1>
-            <div class="activity">
-                <form action="">                
-                    <div class="search-container">
-                        <input type="search" id="search-bar" placeholder="Nombre o ID" required>
-                        <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                            <path d="M21 21l-6 -6" />
-                        </svg></span>
-                    </div>  
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Número</th>
-                                <th>Cantidad Recibida</th>
-                                <th>Cantidad Aceptada</th>
-                                <th>Cantidad Defectuosa</th>
-                                <th>Observaciones</th>
-                                <th>Fecha de Validación</th>
-                                <th>Número de Lote</th>
-                                <th>Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody id="activityTableBody">
-                            <!-- Aquí se agregarán las filas dinámicamente -->
-                        </tbody>
-                    </table>
-                    
-                </form>
-            </div>
+        <h3 class="home">Reports</h3>
+            <nav class="menu">
+                <a href="#">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>Raw Material</span>
+                </a>
+
+                <a href="#">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Final Products   </span>
+                </a>
+            </nav>
         </div>
     </div>
+</div>
 
     <script src="../js/loading.js"></script>
     <script src="../js/sidebar.js"></script>
-    <script src="../js/verification.js"></script>
 </body>
 </html>
