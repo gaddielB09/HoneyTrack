@@ -100,7 +100,7 @@
                     <span>Storage</span>
                 </a>
 
-                <a href="#">
+                <a href="locations.php">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Locations</span>
                 </a>    
