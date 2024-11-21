@@ -81,7 +81,7 @@
             </nav>
         <div class="content">
                     <div class="tittle-container">
-                        <h1 class="tittle">HONEY TRACK</h1>
+                    <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
                     </div>
     
                 <div class="wrapper">
@@ -126,7 +126,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="cost" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
+                                            <input type="number" min="0" step="0.01" id="cost" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
 

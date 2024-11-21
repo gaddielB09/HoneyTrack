@@ -28,13 +28,8 @@ body::before {
 }
 
 .tittle {
-    font-size: 50px;
-    color: var(--white);
-    margin-bottom: 20px;
-    text-align: center;
-    z-index: 1;
-    font-family: 'Times New Roman', Times, serif;
-}
+    margin-bottom: 75px;
+    }
 
 .option {
     text-align: center;
