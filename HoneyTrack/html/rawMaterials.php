@@ -121,7 +121,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <input type="number" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
                                             <span id="error-description" class="error">Description Format is not Allowed</span>
                                         </div>
                                         
@@ -149,7 +149,7 @@
                                             <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
-                                            <input type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
                             </section>
@@ -221,6 +221,7 @@
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/functions.js"></script>
+    <script src="../js/rawMaterial.js"></script>
     </body>
     </html>
     <!--Si intentan entrar directo a esta página, se les enviará al login-->

@@ -29,7 +29,6 @@ buttons.forEach((button, index) => {
 });
 
 
-//Copia de la tabla en lots
 // Espera a que el contenido del DOM se cargue completamente
 // document.addEventListener("DOMContentLoaded", function() {
 //     // Realiza una solicitud para obtener los datos desde el archivo PHP
@@ -115,7 +114,7 @@ function checkFieldsFilled() {
 [nameInput, apInput, amInput, rfcInput, phoneInput, emailInput, usernameInput, passwordInput, roleSelect].forEach(input => {
     input.addEventListener('input', checkFieldsFilled);
 });
-
+    
 // Validaciones específicas
 function validateLetters(input, errorId, maxLength) {
     const errorMessage = document.getElementById(errorId);
@@ -215,6 +214,6 @@ validatePhone(phoneInput, "error-phone", 10);
 
 // Inicializar el estado del botón
 document.addEventListener("DOMContentLoaded", () => {
-    submitButton.disabled = true;  // Inicialmente deshabilitado
-    checkFieldsFilled();  // Verificar si el botón debe estar habilitado
+    submitButton.disabled = true;
+    checkFieldsFilled();    
 });
