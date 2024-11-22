@@ -38,7 +38,7 @@
                 <li>
                     <a href="users.php" id="linkUsers">
                         <i class="fas fa-users fa-lg"></i>
-                          <!-- <span>Users</span> -->
+                        <span>Users</span>
                         </a>
                 </li>
     

@@ -89,7 +89,7 @@
                         <span>Activity Tracking</span>
                     </a>
 
-                    <a href="reports.html">
+                    <a href="reports.php">
                         <i class="fas fa-clipboard"></i>
                         <span>Reports</span>
                     </a>

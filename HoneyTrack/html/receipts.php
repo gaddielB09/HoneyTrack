@@ -83,12 +83,12 @@
         <h3 class="home">Inbound</h3>
 
             <nav class="menu">
-                <a href="lots.html">
+                <a href="lots.php">
                     <i class="fas fa-cubes"></i>
                     <span>Lots</span>
                 </a>
 
-                <a href="verification.html">
+                <a href="verification.php">
                     <i class="fas fa-check"></i>
                     <span>Verification</span>
                 </a>

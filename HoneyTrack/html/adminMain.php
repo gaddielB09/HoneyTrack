@@ -70,19 +70,19 @@
                     <i class="fas fa-users"></i>
                     <span>Users</span></a>
                     
-                    <a href="areas.html" id="linkUsers">
+                    <a href="areas.php" id="linkUsers">
                         <i class="fas fa-map-marker-alt"></i>
                             <span> Areas</span></a>
                             
-                            <a href="applications.html">
+                            <a href="applications.php">
                                 <i class="fas fa-receipt"></i>
                                 <span>Applications</span></a>
                                 
-                                <a href="analysis.html">
+                                <a href="analysis.php">
                                     <i class="fas fa-chart-bar"></i>
                                     <span>Analysis</span></a>
                                     
-                                    <a href="receipts.html">
+                                    <a href="receipts.php">
                                         <i class="fas fa-truck-loading"></i>
                                         <span>Inbound</span></a>
                                     </nav>
