@@ -95,7 +95,7 @@
                     <span>Products</span>
                 </a>
 
-                <a href="#">
+                <a href="storage.php">
                     <i class="fas fa-box-open"></i>
                     <span>Storage</span>
                 </a>

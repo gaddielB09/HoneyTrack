@@ -128,7 +128,7 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
+                                            <input type="tel" id="phone" name="phone" min="10" max="10" placeholder="Contact Number" autocomplete="off" required>
                                             <span id="error-phone" class="error" style="display: none; color: red;">Error message</span>
                                         </div>
 
@@ -287,7 +287,7 @@
                                             <option value="RECEP">Receptionist</option required>
                                         </select>
                                         
-                                        <input type="submit" class="submit-button" value="Update">
+                                        <button type="submit" class="submit-button" value="Update">
                                     </div>
                             </div>
                         </section>
