@@ -1,3 +1,5 @@
+<!--Validar que haya iniciado sesión-->
+<?php session_start(); if ($_SESSION["user"]!="") { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,3 +112,5 @@
     <script src="../js/loading.js"></script>
 </body>
 </html>
+<!--Si intentan entrar directo a esta página, se les enviará al login-->
+<?php } else{$msg = "Unvalid user"; header("Location: ../html/login.php?msg=$msg"); } ?>
