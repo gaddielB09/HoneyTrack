@@ -5,27 +5,25 @@
 
     if ($_POST) {
         //Se obtienen los datos del producto
-        $code = $_POST["code"];
-        $name = $_POST["name"];
-        $description = $_POST["description"];
-        $length = $_POST["lenght"];
-        $height = $_POST["height"];
-        $width = $_POST["width"];
-        $weight = $_POST["weight"];
+        $codigo = $_POST["code"];
+        $nombre = $_POST["name"];
+        $descripcion = $_POST["description"];
+        $largo = $_POST["lenght"];
+        $alto = $_POST["height"];
+        $ancho = $_POST["width"];
+        $peso = $_POST["weight"];
 
 
         //Se inserta el nuevo producto
-        $query = "CALL insertProduct('$code','$name','$description','$length',
-                                        '$height','$width','$weight',@msg)";
-        $response = mysqli_query($db, $query);
-
-        //Se recupera el mensaje
-        $query = "SELECT @msg AS msg";
-        $response = mysqli_query($db, $query);
-        while ($row = mysqli_fetch_assoc($response)) {
-            //Se asigna el mensaje a una variable para desplegarla en pantalla
-            $msg = $row["msg"];
-            header("Location: ../html/products.php?msg=$msg");
+        $query = "INSERT INTO PROD_TERMINADO(codigo,nombre,descripcion,costoNeto,largo,alto,ancho,peso,volumen,stock)
+                VALUES('$codigo','$nombre','$descripcion',0,'$largo','$alto','$ancho','$peso',0,0)";
+        
+        if (mysqli_query($db, $query)) {
+            $msg = "Product created successfully";
+        } else {
+            $msg = "Product can not be created";
         }
+
+        header("Location: ../html/products.php?msg=$msg");
     }
 ?>

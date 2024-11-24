@@ -138,8 +138,8 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
-                                            <span id="error-length" class="error">Only Numbers are Allowed</span>
+                                            <input type="number" step="0.01" id="lenght" name="lenght" class="onlyNumbers" placeholder="Lenght (cm)" autocomplete="off" required>
+                                            <span id="error-lenght" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
@@ -183,7 +183,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Cost</th>
-                                        <th>Length</th>
+                                        <th>Lenght</th>
                                         <th>Height</th>
                                         <th>Width</th>
                                         <th>Volume</th>
@@ -200,15 +200,15 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
-                                                <td><?php echo $row["code"] ?></td>
-                                                <td><?php echo $row["name"] ?></td>
-                                                <td><?php echo $row["description"] ?></td>
-                                                <td><?php echo $row["cost"] ?></td>
-                                                <td><?php echo $row["length"] ?></td>
-                                                <td><?php echo $row["height"] ?></td>
-                                                <td><?php echo $row["width"] ?></td>
-                                                <td><?php echo $row["volume"] ?></td>
-                                                <td><?php echo $row["weight"] ?></td>
+                                                <td><?php echo $row["codigo"] ?></td>
+                                                <td><?php echo $row["nombre"] ?></td>
+                                                <td><?php echo $row["descripcion"] ?></td>
+                                                <td><?php echo $row["costo"] ?></td>
+                                                <td><?php echo $row["largo"] ?></td>
+                                                <td><?php echo $row["alto"] ?></td>
+                                                <td><?php echo $row["ancho"] ?></td>
+                                                <td><?php echo $row["volumen"] ?></td>
+                                                <td><?php echo $row["peso"] ?></td>
                                                 <td><?php echo $row["stock"] ?></td>
                                                 <td class="buttons">
     
