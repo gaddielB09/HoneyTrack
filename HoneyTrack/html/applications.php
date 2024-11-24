@@ -94,11 +94,11 @@
             <nav class="menu">
                 <a href="orderRW.php">
                     <i class="fas fa-truck"></i>
-                    <span>Order Raw Material</span>
+                    <span>Purchase Request of Raw Material</span>
                 </a>
                 <a href="orderFP.php">
                     <i class="fas fa-truck"></i>
-                    <span>Order Final Products</span>
+                    <span>Raw Material Requisition</span>
                 </a>
             </nav>
         </div>

@@ -1337,84 +1337,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertLocation` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertLocation`(
-    IN container VARCHAR(12),
-    IN aisle VARCHAR(2),
-    IN side VARCHAR(1),
-    IN bay VARCHAR(2),
-    IN level VARCHAR(1),
-    IN position VARCHAR(2),
-    IN length DECIMAL(10, 2),
-    IN height DECIMAL(10, 2),
-    IN width DECIMAL(10, 2),
-    IN area VARCHAR(5),
-    OUT msg VARCHAR(50)
-)
-BEGIN
-    DECLARE code1 VARCHAR(8);
-    DECLARE codeDub TINYINT(1);
-    SET code1 = CONCAT(asile, side, bay, level, position);
-    SET codeDub = (SELECT COUNT(*) FROM LOCATION WHERE code = code1);
-    IF codeDub = 0 THEN
-        INSERT INTO LOCATION (code, containerName, aisle, side, bay, level, position, length, height, width, area)
-        VALUES (code1, container, aisle, side, bay, level, position, length, height, width, area);
-        SET msg = "Location created successfully";
-    ELSE
-        SET msg = "Duplicated location";
-    END IF;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertProduct` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertProduct`(
-    IN code1 VARCHAR(5),
-    IN name VARCHAR(32),
-    IN description VARCHAR(256),
-    IN length DECIMAL(10, 2),
-    IN height DECIMAL(10, 2),
-    IN width DECIMAL(10, 2),
-    IN weight DECIMAL(10, 2),
-    OUT msg VARCHAR(50)
-)
-BEGIN
-    DECLARE codeDub TINYINT(1);
-    SET codeDub = (SELECT COUNT(*) FROM FINISHED_PRODUCT WHERE code = code1);
-    IF codeDub = 0 THEN
-        INSERT INTO FINISHED_PRODUCT (code, name, description, netCost,
-                                    length, height, width, weight, volume, stock)
-        VALUES (code1, name, description, 0, length, height, width, weight, 0, 0);
-        SET msg = "Product created successfully";
-    ELSE
-        SET msg = "Duplicated code";
-    END IF;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `insertRawMaterial` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1706,4 +1628,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-24 10:30:59
+-- Dump completed on 2024-11-24  9:20:12

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/colors.css">
-    <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/orderFP.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/sidebar2.css">
+    <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css"> 
-    <title>Document</title>
+    <title>Order FP</title>
 </head>
 <body>
     
@@ -81,63 +82,106 @@
         </ul>
     </nav>
 
-        <div class="content">
+    <div class="content">
             <div class="tittle-container">
             <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
             </div>
 
             <div class="wrapper">
-                <h3 class="home">Order Final Products</h3>
-                <div class="orderRW">
 
-                    <div class="cont">
-                    <div class="gadi">
-                    <div class="cont">
-                        <div class="search-container">
-                            <input type="search" id="search-bar" placeholder="Nombre o ID" required>
-                            <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                                <path d="M21 21l-6 -6" />
-                                </svg></span>
-                                
-                                
-                        </div>
-                        <div>
-                            <button class="addApplication"><i class="fa-solid fa-circle-plus"></i></button>
-                        </div>  
+                <nav class="userOption">
+                    <button onclick="showFormat(format1)">
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                    <!-- Button 2 -->
+                    <button onclick="showFormat(format2)">
+                        <i class="fas fa-user-edit"></i>
+                    </button>
+                </nav>
 
-                    </div>
-
-                            <div class="table-container">
-
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Number</th>
-                                            <th>Requisition Description</th>
-                                            <th>Requisition Status</th>
-                                            <th>Employee</th>
-                                            <th>Raw Material Required</th>
-                                            <th>Requisition Date</th>
-                                            <th>Requisition Quantity</th>
-                                            <th>No. Lot</th>
-                                            <th>Lot</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="orderRWTableBody">
+                <div id="format1" class="format" style="display: none;">
+                        
+                        <!-- users forms -->
+                        <form action="../php/insertOrderRM.php" method="post">
+                            <h1 class="home">Do a Raw Material Requisition</h1>
+                            
+                            <section class="data">
+                                <div class="addUsers">
+                                    
+                                    <h2 class="subtittle">Requisition Data</h2>
+                                    
+                                    <div class="personalData">
                                         
-                                    </tbody>
-                                </table>
+                                        <div class="input-container">
+                                            <input type="text" id="product" name="product" placeholder="Product Code" autocomplete="off" maxlength="5" required>
+                                            <span id="error-product" class="error">Product code Format is not Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="number" min="1" max="99" id="quantity" name="quantity" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>
+                                            <span id="error-quantity" class="error">Only Numbers are Allowed</span>
+                                        </div>
+                                            <button type="submit" class="submit-button" value="Send">Submit</button>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                        </form>
+                    </div>
+                    <div id="format2" class="format" style="display: block;"> <!-- Formulario para buscar Materia prima -->
+                        <h2 class="home">Search Raw Material Requisitions</h2>
+                        <div class="searchPanel">
+                            
+                            <div class="search-container">
+                                <input type="search" id="search-bar" placeholder="Nombre o ID" required>
+                                <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                    <path d="M21 21l-6 -6" />
+                                </svg></span>
                             </div>
+                            <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
 
+                                        <th>Requisition Status</th>
+                                        <th>Number</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Employee</th>
+                                        <th>Production Line</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="activityTableBody">
+                                        <!-- Aquí se agregarán las filas dinámicamente -->
+                                        <?php 
+                                            include "../php/selectRequisitions.php";
+                                            
+                                            while($row = mysqli_fetch_assoc($response)) {?>
+                                            <tr>
+                                                <td><?php echo $row["status"] ?></td>
+                                                <td><?php echo $row["num"] ?></td>
+                                                <td><?php echo $row["date"] ?></td>
+                                                <td><?php echo $row["description"] ?></td>
+                                                <td><?php echo $row["quantity"] ?></td>
+                                                <td><?php echo $row["username"] ?></td>
+                                                <td><?php echo $row["productionLine"] ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
-    </div>
-
-<script src="../js/sidebar.js"></script>
-<script src="../js/loading.js"></script>
-<script src="../js/functions.js"></script>
+    <script src="../js/users.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/loading.js"></script>
+    <script src="../js/functions.js"></script>
+    <script src="../js/orderFP.js"></script>
 </body>
 </html>
+
