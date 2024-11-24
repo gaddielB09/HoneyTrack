@@ -287,7 +287,7 @@
                                             <option value="RECEP">Receptionist</option required>
                                         </select>
                                         
-                                        <input type="submit" class="submit-button" value="Update">
+                                        <button type="submit" class="submit-button" value="Update">
                                     </div>
                             </div>
                         </section>
