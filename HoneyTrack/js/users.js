@@ -28,47 +28,6 @@ buttons.forEach((button, index) => {
     });
 });
 
-
-// Espera a que el contenido del DOM se cargue completamente
-// document.addEventListener("DOMContentLoaded", function() {
-//     // Realiza una solicitud para obtener los datos desde el archivo PHP
-//     fetch('selectUsers.php') // Ruta a tu archivo PHP que obtiene los datos de la base de datos
-//         .then(response => {
-//             // Verifica si la respuesta es exitosa (código de estado 200)
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
-//             // Convierte la respuesta a formato JSON
-//             return response.json();
-//         })
-//         .then(data => {
-//             // Selecciona el cuerpo de la tabla donde se agregarán las filas
-//             const tableBody = document.getElementById('activityTableBody');
-//             // Itera sobre cada objeto en los datos recibidos
-//             data.forEach(item => {
-//                 // Crea una nueva fila para la tabla
-//                 const row = document.createElement('tr');
-//                 // Agrega el contenido de la fila utilizando los datos de cada objeto
-//                 row.innerHTML = `
-//                     <td>${item.num}</td>
-//                     <td>${item.nombrePila}</td>
-//                     <td>${item.alias}</td>
-//                     <td>${item.contraseña}</td>
-//                     <td>${item.numCont}</td>
-//                     <td>${item.correoElectronico}</td>
-//                     <td>${item.rfc}</td>
-//                     <td>${item.role}</td>
-//                 `;
-//                 // Agrega la fila recién creada al cuerpo de la tabla
-//                 tableBody.appendChild(row);
-//             });
-//         })
-//         .catch(error => {
-//             // Maneja cualquier error que ocurra durante la solicitud o el procesamiento de datos
-//             console.error('Error:', error);
-//         });
-// });
-
 // Filtrar resultados en la tabla
 searchBar.addEventListener('input', () => {
     const filterText = searchBar.value.toLowerCase();
@@ -98,23 +57,32 @@ function backToSearch() {
 
 // Función para habilitar/deshabilitar el botón de submit
 function checkFieldsFilled() {
-    // Comprobar si todos los campos requeridos están llenos
     const fields = [nameInput, apInput, amInput, rfcInput, phoneInput, emailInput, usernameInput, passwordInput, roleSelect];
+
+    // Verificar si todos los campos requeridos están llenos
     const allFilled = fields.every(input => {
         if (input.tagName === 'SELECT') {
-            return input.value.trim() !== '';  // Para el select, verificar si tiene un valor
+            return input.value.trim() !== '';
         }
-        return input.value.trim() !== '';  // Para los inputs, verificar si no está vacío
+        return input.value.trim() !== '';
     });
 
-    submitButton.disabled = !allFilled;  // Habilitar el botón si todos los campos están llenos
+    // Verificar que el teléfono tenga exactamente 10 dígitos
+    const isPhoneValid = phoneInput.value.length === 10;
+
+    // Verificar que el RFC tenga exactamente 13 caracteres
+    const isRfcValid = rfcInput.value.length === 13;
+
+    // Habilitar el botón solo si todos los campos están llenos, el teléfono es válido y el RFC es válido
+    submitButton.disabled = !(allFilled && isPhoneValid && isRfcValid);
 }
 
 // Llamar a la función cada vez que un campo cambie
 [nameInput, apInput, amInput, rfcInput, phoneInput, emailInput, usernameInput, passwordInput, roleSelect].forEach(input => {
     input.addEventListener('input', checkFieldsFilled);
 });
-    
+
+
 // Validaciones específicas
 function validateLetters(input, errorId, maxLength) {
     const errorMessage = document.getElementById(errorId);
@@ -153,19 +121,50 @@ function validateField(input, errorId, maxLength, regex, errorMessageText) {
 validateLetters(nameInput, "error-name", 16);
 validateLetters(apInput, "error-ap", 24);
 validateLetters(amInput, "error-am", 24);
-validateField(rfcInput, "error-rfc", 13, /^[a-zA-Z0-9]*$/, "RFC can only contain letters and numbers (no spaces).");
 validateField(emailInput, "error-email", 32, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format.");
 validateField(usernameInput, "error-username", 12, /^[^\s]*$/, "Username cannot contain spaces.");
+
+rfcInput.addEventListener("input", () => {
+    const errorMessage = document.getElementById("error-rfc");
+    let value = rfcInput.value;
+
+    value = value.replace(/[^a-zA-Z0-9]/g, '');
+
+    if(value.length > 13){
+        errorMessage.textContent = "RFC can only have 13 characters.";
+        errorMessage.style.display = "block";
+        value = value.substring(0, 13);
+    }else if (!/^[a-zA-Z0-9]*$/.test(value)){
+        errorMessage.textContent = "RFC can only contain letters and numbers.";
+        errorMessage.style.display = "block";
+    }else{
+        errorMessage.style.display = "none";
+    }
+
+    rfcInput.value = value;
+})
+
+// Validación específica para contraseña
 passwordInput.addEventListener("input", () => {
     const errorMessage = document.getElementById("error-password");
-    const value = passwordInput.value.trim();
-    if (value.length < 8 || value.length > 16) {
-        errorMessage.textContent = "Password must be between 8 and 16 characters.";
+    let value = passwordInput.value;
+
+    // Eliminar espacios
+    value = value.replace(/\s/g, "");
+
+    // Verificar longitud máxima
+    if (value.length > 16) {
+        errorMessage.textContent = "Password can only have a maximum of 16 characters.";
         errorMessage.style.display = "block";
+        value = value.substring(0, 16);
     } else {
         errorMessage.style.display = "none";
     }
+
+    // Actualizar el valor del campo
+    passwordInput.value = value;
 });
+
 
 // Validación del select (Role)
 roleSelect.addEventListener("change", () => {
@@ -196,15 +195,11 @@ function validatePhone(input, errorId, maxLength) {
         input.value = value;
 
         // Verificar si el número tiene exactamente 10 dígitos
-        if (value.length < maxLength) {
-            errorMessage.textContent = "Phone number must have exactly 10 digits.";
-            errorMessage.style.display = "block";
-        } else if (/[a-zA-Z]/.test(value)) {
-            // Si el número contiene letras
-            errorMessage.textContent = "Only numbers are allowed.";
-            errorMessage.style.display = "block";
-        } else {
+        if (value.length === maxLength) {
             errorMessage.style.display = "none";
+        } else {
+            errorMessage.textContent = `Phone number must have exactly ${maxLength} digits.`;
+            errorMessage.style.display = "block";
         }
     });
 }
@@ -214,6 +209,6 @@ validatePhone(phoneInput, "error-phone", 10);
 
 // Inicializar el estado del botón
 document.addEventListener("DOMContentLoaded", () => {
-    submitButton.disabled = true;
-    checkFieldsFilled();    
+    submitButton.disabled = true; // Deshabilitado por defecto
+    checkFieldsFilled();          // Comprobar el estado inicial
 });

@@ -128,7 +128,7 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
+                                            <input type="tel" id="phone" name="phone" minlength="10" placeholder="Contact Number" autocomplete="off" required>
                                             <span id="error-phone" class="error" style="display: none; color: red;">Error message</span>
                                         </div>
 
@@ -268,7 +268,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" autocomplete="off" required>
+                                            <input type="tel" id="phone" name="phone" minlength="10" maxlength="10" placeholder="Contact Number" autocomplete="off" required>
                                             <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
                                         </div>
                                     </div>

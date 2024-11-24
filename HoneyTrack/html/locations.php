@@ -110,8 +110,8 @@
                                     
                                     <h2 class="subtittle">Location Data</h2>
                                     
-                                    <div class="personalData">
                                         
+                                    <div class="location">
                                         <div class="input-container">
                                             <input type="text" id="aisle" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" required>
                                             <span id="error-aisle" class="error">Aisle Format is not Allowed</span>
@@ -126,17 +126,19 @@
                                             <input type="text" id="bay" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-bay" class="error">Bay Format is not Allowed</span>
                                         </div>
-                                        
+
                                         <div class="input-container">
-                                            <input type="text" id="level" name="level" placeholder="Level (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="level" name="level" placeholder="Level (A)" autocomplete="off" maxlength="2" required>
                                             <span id="error-level" class="error">Level Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="position" name="position" placeholder="Position (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="position" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-position" class="error">Position Format is not Allowed</span>
                                         </div>
-                                        
+                                        </div>
+                                        <div class="personalData">
+
                                         <div class="input-container">
                                             <input type="number" min="0" step="0.01" id="lenght" name="lenght" class="onlyNumbers" placeholder="Lenght (cm)" autocomplete="off" required>
                                             <span id="error-lenght" class="error">Only Numbers are Allowed</span>
@@ -163,7 +165,7 @@
                                             <option value="ARDPT">Products</option>
                                         </select>
 
-                                            <input type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
                             </section>

@@ -121,7 +121,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="number" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <input type="text   " id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
                                             <span id="error-description" class="error">Description Format is not Allowed</span>
                                         </div>
                                         

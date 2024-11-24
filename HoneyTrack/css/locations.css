@@ -179,8 +179,8 @@ body {
 
 .addUsers {
     border: 1px solid gray;
-    width: 80%; 
-    max-width: 1200px;
+    width: 100%; 
+    max-width: 1400px;
     height: auto;
     margin: 0 auto; 
     padding: 20px;
@@ -200,6 +200,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 20px; 
+    row-gap: 50px;
     width: 100%; 
     box-sizing: border-box; 
 }
@@ -265,7 +266,7 @@ input:focus {
     height: 45px; /* Altura igual que los inputs */
     background: var(--gold); /* Color de fondo definido en tu paleta */
     border: none; /* Sin borde */
-    border-radius: 40px; /* Bordes redondeados */
+    border-radius: 50px; /* Bordes redondeados */
     color: var(--third); /* Color del texto definido en tu paleta */
     cursor: pointer; /* Cambiar cursor al pasar el mouse */
     font-size: 16px; /* Tamaño de fuente */
@@ -276,11 +277,10 @@ input:focus {
     background-color: var(--do); /* Cambia el color al pasar el mouse */
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+.submit-button:disabled{
+    background-color: #c59504;
+    cursor: not-allowed;
+    color: var(--whi);
 }
 
 .searchPanel{
@@ -349,6 +349,12 @@ input:focus {
     width: 200px;
     padding: 5px;
     background-color: transparent;
+}
+
+.location{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 .table-container {
@@ -671,6 +677,7 @@ input:focus {
     font-size: 16px; /* Tamaño de fuente */
     transition: background-color 0.3s; /* Transición suave para el color de fondo */
     margin: auto;
+    margin-top: 30px;
 }
 
 .submit-button:hover {
@@ -750,6 +757,26 @@ input:focus {
     width: 200px;
     padding: 5px;
     background-color: transparent;
+}
+
+.location{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 7px;
+    box-sizing: border-box;
+    margin-bottom: auto;
+}
+
+.location input{
+    width: 90%;
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .table-container {
