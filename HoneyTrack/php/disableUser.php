@@ -5,17 +5,16 @@
 
     $num = $_POST["num"];
 
-    //Cambiar por una View
+    // Cambiar el estado del usuario a INACT
     $query = "UPDATE EMPLEADO SET edoEmpleado = 'INACT' WHERE num = '$num'"; 
 
     $response = mysqli_query($db, $query);
     
     if ($response) {
-        $msg = "User disabled successfully";
+        $msg = "User's status changed succesfully";
     } else {
-        $msg = "Error disabling user";
+        $msg = "Error when changing user status";
     }
 
-    header("Location: ../html/users.php?msg=$msg");
-
+    echo json_encode(['msg' => $msg, 'num' => $num]);
 ?>

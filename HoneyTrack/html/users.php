@@ -211,7 +211,7 @@
                                         include "../php/selectUsers.php";
                                         
                                         while($row = mysqli_fetch_assoc($response)) {?>
-                                        <tr>
+                                        <tr data-id="<?php echo $row["num"]?>">
                                             <td><?php echo $row["num"] ?></td>
                                             <td><?php echo $row["nombre"] ?></td>
                                             <td><?php echo $row["alias"] ?></td>
@@ -220,11 +220,11 @@
                                             <td><?php echo $row["correoElectronico"] ?></td>
                                             <td><?php echo $row["rfc"] ?></td>
                                             <td><?php echo $row["descripcion"] ?></td>
-                                            <td><?php echo $row["estado"] ?></td>
+                                            <td class="estate"><?php echo $row["estado"] ?></td>
                                             <td class="buttons">
 
                                             <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                            <button class="btn-x" ><i class="fa-solid fa-user-xmark"></i></button>
+                                            <button class="btn-x" id="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -234,6 +234,21 @@
                     </div>
                     
                 </div>
+
+                    <!-- Modal de confirmación -->
+                    <div id="confirmation-modal" style="display: none;">
+                        <div class="modal-content">
+                            <p id="modal-message">Are you sure you want to continue? You will change the user's status to inactive.</p>
+                            <div class="modal-buttons">
+                                <button id="confirm-yes" class="btn-confirm">Yes</button>
+                                <button id="confirm-no" class="btn-cancel">No</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Este es el contenedor para el mensaje de éxito -->
+                    <div id="success-message">El usuario ha sido desactivado.</div>
+
 
                     <!-- Formulario Edit Users -->
                     <div id="editUserForm" style="display: none;" class="format">
