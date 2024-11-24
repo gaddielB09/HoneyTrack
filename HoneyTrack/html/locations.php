@@ -24,61 +24,68 @@
     <div class="body-container">
     
     <nav class="sidebar">
-                <div class="logo"> 
-                    <i id="btn" class="fas fa-bars fa-lg"></i>
-                </div>
-                
-                <ul class="nav-links">
-                    <li>
-                        <a href="adminMain.php">
-                            <i class="fas fa-house fa-lg"></i>
-                            <!-- <span>Main Menu</span> -->
-                        </a>
-                    </li>
+        <div class="logo"> 
+            <i id="btn" class="fas fa-bars fa-lg"></i>
+        </div>
         
-                    <li>
-                        <a href="users.php" id="linkUsers">
-                            <i class="fas fa-users fa-lg"></i>
-                            <span>Users</span>
-                            </a>
-                    </li>
-        
-                    <li>
-                        <a href="areas.php" id="linkUsers">
-                            <i class="fas fa-map-marker-alt fa-lg"></i>
-                              <span>Areas</span>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="applications.php">
-                            <i class="fas fa-receipt fa-lg"></i>
-                            <span>Applications</span>
-                        </a>
-                    </li>
-        
-                    <li>
-                        <a href="analysis.php">
-                            <i class="fas fa-chart-bar fa-lg"></i>
-                            <span>Analysis</span>
-                        </a>
-                    </li>
-        
-                    <li>
-                        <a href="receipts.php">
-                            <i class="fas fa-receipt fa-lg"></i>
-                          <span>Receipts</span>
-                        </a>
-                    </li>
-        
-                    <li class="logout">
-                        <a href="login.php">
-                            <i class="fas fa-sign-out-alt fa-lg"></i>
-                              <span>Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <ul class="nav-links">
+            <li>
+                <a href="adminMain.php">
+                    <i class="fas fa-house fa-lg"></i>
+                    <!-- <span>Main Menu</span> -->
+                </a>
+            </li>
+
+            <li>
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-users fa-lg"></i>
+                      <span>Users</span>
+                    </a>
+            </li>
+
+            <li>
+                <a href="areas.php" id="linkUsers">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                      <span>Areas</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="applications.php">
+                    <i class="fas fa-receipt fa-lg"></i>
+                    <span>Applications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="analysis.php">
+                    <i class="fas fa-chart-bar fa-lg"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="receipts.php">
+                    <i class="fas fa-truck-loading fa-lg"></i>
+                  <span>Inbound</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="production.php">
+                    <i class="fas fa-microchip fa-lg"></i>
+                    <span>Production</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="login.php">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                      <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
         <div class="content">
                     <div class="tittle-container">
                     <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
@@ -110,8 +117,8 @@
                                     
                                     <h2 class="subtittle">Location Data</h2>
                                     
-                                    <div class="personalData">
                                         
+                                    <div class="location">
                                         <div class="input-container">
                                             <input type="text" id="aisle" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" required>
                                             <span id="error-aisle" class="error">Aisle Format is not Allowed</span>
@@ -126,17 +133,19 @@
                                             <input type="text" id="bay" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-bay" class="error">Bay Format is not Allowed</span>
                                         </div>
-                                        
+
                                         <div class="input-container">
-                                            <input type="text" id="level" name="level" placeholder="Level (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="level" name="level" placeholder="Level (A)" autocomplete="off" maxlength="2" required>
                                             <span id="error-level" class="error">Level Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="position" name="position" placeholder="Position (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="position" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-position" class="error">Position Format is not Allowed</span>
                                         </div>
-                                        
+                                        </div>
+                                        <div class="personalData">
+
                                         <div class="input-container">
                                             <input type="number" min="0" step="0.01" id="lenght" name="lenght" class="onlyNumbers" placeholder="Lenght (cm)" autocomplete="off" required>
                                             <span id="error-lenght" class="error">Only Numbers are Allowed</span>
@@ -163,7 +172,7 @@
                                             <option value="ARDPT">Products</option>
                                         </select>
 
-                                            <input type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
                             </section>

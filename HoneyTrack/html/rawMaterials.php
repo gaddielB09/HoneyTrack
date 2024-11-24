@@ -24,61 +24,68 @@
     <div class="body-container">
     
     <nav class="sidebar">
-                <div class="logo"> 
-                    <i id="btn" class="fas fa-bars fa-lg"></i>
-                </div>
-                
-                <ul class="nav-links">
-                    <li>
-                        <a href="adminMain.php">
-                            <i class="fas fa-house fa-lg"></i>
-                            <!-- <span>Main Menu</span> -->
-                        </a>
-                    </li>
+        <div class="logo"> 
+            <i id="btn" class="fas fa-bars fa-lg"></i>
+        </div>
         
-                    <li>
-                        <a href="users.php" id="linkUsers">
-                            <i class="fas fa-users fa-lg"></i>
-                              <!-- <span>Users</span> -->
-                            </a>
-                    </li>
-        
-                    <li>
-                        <a href="areas.php" id="linkUsers">
-                            <i class="fas fa-map-marker-alt fa-lg"></i>
-                              <!-- <span>Areas</span> -->
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="applications.php">
-                            <i class="fas fa-receipt fa-lg"></i>
-                            <!-- <span>Applications</span> -->
-                        </a>
-                    </li>
-        
-                    <li>
-                        <a href="analysis.php">
-                            <i class="fas fa-chart-bar fa-lg"></i>
-                            <!-- <span>Analysis</span> -->
-                        </a>
-                    </li>
-        
-                    <li>
-                        <a href="receipts.php">
-                            <i class="fas fa-receipt fa-lg"></i>
-                          <!-- <span>Receipts</span> -->
-                        </a>
-                    </li>
-        
-                    <li class="logout">
-                        <a href="login.php">
-                            <i class="fas fa-sign-out-alt fa-lg"></i>
-                              <!-- <span>Logout</span> -->
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <ul class="nav-links">
+            <li>
+                <a href="adminMain.php">
+                    <i class="fas fa-house fa-lg"></i>
+                    <!-- <span>Main Menu</span> -->
+                </a>
+            </li>
+
+            <li>
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-users fa-lg"></i>
+                      <span>Users</span>
+                    </a>
+            </li>
+
+            <li>
+                <a href="areas.php" id="linkUsers">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                      <span>Areas</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="applications.php">
+                    <i class="fas fa-receipt fa-lg"></i>
+                    <span>Applications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="analysis.php">
+                    <i class="fas fa-chart-bar fa-lg"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="receipts.php">
+                    <i class="fas fa-truck-loading fa-lg"></i>
+                  <span>Inbound</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="production.php">
+                    <i class="fas fa-microchip fa-lg"></i>
+                    <span>Production</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="login.php">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                      <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
         <div class="content">
                     <div class="tittle-container">
                     <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
@@ -121,7 +128,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <input type="text   " id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
                                             <span id="error-description" class="error">Description Format is not Allowed</span>
                                         </div>
                                         
@@ -149,7 +156,7 @@
                                             <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
-                                            <input type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
                             </section>
@@ -221,6 +228,7 @@
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/functions.js"></script>
+    <script src="../js/rawMaterial.js"></script>
     </body>
     </html>
     <!--Si intentan entrar directo a esta página, se les enviará al login-->
