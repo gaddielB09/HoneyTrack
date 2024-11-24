@@ -147,8 +147,8 @@
                                         <div class="personalData">
 
                                         <div class="input-container">
-                                            <input type="number" min="0" step="0.01" id="lenght" name="lenght" class="onlyNumbers" placeholder="Lenght (cm)" autocomplete="off" required>
-                                            <span id="error-lenght" class="error">Only Numbers are Allowed</span>
+                                            <input type="number" min="0" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <span id="error-length" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
@@ -168,8 +168,11 @@
 
                                         <select class="roles" id="area" name="area" required>
                                             <option value="" disabled selected>Area</option>
-                                            <option value="ARDMP">Raw Materials</option>
-                                            <option value="ARDPT">Products</option>
+                                            <!--Imprime dinámicamente las opciones-->
+                                            <?php include "../php/selectLocations.php";
+                                                while($row = mysqli_fetch_assoc($responseA)) {?>
+                                                <option value="<?php echo $row["code"] ?>"><?php echo $row["description"] ?></option required>
+                                            <?php } ?>
                                         </select>
 
                                             <button type="submit" class="submit-button" value="Send">Submit</button>
@@ -203,7 +206,7 @@
                                         <th>Level</th>
                                         <th>Position</th>
                                         <th>Capacity</th>
-                                        <th>Lenght</th>
+                                        <th>Length</th>
                                         <th>Height</th>
                                         <th>Width</th>
                                         <th>Volume</th>
@@ -213,10 +216,7 @@
                                 </thead>
                                     <tbody id="activityTableBody">
                                         <!-- Aquí se agregarán las filas dinámicamente -->
-                                        <?php 
-                                            include "../php/selectLocations.php";
-                                            
-                                            while($row = mysqli_fetch_assoc($response)) {?>
+                                        <?php while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
                                                 <td><?php echo $row["code"] ?></td>
                                                 <td><?php echo $row["container"] ?></td>
@@ -226,9 +226,9 @@
                                                 <td><?php echo $row["level"] ?></td>
                                                 <td><?php echo $row["position"] ?></td>
                                                 <td><?php echo $row["capacity"] ?></td>
-                                                <td><?php echo $row["lenght"] ?></td>
+                                                <td><?php echo $row["length"] ?></td>
                                                 <td><?php echo $row["height"] ?></td>
-                                                <td><?php echo $row["witdh"] ?></td>
+                                                <td><?php echo $row["width"] ?></td>
                                                 <td><?php echo $row["volume"] ?></td>
                                                 <td><?php echo $row["area"] ?></td>
                                                 <td class="buttons">

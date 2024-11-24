@@ -5,26 +5,26 @@
 
     if ($_POST) {
         //Se obtienen los datos de la materia prima
-        $codigo = $_POST["code"];
-        $nombre = $_POST["name"];
-        $descripcion = $_POST["description"];
-        $costo = $_POST["cost"];
-        $largo = $_POST["lenght"];
-        $alto = $_POST["height"];
-        $ancho = $_POST["width"];
-        $peso = $_POST["weight"];
-
+        $code = $_POST["code"];
+        $name = $_POST["name"];
+        $description = $_POST["description"];
+        $cost = $_POST["cost"];
+        $length = $_POST["length"];
+        $height = $_POST["height"];
+        $width = $_POST["width"];
+        $weight = $_POST["weight"];
 
         //Se inserta la nueva materia prima
-        $query = "INSERT INTO MATERIA_PRIMA(codigo,nombre,descripcion,costo,largo,alto,ancho,peso,volumen,stock)
-            VALUES('$codigo','$nombre','$descripcion','$costo','$largo','$alto','$ancho','$peso',0,0)";
-        
-        if (mysqli_query($db, $query)) {
-            $msg = "Raw Material created successfully";
-        } else {
-            $msg = "Raw Material can not be created";
-        }
+        $query = "CALL insertRawMaterial('$code','$name','$description','$cost','$length','$height','$width','$weight',@msg)";
+        $response = mysqli_query($db, $query);
 
-        header("Location: ../html/rawMaterials.php?msg=$msg");
+        //Se recupera el mensaje
+        $query = "SELECT @msg AS msg";
+        $response = mysqli_query($db, $query);
+        while ($row = mysqli_fetch_assoc($response)) {
+            //Se asigna el mensaje a una variable para desplegarla en pantalla
+            $msg = $row["msg"];
+            header("Location: ../html/rawMaterials.php?msg=$msg");
+        }
     }
 ?>

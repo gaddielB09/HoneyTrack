@@ -1,3 +1,5 @@
+<!--Validar que haya iniciado sesión-->
+<?php session_start(); if ($_SESSION["user"]!="") { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,11 +96,11 @@
             <nav class="menu">
                 <a href="orderRW.php">
                     <i class="fas fa-truck"></i>
-                    <span>Order Raw Material</span>
+                    <span>Purchase Request of Raw Material</span>
                 </a>
                 <a href="orderFP.php">
                     <i class="fas fa-truck"></i>
-                    <span>Order Final Products</span>
+                    <span>Raw Material Requisition</span>
                 </a>
             </nav>
         </div>
@@ -110,3 +112,5 @@
     <script src="../js/loading.js"></script>
 </body>
 </html>
+<!--Si intentan entrar directo a esta página, se les enviará al login-->
+<?php } else{$msg = "Unvalid user"; header("Location: ../html/login.php?msg=$msg"); } ?>

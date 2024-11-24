@@ -1,5 +1,6 @@
 <?php
     require "../php/connection.php";
+    session_start();
     $msg = "";
     $db = connectdb();
 
@@ -7,56 +8,43 @@
         //Se obtienen los datos del usuario
         $username = $_POST["username"];
         $password = $_POST["password"];
-
-        //Se busca la contraseña del usuario ingresado
-        $query = "SELECT contraseña FROM USUARIO WHERE alias = '$username'";
-
+        //Se ejecuta el procedimiento almacenado
+        $query = "CALL validateUser('$username', '$password',@role, @msg)";
         $response = mysqli_query($db, $query);
-
-        $row = mysqli_fetch_row($response);
-        //Se valida que sea la misma contraseña
-        if ($password == $row[0]) {
-            //Ahora se busca el rol para saber a qué Main enviarlo
-            $query = "SELECT u.rol AS rol, e.edoEmpleado AS estado FROM USUARIO AS u INNER JOIN EMPLEADO AS e ON e.num = u.empleado WHERE alias = '$username'";
-            $responseU = mysqli_query($db, $query);
-            //Validación si está activo y el tipo de rol
-            while ($row = mysqli_fetch_assoc($responseU)) {
-                if ($row["estado"] == "ACTIV") {
-
-                    if ($row["rol"] == "ADMIN") {
-                        session_start();
-                        $_SESSION['user'] = $username;
+        //Se recuperan los valores de las variables
+        $query = "SELECT @role AS role, @msg AS msg";
+        $response = mysqli_query($db, $query);
+        //Se leen las variables
+        while($row = mysqli_fetch_assoc($response)) {
+            //Condicionales para redireccionar a la página adecuada
+            if ($row["msg"] == "Login Successfully") {
+                $_SESSION['user'] = $username;
+                $_SESSION['role'] = $row["role"];
+                $msg = $row["msg"];
+                switch ($row["role"]) {
+                    case 'USCSC':
                         header("Location: ../html/adminMain.php");
-                    }
-                    elseif ($row["rol"] == "ANAIN") {
-                        session_start();
-                        $_SESSION['user'] = $username;
+                        break;
+                    case 'UMINV':
                         header("Location: ../html/analystMain.php");
-                    }
-                    elseif ($row["rol"] == "RECEP") {
-                        session_start();
-                        $_SESSION['user'] = $username;
-                        header("Location: ../html/receptionistMain.php");
-                    }
-                    elseif ($row["rol"] == "GRDMP") {
-                        session_start();
-                        $_SESSION['user'] = $username;
+                        break;
+                    case 'RRVIN':
                         header("Location: ../html/managerMain.php");
-                    }
-                    else {
-                        $msg = "User Rol not found";
+                        break;
+                    case 'PARRM':
+                        header("Location: ../html/receptionistMain.php");
+                        break;
+                    
+                    default:
+                        $msg = "error";
                         header("Location: ../html/login.php?msg=$msg");
-                    }
+                        break;
                 }
-                else {
-                    $msg = "Disabled user";
-                    header("Location: ../html/login.php?msg=$msg");
-                }
-            } 
+            }
+            else {
+                $msg = $row["msg"];
+                header("Location: ../html/login.php?msg=$msg");
+            }
         }
-        else {
-            $msg = "Unvalid user";
-            header("Location: ../html/login.php?msg=$msg");
-        }
-    }
+    } 
 ?>
