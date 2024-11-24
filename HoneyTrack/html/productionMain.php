@@ -17,56 +17,63 @@
 
     <nav class="sidebar">
         <div class="logo"> 
-            <i id="btn" class="fa-solid fa-bars">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M4 8l16 0" />
-                <path d="M4 16l16 0" />
-              </svg>
-            </i>
+            <i id="btn" class="fas fa-bars fa-lg"></i>
         </div>
         
         <ul class="nav-links">
             <li>
-                <a href="../html/adminMain.php">
-                    <i class="fa-solid fa-house"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                      </svg></i>
-                    <span>Home</span>
+                <a href="adminMain.php">
+                    <i class="fas fa-house fa-lg"></i>
+                    <!-- <span>Main Menu</span> -->
                 </a>
             </li>
+
             <li>
-                <a href="#">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Message</span>
+                <a href="users.php" id="linkUsers">
+                    <i class="fas fa-users fa-lg"></i>
+                      <span>Users</span>
+                    </a>
+            </li>
+
+            <li>
+                <a href="areas.php" id="linkUsers">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                      <span>Areas</span>
                 </a>
             </li>
+
             <li>
-                <a href="profile.php">
-                    <i class="fa-solid fa-sliders">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                          </svg>
-                    </i>
-                    <span>Profile</span>
+                <a href="applications.php">
+                    <i class="fas fa-receipt fa-lg"></i>
+                    <span>Applications</span>
                 </a>
             </li>
+
             <li>
-                <a href="../html/login.php">
-                    <i class="fa-solid fa-arrow-right-from-bracket">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
-                            <path d="M15 12h-12l3 -3" />
-                            <path d="M6 15l-3 -3" />
-                          </svg>
-                    </i>
-                    <span>Logout</span>
+                <a href="analysis.php">
+                    <i class="fas fa-chart-bar fa-lg"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="receipts.php">
+                    <i class="fas fa-truck-loading fa-lg"></i>
+                  <span>Inbound</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="production.php">
+                    <i class="fas fa-microchip fa-lg"></i>
+                    <span>Production</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="login.php">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                      <span>Logout</span>
                 </a>
             </li>
         </ul>

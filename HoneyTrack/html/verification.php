@@ -17,8 +17,7 @@
         <h1 class="loadingText">Loading</h1>
     </div>
 <div class="body-container">
-
-    <nav class="sidebar">
+<nav class="sidebar">
         <div class="logo"> 
             <i id="btn" class="fas fa-bars fa-lg"></i>
         </div>
@@ -34,42 +33,49 @@
             <li>
                 <a href="users.php" id="linkUsers">
                     <i class="fas fa-users fa-lg"></i>
-                      <!-- <span>Users</span> -->
+                      <span>Users</span>
                     </a>
             </li>
 
             <li>
                 <a href="areas.php" id="linkUsers">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
-                      <!-- <span>Areas</span> -->
+                      <span>Areas</span>
                 </a>
             </li>
 
             <li>
                 <a href="applications.php">
                     <i class="fas fa-receipt fa-lg"></i>
-                    <!-- <span>Applications</span> -->
+                    <span>Applications</span>
                 </a>
             </li>
 
             <li>
                 <a href="analysis.php">
                     <i class="fas fa-chart-bar fa-lg"></i>
-                    <!-- <span>Analysis</span> -->
+                    <span>Analysis</span>
                 </a>
             </li>
 
             <li>
                 <a href="receipts.php">
-                    <i class="fas fa-receipt fa-lg"></i>
-                  <!-- <span>Receipts</span> -->
+                    <i class="fas fa-truck-loading fa-lg"></i>
+                  <span>Inbound</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="production.php">
+                    <i class="fas fa-microchip fa-lg"></i>
+                    <span>Production</span>
                 </a>
             </li>
 
             <li class="logout">
                 <a href="login.php">
                     <i class="fas fa-sign-out-alt fa-lg"></i>
-                      <!-- <span>Logout</span> -->
+                      <span>Logout</span>
                 </a>
             </li>
         </ul>
