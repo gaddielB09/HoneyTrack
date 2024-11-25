@@ -209,7 +209,7 @@
                                 <tbody id="activityTableBody">
                                     <!-- Aquí se agregarán las filas dinámicamente -->
                                     <?php while($row = mysqli_fetch_assoc($response)) {?>
-                                        <tr>
+                                        <tr data-id="<?php echo $row['num'];?>">
                                             <td><?php echo $row["num"] ?></td>
                                             <td><?php echo $row["name"] ?></td>
                                             <td><?php echo $row["username"] ?></td>
