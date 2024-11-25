@@ -96,14 +96,20 @@
                         <span>Raw Material per Product</span>
                     </a>
 
-                    <a href="orderRW.php">
-                        <i class="fas fa-truck"></i>
-                        <span>Purchase Request of Raw Material</span>
-                    </a>
-
                     <a href="#">
                         <i class="fas fa-hard-hat"></i>
                         <span>Production Line</span>
+                    </a>
+
+                    <!-- <a href="orderRW.php">
+                        <i class="fas fa-truck"></i>
+                        <span>Purchase Request of Raw Material</span>
+                    </a> -->
+
+
+                    <a href="orderFP.php">
+                        <i class="fas fa-truck"></i>
+                        <span>Raw Material Requisition</span>
                     </a>
                 </nav>
             </div>

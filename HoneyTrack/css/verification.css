@@ -123,6 +123,29 @@ body {
   tr:hover {
     background-color: #ddd;
   }
+
+  .btn-edit, .btn-x, .btn-plus, .btn-check{
+    flex: 0 1 auto;
+    padding: 5px 10px;
+    font-size: 12px;
+    max-width: 100px;
+    min-width: 70px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-plus{
+  background-color: rgb(13, 212, 13);
+  color: var(--blk);
+  font-size: 17px;
+}
+.btn-plus:hover{
+  background-color: rgb(6, 163, 6);
+  transform: scale(1.1);
+}
+
   
   @media (max-width: 768px) {
     .tittle {

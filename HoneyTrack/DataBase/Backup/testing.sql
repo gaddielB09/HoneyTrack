@@ -74,7 +74,7 @@ CREATE VIEW vw_PurchaseXRaw AS(
             INNER JOIN PURCHASE_REQUEST_STATUS AS prs ON pr.purchaseRequestStatus = prs.code
             INNER JOIN EMPLOYEE AS e ON pr.employee = e.num
             INNER JOIN USER AS u ON u.employee = e.num
-            ORDER BY description DESC
+            ORDER BY description DESC, date ASC
 );
 
 CREATE VIEW vw_Requisition AS(

@@ -103,18 +103,39 @@
                         <thead>
                             <tr>
                                 <th>Number</th>
+                                <th>Lot Number</th>
                                 <th>Amount Received</th>
                                 <th>Accepted Amount</th>
-                                <th>Defectuive Quantity</th>
+                                <th>Defective Quantity</th>
                                 <th>Observactions</th>
-                                <th>Validation Date</th>
-                                <th>Lot Number</th>
-                                <th>Quantity</th>
+                                <th>Status</th>
+                                <th>Last Validation Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="activityTableBody">
-                            <!-- Aquí se agregarán las filas dinámicamente -->
-                        </tbody>
+                                        <!-- Aquí se agregarán las filas dinámicamente -->
+                                        <?php 
+                                            include "../php/selectVerification.php";
+                                            
+                                            while($row = mysqli_fetch_assoc($response)) {?>
+                                            
+                                            <tr data-id="<?php echo $row['num'];?>">
+                                                <td><?php echo $row["num"] ?></td>
+                                                <td><?php echo $row["lot"] ?></td>
+                                                <td><?php echo $row["received"] ?></td>
+                                                <td><?php echo $row["accepted"] ?></td>
+                                                <td><?php echo $row["defective"] ?></td>
+                                                <td><?php echo $row["observations"] ?></td>
+                                                <td><?php echo $row["status"] ?></td>
+                                                <td><?php echo $row["date"] ?></td>
+
+                                                <td class="buttons">
+                                                <a class="btn-plus" href="verificationONE.php?num=<?php echo $row["num"]; ?>">Validate</a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
                     </table>  
                 </div>
 

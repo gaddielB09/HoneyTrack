@@ -153,6 +153,7 @@
                                         <th>IVA</th>
                                         <th>Total</th>
                                         <th>Empleado</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -161,7 +162,8 @@
                                             include "../php/selectRawMaterialOrder.php";
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
-                                            <tr>
+                                            
+                                            <tr data-id="<?php echo $row['num'];?>">
                                                 <td><?php echo $row["description"] ?></td>
                                                 <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["date"] ?></td>
@@ -170,6 +172,11 @@
                                                 <td><?php echo $row["VAT"] ?></td>
                                                 <td><?php echo $row["total"] ?></td>
                                                 <td><?php echo $row["username"] ?></td>
+
+                                                <td class="buttons">
+                                                <button class="btn-plus">Add</button>
+                                                <button class="btn-check">Accept</button>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
