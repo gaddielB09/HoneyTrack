@@ -266,7 +266,7 @@ confirmYes.addEventListener('click', () => {
     .then(data => {
         if (data.msg === "Usuario desactivado con éxito") {
             // Cambiar el estado en la tabla sin recargar
-            currentRow.querySelector('.estado').textContent = 'INACT';
+            currentRow.querySelector('.estatus').textContent = 'INACT';
 
             // Mostrar el mensaje de éxito
             const successMessage = document.getElementById('success-message');
