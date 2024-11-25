@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/reports.css">
     <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="../css/charts.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <title>Document</title>
 </head>
 <body>
@@ -25,7 +29,7 @@
             <i id="btn" class="fas fa-bars fa-lg"></i>
         </div>
         
-        <ul class="nav-links">
+        <ul class="nav-links" style="padding-left:0">
             <li>
                 <a href="adminMain.php">
                     <i class="fas fa-house fa-lg"></i>
@@ -86,25 +90,36 @@
 
     <div class="content">
         <div class="tittle-container">
-        <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
+            <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
         <h3 class="home">Reports</h3>
-            <nav class="menu">
-                <a href="#">
-                    <i class="fa-solid fa-microchip"></i>
-                    <span>Raw Material</span>
-                </a>
 
-                <a href="#">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Final Products   </span>
-                </a>
-            </nav>
+        <div class="container">
+                    <!-- Gráficas -->
+                    <div class="chart-container">
+                        <h4>Top 3 Products with Higher Storage</h4>
+                        <canvas id="chart1"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Top 3 Products with Lower Storage</h4>
+                        <canvas id="chart2"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Top 3 Raw Material by Location</h4>
+                        <canvas id="chart3"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Top 3 Finished Product by Location</h4>
+                        <canvas id="chart4"></canvas>
+                    </div>
         </div>
-    </div>
+
+</div>
+</div>
 </div>
 
+    <script src="../js/charts.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/sidebar.js"></script>
 </body>

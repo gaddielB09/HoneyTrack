@@ -593,7 +593,7 @@ CREATE TABLE `RAW_MATERIAL` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `RAW_MATERIAL`
+-- Dumping data for table `RAW_MATERIAL'
 --
 
 LOCK TABLES `RAW_MATERIAL` WRITE;
