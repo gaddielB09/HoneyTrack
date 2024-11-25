@@ -96,11 +96,11 @@
                     <nav class="userOption">
                         
                         <button onclick="showFormat(format1)">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="fas fa-plus"></i>
                         </button>
                         <!-- Button 2 -->
                         <button onclick="showFormat(format2)">
-                            <i class="fas fa-user-edit"></i>
+                            <i class="fas fa-search"></i>
                         </button>
                     </nav>
                 
@@ -208,7 +208,8 @@
                                                 <td class="buttons">
     
                                                 <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                                <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                                                <!-- <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button> -->
+                                                <button class="btn-plus">Add</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>

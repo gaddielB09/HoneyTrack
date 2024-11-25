@@ -85,14 +85,15 @@
                 <h3 class="home">Production</h3>
 
                 <nav class="menu">
-                    <a href="#">
-                        <i class="far fa-clipboard"></i>
-                        <span>Requisitions</span>
+
+                    <a href="products.php">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Products</span>
                     </a>
 
-                    <a href="#">
-                        <i class="fas fa-mobile-alt"></i>                        
-                        <span>Create Final Products</span>
+                    <a href="requisitions.php">
+                        <i class="far fa-clipboard"></i>
+                        <span>Raw Material per Product</span>
                     </a>
                 </nav>
             </div>
