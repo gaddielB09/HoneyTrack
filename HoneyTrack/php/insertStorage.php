@@ -24,13 +24,13 @@
                 while ($row = mysqli_fetch_row($response)) {
                     if ($row[0] > 0) {
                         //Validar stock suficiente
-                        $query = "SELECT stock-(SELECT SUM(quantity) FROM STORAGE WHERE rawMaterial='$item') FROM RAW_MATERIAL WHERE code='$item'";
+                        $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE rawMaterial='$item') FROM RAW_MATERIAL WHERE code='$item'";
                         $response = mysqli_query($db, $query);
                         while ($row = mysqli_fetch_row($response)) {
                             if ($row[0] > 0) {
                                 //Validar si el item ya esta en esa ubicacion
         
-                                $query = "INSERT INTO STORAGE(code, quantity, description, rawMaterial, finishedProduct, location, area) VALUES('RG046','$quantity','Storage of $item', '$item',NULL,'$location','RMARE')";
+                                $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item', '$item',NULL,'$location','RMARE')";
                                 if (mysqli_query($db, $query)) {
                                     $msg = "Storage created successfully";
                                 } else {
@@ -52,13 +52,13 @@
                         while ($row = mysqli_fetch_row($response)) {
                             if ($row[0] > 0) {
                                 //Validar stock suficiente
-                                $query = "SELECT stock-(SELECT SUM(quantity) FROM STORAGE WHERE finishedProduct='$item') FROM FINISHED_PRODUCT WHERE code='$item'";
+                                $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE finishedProduct='$item') FROM FINISHED_PRODUCT WHERE code='$item'";
                                 $response = mysqli_query($db, $query);
                                 while ($row = mysqli_fetch_row($response)) {
                                     if ($row[0] > 0) {
                                         //Validar si el item ya esta en esa ubicacion
                 
-                                        $query = "INSERT INTO STORAGE(code, quantity, description, rawMaterial, finishedProduct, location, area) VALUES('RG047','$quantity','Storage of $item',NULL,'$item','$location','FPARE')";
+                                        $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item',NULL,'$item','$location','FPARE')";
                                         if (mysqli_query($db, $query)) {
                                             $msg = "Storage created successfully";
                                         } else {
