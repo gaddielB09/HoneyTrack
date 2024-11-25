@@ -101,6 +101,11 @@
                     <i class="fas fa-check"></i>
                     <span>Verification</span>
                 </a>
+
+                <a href="orderFP.php">
+                    <i class="fas fa-truck"></i>
+                    <span>Raw Material Requisition</span>
+                </a>
             </nav>
         </div>
     </div>

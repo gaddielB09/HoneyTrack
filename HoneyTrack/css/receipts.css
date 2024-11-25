@@ -40,7 +40,7 @@ body::before {
 
 .menu {
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten a varias filas */
+    flex-wrap: row; /* Permite que los elementos se ajusten a varias filas */
     align-items: center;
     justify-content: center; /* Distribuye los elementos de manera uniforme */
     width: 100%;

@@ -185,7 +185,6 @@
                                         <th>Weight</th>
                                         <th>Stock</th>
                                         <th>Action</th>
-
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -219,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        </div>  
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>

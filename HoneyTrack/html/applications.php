@@ -94,14 +94,8 @@
             <h3 class="home">Applications</h3>
 
             <nav class="menu">
-                <a href="orderRW.php">
-                    <i class="fas fa-truck"></i>
-                    <span>Purchase Request of Raw Material</span>
-                </a>
-                <a href="orderFP.php">
-                    <i class="fas fa-truck"></i>
-                    <span>Raw Material Requisition</span>
-                </a>
+
+
             </nav>
         </div>
     </div>
