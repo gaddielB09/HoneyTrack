@@ -119,22 +119,22 @@
                                     include "../php/selectActivity.php";
                                     while($row = mysqli_fetch_assoc($responseM)) {?>
                                     <tr>
-                                        <td><?php echo $row["date"] ?></td>
-                                        <td><?php echo $row["type"] ?></td>
-                                        <td><?php echo $row["movement"] ?></td>
-                                        <td><?php echo $row["item"] ?></td>
-                                        <td><?php echo $row["quantity"] ?></td>
+                                        <td><?php echo $row["fecha"] ?></td>
+                                        <td><?php echo $row["tipo"] ?></td>
+                                        <td><?php echo $row["movimiento"] ?></td>
+                                        <td><?php echo $row["articulo"] ?></td>
+                                        <td><?php echo $row["cantidad"] ?></td>
                                     </tr>
                                 
                                 <?php } ?>
                                 <?php 
                                     while($row = mysqli_fetch_assoc($responseP)) {?>
                                     <tr>
-                                        <td><?php echo $row["date"] ?></td>
-                                        <td><?php echo $row["type"] ?></td>
-                                        <td><?php echo $row["movement"] ?></td>
-                                        <td><?php echo $row["item"] ?></td>
-                                        <td><?php echo $row["quantity"] ?></td>
+                                        <td><?php echo $row["fecha"] ?></td>
+                                        <td><?php echo $row["tipo"] ?></td>
+                                        <td><?php echo $row["movimiento"] ?></td>
+                                        <td><?php echo $row["articulo"] ?></td>
+                                        <td><?php echo $row["cantidad"] ?></td>
                                     </tr>
                                 
                                 <?php } ?>

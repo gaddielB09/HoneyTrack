@@ -358,20 +358,23 @@
     position: relative;
 }
 
-.success-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Estilo del mensaje de éxito */
+#success-message {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
     color: white;
-    font-size: 24px;
-    z-index: 9999;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 1000;  /* Asegura que el mensaje se muestre sobre otros elementos */
+    display: none;   /* Ocultado inicialmente */
+    text-align: center;
 }
+
 
 #backToSearchBtn {
     position: absolute;
@@ -427,23 +430,91 @@ tr:hover {
 }
 
 #message-container {
-    padding: 20px;
-    border-radius: 5px;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4caf50; /* Verde éxito */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
     text-align: center;
-    margin-top: 20px;
-    display: none;
-}
-
-#message-container p {
-    margin: 0;
-    font-size: 16px;
-    color: #fff;
+    z-index: 1000;
 }
 
 .submit-button:disabled {
     background-color: #c59504; /* color de fondo cuando está deshabilitado */
     color: var(--whi); /* color del texto cuando está deshabilitado */
     cursor: not-allowed; /* cambia el cursor */
+}
+
+/* Estilos generales para el modal */
+#confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 10px; /* Para evitar que el modal toque los bordes en pantallas pequeñas */
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* Tamaño máximo en pantallas grandes */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+/* Ajustes para el texto del mensaje */
+.modal-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Estilo para los botones */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espaciado entre botones */
+    flex-wrap: wrap; /* Acomoda los botones en varias filas si es necesario */
+}
+
+.btn-confirm, .btn-cancel {
+    flex: 1; /* Hacer que los botones se ajusten al espacio disponible */
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+}
+
+.btn-confirm:hover {
+    background-color: #45a049;
+}
+
+.btn-cancel:hover {
+    background-color: #d32f2f;
 }
 
 
@@ -813,20 +884,23 @@ tr:hover {
     position: relative;
 }
 
-.success-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Estilos para el mensaje de éxito */
+#success-message {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
     color: white;
-    font-size: 24px;
-    z-index: 9999;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 1000;  /* Asegura que el mensaje se muestre sobre otros elementos */
+    display: none;   /* Ocultar inicialmente */
+    text-align: center;
 }
+
 
 #backToSearchBtn {
     position: absolute;
@@ -845,6 +919,20 @@ tr:hover {
     background-color: #e67e22;  /* Cambio de color al pasar el mouse */
 }
 
+#message-container {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4caf50; /* Verde éxito */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    text-align: center;
+    z-index: 1000;
+}
 
 
 table {

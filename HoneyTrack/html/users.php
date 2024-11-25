@@ -130,7 +130,7 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="rfc" name="rfc" placeholder="Tax Id" autocomplete="off" required>
+                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
                                             <span id="error-rfc" class="error" style="display: none; color: red;">Error message</span>
                                         </div>
 
@@ -161,11 +161,10 @@
 
                                         <select class="roles" id="role" name="role" required>
                                             <option value="" disabled selected>Role</option>
-                                            <!--Imprime dinámicamente las opciones-->
-                                            <?php include "../php/selectUsers.php";
-                                                while($row = mysqli_fetch_assoc($responseJP)) {?>
-                                                <option value="<?php echo $row["code"] ?>"><?php echo $row["description"] ?></option required>
-                                            <?php } ?>
+                                            <option value="ADMIN">Administrator</option>
+                                            <option value="ANAIN">Analyst</option>
+                                            <option value="GRDMP">Item Manager</option>
+                                            <option value="RECEP">Receptionist</option>
                                         </select>
 
                                         <button type="submit" id="add" class="submit-button" disabled>Submit</button>
@@ -196,33 +195,36 @@
                                 <tr>
                                     <th>Number</th>
                                     <th>Name</th>
-                                    <th>Username</th>
+                                    <th>Alias</th>
                                     <th>Password</th>
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>RFC</th>
                                     <th>Role</th>
-                                    <th>Status</th>
+                                    <th>State</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                                 <tbody id="activityTableBody">
                                     <!-- Aquí se agregarán las filas dinámicamente -->
-                                    <?php while($row = mysqli_fetch_assoc($response)) {?>
-                                        <tr>
+                                    <?php 
+                                        include "../php/selectUsers.php";
+                                        
+                                        while($row = mysqli_fetch_assoc($response)) {?>
+                                        <tr data-id="<?php echo $row["num"]?>">
                                             <td><?php echo $row["num"] ?></td>
-                                            <td><?php echo $row["name"] ?></td>
-                                            <td><?php echo $row["username"] ?></td>
-                                            <td><?php echo $row["password"] ?></td>
-                                            <td><?php echo $row["phone"] ?></td>
-                                            <td><?php echo $row["email"] ?></td>
-                                            <td><?php echo $row["taxId"] ?></td>
-                                            <td><?php echo $row["description"] ?></td>
-                                            <td><?php echo $row["status"] ?></td>
+                                            <td><?php echo $row["nombre"] ?></td>
+                                            <td><?php echo $row["alias"] ?></td>
+                                            <td><?php echo $row["contraseña"] ?></td>
+                                            <td><?php echo $row["numCont"] ?></td>
+                                            <td><?php echo $row["correoElectronico"] ?></td>
+                                            <td><?php echo $row["rfc"] ?></td>
+                                            <td><?php echo $row["descripcion"] ?></td>
+                                            <td class="estate"><?php echo $row["estado"] ?></td>
                                             <td class="buttons">
 
                                             <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                            <button class="btn-x" ><i class="fa-solid fa-user-xmark"></i></button>
+                                            <button class="btn-x" id="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -230,7 +232,23 @@
                             </table>  
                         </div>
                     </div>
+                    
                 </div>
+
+                    <!-- Modal de confirmación -->
+                    <div id="confirmation-modal" style="display: none;">
+                        <div class="modal-content">
+                            <p id="modal-message">Are you sure you want to continue? You will change the user's status to inactive.</p>
+                            <div class="modal-buttons">
+                                <button id="confirm-yes" class="btn-confirm">Yes</button>
+                                <button id="confirm-no" class="btn-cancel">No</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Este es el contenedor para el mensaje de éxito -->
+                    <div id="success-message">El usuario ha sido desactivado.</div>
+
 
                     <!-- Formulario Edit Users -->
                     <div id="editUserForm" style="display: none;" class="format">
@@ -262,7 +280,7 @@
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="rfc" name="rfc" placeholder="Tax Id" autocomplete="off" required>
+                                        <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required>
                                         <span id="error-rfc" class="error">RFC Format is not Allowed</span>
                                     </div>
                                     
@@ -285,10 +303,10 @@
                                         
                                         <select class="roles" id="role" name="role" required>
                                             <option value="">Role</option required>
-                                            <!--Imprime dinámicamente las opciones-->
-                                            <?php while($row = mysqli_fetch_assoc($responseJP)) {?>
-                                                <option value="<?php echo $row["code"] ?>"><?php echo $row["description"] ?></option required>
-                                            <?php } ?>
+                                            <option value="ADMIN">Administrator</option required>
+                                            <option value="ANAIN">Analyst</option required>
+                                            <option value="GRDMP">Item Manager</option required>
+                                            <option value="RECEP">Receptionist</option required>
                                         </select>
                                         
                                         <button type="submit" class="submit-button" value="Update">

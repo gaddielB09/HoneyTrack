@@ -212,3 +212,81 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.disabled = true; // Deshabilitado por defecto
     checkFieldsFilled();          // Comprobar el estado inicial
 });
+
+// Selecciona el formulario y el contenedor del mensaje
+const form = document.querySelector('#format1 form');
+const messageContainer = document.getElementById('message-container');
+const messageText = document.getElementById('message-text');
+
+// Intercepta el evento de submit
+form.addEventListener('submit', (event) => {
+    // Prevenir el envío automático para mostrar el mensaje primero
+    event.preventDefault();
+
+    // Mostrar el mensaje de éxito
+    messageText.textContent = 'User successfully registered!';
+    messageContainer.style.display = 'block';
+
+    // Ocultar el mensaje después de 3 segundos
+    setTimeout(() => {
+        messageContainer.style.display = 'none';
+        // Opcional: envía el formulario después de mostrar el mensaje
+        form.submit();
+    }, 3000);
+});
+
+const deactivateButtons = document.querySelectorAll('.btn-x');
+const modal = document.getElementById('confirmation-modal');
+const confirmYes = document.getElementById('confirm-yes');
+const confirmNo = document.getElementById('confirm-no');
+let currentRow = null;
+
+// Mostrar el modal al hacer clic en el botón
+deactivateButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        modal.style.display = 'flex'; // Mostrar el modal
+        currentRow = button.closest('tr'); // Guardamos la fila actual
+    });
+});
+
+// Acción al confirmar (Sí)
+confirmYes.addEventListener('click', () => {
+    const userId = currentRow.dataset.id;
+
+    // Enviar solicitud al PHP para cambiar el estado a INACT
+    const formData = new FormData();
+    formData.append('num', userId);
+
+    fetch('../php/disableUser.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.msg === "Usuario desactivado con éxito") {
+            // Cambiar el estado en la tabla sin recargar
+            currentRow.querySelector('.estado').textContent = 'INACT';
+
+            // Mostrar el mensaje de éxito
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';  // Mostrar el mensaje
+
+            // Eliminar el mensaje después de 3 segundos
+            setTimeout(() => {
+                successMessage.style.display = 'none';  // Ocultar el mensaje
+            }, 3000);
+        }
+        modal.style.display = 'none'; // Ocultar el modal
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        modal.style.display = 'none'; // Ocultar el modal en caso de error
+    });
+});
+
+// Acción al cancelar (No)
+confirmNo.addEventListener('click', () => {
+    modal.style.display = 'none'; // Ocultar el modal
+});
+

@@ -62,7 +62,6 @@
             <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">            <!-- <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200"> -->
         </div>
         <div class="wrapper">
-            
             <h3 class="home">Home</h3>
                     
             <nav class="menu">
