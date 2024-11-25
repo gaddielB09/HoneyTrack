@@ -11,7 +11,7 @@
         $bay = $_POST["bay"];
         $level = $_POST["level"];
         $position = $_POST["position"];
-        $lenght = $_POST["lenght"];
+        $length = $_POST["length"];
         $height = $_POST["height"];
         $width = $_POST["width"];
         $area = $_POST["area"];
