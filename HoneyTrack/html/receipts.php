@@ -92,6 +92,11 @@
         <h3 class="home">Inbound</h3>
 
             <nav class="menu">
+
+                <a href="orderRW.php">
+                    <i class="fas fa-truck"></i>
+                    <span>Purchase Request of Raw Material</span>
+                </a>
                 <a href="lots.php">
                     <i class="fas fa-cubes"></i>
                     <span>Lots</span>
@@ -101,11 +106,11 @@
                     <i class="fas fa-check"></i>
                     <span>Verification</span>
                 </a>
-
-                <a href="orderFP.php">
+                <!-- <a href="orderFP.php">
                     <i class="fas fa-truck"></i>
                     <span>Raw Material Requisition</span>
-                </a>
+                </a> -->
+
             </nav>
         </div>
     </div>

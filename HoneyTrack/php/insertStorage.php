@@ -12,28 +12,25 @@
         //Validar que exista la ubicacion, el articulo y que haya suficiente stock
 
         //Validar ubicacion
-        $query = "SELECT COUNT(*) FROM UBICACION WHERE codigo='$location'";
+        $query = "SELECT COUNT(*) FROM LOCATION WHERE code='$location'";
         $response = mysqli_query($db, $query);
         
         while ($row = mysqli_fetch_row($response)) {
             if ($row[0] > 0) {
-                echo "Ubicacion correcta";
                 //Validar materia prima
-                $query = "SELECT COUNT(*) FROM MATERIA_PRIMA WHERE codigo='$item'";
+                $query = "SELECT COUNT(*) FROM RAW_MATERIAL WHERE code='$item'";
                 $response = mysqli_query($db, $query);
         
                 while ($row = mysqli_fetch_row($response)) {
                     if ($row[0] > 0) {
-                        echo "MP correcta";
                         //Validar stock suficiente
-                        $query = "SELECT stock-(SELECT SUM(cantidad) FROM RESGUARDO WHERE materiaPrima='$item') FROM MATERIA_PRIMA WHERE codigo='$item'";
+                        $query = "SELECT stock-(SELECT SUM(quantity) FROM STORAGE WHERE rawMaterial='$item') FROM RAW_MATERIAL WHERE code='$item'";
                         $response = mysqli_query($db, $query);
                         while ($row = mysqli_fetch_row($response)) {
                             if ($row[0] > 0) {
-                                echo "Sufficient quantity";
                                 //Validar si el item ya esta en esa ubicacion
         
-                                $query = "INSERT INTO RESGUARDO(codigo, cantidad, descripcion, materiaPrima, prodTerminado, ubicacion, area) VALUES('RG046','$quantity','Resguardo de $item', '$item',NULL,'$location','ARDMP')";
+                                $query = "INSERT INTO STORAGE(code, quantity, description, rawMaterial, finishedProduct, location, area) VALUES('RG046','$quantity','Storage of $item', '$item',NULL,'$location','RMARE')";
                                 if (mysqli_query($db, $query)) {
                                     $msg = "Storage created successfully";
                                 } else {
@@ -43,28 +40,25 @@
                                 header("Location: ../html/storage.php?msg=$msg");
                             }
                             else {
-                                echo "Insufficient quantity";
+                                $msg = "Insufficient quantity";
                             }
                         }
                     }
                     else {
                         //item no se encontro en materia prima, buscar en prod terminado
-                        $query = "SELECT COUNT(*) FROM PROD_TERMINADO WHERE codigo='$item'";
+                        $query = "SELECT COUNT(*) FROM FINISHED_PRODUCT WHERE code='$item'";
                         $response = mysqli_query($db, $query);
         
                         while ($row = mysqli_fetch_row($response)) {
                             if ($row[0] > 0) {
-                                //
-                                echo "PT correcto";
                                 //Validar stock suficiente
-                                $query = "SELECT stock-(SELECT SUM(cantidad) FROM RESGUARDO WHERE prodTerminado='$item') FROM PROD_TERMINADO WHERE codigo='$item'";
+                                $query = "SELECT stock-(SELECT SUM(quantity) FROM STORAGE WHERE finishedProduct='$item') FROM FINISHED_PRODUCT WHERE code='$item'";
                                 $response = mysqli_query($db, $query);
                                 while ($row = mysqli_fetch_row($response)) {
                                     if ($row[0] > 0) {
-                                        echo "Sufficient quantity";
                                         //Validar si el item ya esta en esa ubicacion
                 
-                                        $query = "INSERT INTO RESGUARDO(codigo, cantidad, descripcion, materiaPrima, prodTerminado, ubicacion, area) VALUES('RG047','$quantity','Resguardo de $item',NULL,'$item','$location','ARDPT')";
+                                        $query = "INSERT INTO STORAGE(code, quantity, description, rawMaterial, finishedProduct, location, area) VALUES('RG047','$quantity','Storage of $item',NULL,'$item','$location','FPARE')";
                                         if (mysqli_query($db, $query)) {
                                             $msg = "Storage created successfully";
                                         } else {
@@ -74,22 +68,25 @@
                                         header("Location: ../html/storage.php?msg=$msg");
                                     }
                                     else {
-                                        echo "Insufficient quantity";
+                                        $msg = "Insufficient quantity";
                                     }
                                 }
         
                             }
                             else {
                                 //item no se encontro en producto terminado, item invalido
-                                echo "Invalid item";
+                                $msg = "Invalid item";
                             }
                         }
                     }
                 }
             }
             else {
-                echo "Invalid location";
+                $msg = "Invalid location";
             }
+
+            header("Location: ../html/storage.php?msg=$msg");
         }
+
     }
 ?>

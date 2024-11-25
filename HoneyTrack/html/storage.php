@@ -125,7 +125,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="location" name="location" placeholder="Location code" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="location" name="location" placeholder="Location code" autocomplete="off" maxlength="8" required>
                                             <span id="error-location" class="error">Location code Format is not Allowed</span>
                                         </div>
 

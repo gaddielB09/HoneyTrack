@@ -75,9 +75,9 @@
                     <i class="fas fa-map-marker-alt"></i>
                     <span> Areas</span></a>
                             
-                <a href="applications.php">
+                <!-- <a href="applications.php">
                     <i class="fas fa-receipt"></i>
-                    <span>Applications</span></a>
+                    <span>Applications</span></a> -->
                                 
                 <a href="analysis.php">
                     <i class="fas fa-chart-bar"></i>

@@ -70,7 +70,7 @@ body {
     margin-left: 20px;
 }
 
-.btn-edit, .btn-x {
+.btn-edit, .btn-x, .btn-plus, .btn-check{
     flex: 0 1 auto;
     padding: 5px 10px;
     font-size: 12px;
@@ -90,6 +90,17 @@ body {
 .btn-x {
     background-color: red;
     color: var(--blk);
+}
+.btn-plus{
+    background-color: rgb(13, 212, 13);
+    color: var(--blk);
+    font-size: 17px;
+}
+
+.btn-check{
+    background-color: rgb(30, 17, 211);
+    color: var(--whi);
+    font-size: 17px;
 }
 /* .btn-edit{
     width: 28%;
@@ -111,6 +122,14 @@ body {
 }
 .btn-x:hover {
     background-color: rgba(255, 69, 69, 0.8); 
+    transform: scale(1.1);
+}
+.btn-plus:hover{
+    background-color: rgb(6, 163, 6);
+    transform: scale(1.1);
+}
+.btn-check:hover{
+    background-color: rgb(6, 9, 163);
     transform: scale(1.1);
 }
 
