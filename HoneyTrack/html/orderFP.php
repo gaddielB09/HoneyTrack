@@ -127,7 +127,6 @@
                                     </div>
                                 </div>
                             </section>
-                            
                         </form>
                     </div>
                     <div id="format2" class="format" style="display: block;"> <!-- Formulario para buscar Materia prima -->
