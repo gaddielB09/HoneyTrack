@@ -27,13 +27,14 @@
                         $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE rawMaterial='$item') FROM RAW_MATERIAL WHERE code='$item'";
                         $response = mysqli_query($db, $query);
                         while ($row = mysqli_fetch_row($response)) {
-                            if ($row[0] > 0) {
+                            if ($row[0] > $quantity) {
                                 //Validar si el item ya esta en esa ubicacion
-        
+                                
                                 $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item', '$item',NULL,'$location','RMARE')";
                                 if (mysqli_query($db, $query)) {
                                     $msg = "Storage created successfully";
                                 } else {
+                                    echo mysqli_error($db);
                                     $msg = "Storage can not be created";
                                 }
                         
@@ -55,7 +56,7 @@
                                 $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE finishedProduct='$item') FROM FINISHED_PRODUCT WHERE code='$item'";
                                 $response = mysqli_query($db, $query);
                                 while ($row = mysqli_fetch_row($response)) {
-                                    if ($row[0] > 0) {
+                                    if ($row[0] > $quantity) {
                                         //Validar si el item ya esta en esa ubicacion
                 
                                         $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item',NULL,'$item','$location','FPARE')";

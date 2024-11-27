@@ -217,7 +217,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `calculateLocationVolume` BEFORE INSERT ON `LOCATION` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `calculateFinishedProductVolume` BEFORE INSERT ON `FINISHED_PRODUCT` FOR EACH ROW BEGIN
     SET NEW.volume = NEW.length * NEW.height * NEW.width;
 END */;;
 DELIMITER ;
@@ -244,7 +244,7 @@ CREATE TABLE `LOT` (
   KEY `purchaseRequest` (`purchaseRequest`),
   CONSTRAINT `LOT_ibfk_1` FOREIGN KEY (`lotStatus`) REFERENCES `LOT_STATUS` (`code`) ON DELETE CASCADE,
   CONSTRAINT `LOT_ibfk_2` FOREIGN KEY (`purchaseRequest`) REFERENCES `PURCHASE_REQUEST` (`num`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `LOT` (
 
 LOCK TABLES `LOT` WRITE;
 /*!40000 ALTER TABLE `LOT` DISABLE KEYS */;
-INSERT INTO `LOT` VALUES (1,'Raw material batch for product GYS24',0,'PENDI',1),(2,'Raw material batch for product GS24P',100,'VALID',2),(3,'Raw material batch for product GS24U',100,'VALID',2),(4,'Raw material batch for product GZF06',100,'VALID',3),(5,'Raw material batch for product GZFL6',100,'VALID',3);
+INSERT INTO `LOT` VALUES (1,'Raw material batch for request 1',100,'VALID',1),(2,'Raw material batch for request 2',100,'VALID',2),(3,'Raw material batch for request 3',100,'VALID',3);
 /*!40000 ALTER TABLE `LOT` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -265,11 +265,28 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `updateLotStatus` AFTER UPDATE ON `LOT` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `insertMaterialToLot` AFTER INSERT ON `LOT` FOR EACH ROW BEGIN
+
+    INSERT INTO RAW_MATERIAL_LOT(rawMaterial, lot, quantity)
+    SELECT rawMaterial, NEW.num, quantity FROM PURCHASE_RAW_MATERIAL WHERE purchaseRequest = NEW.purchaseRequest;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `updateLotStatus` BEFORE UPDATE ON `LOT` FOR EACH ROW BEGIN
     IF NEW.percentage = 100 THEN
-        UPDATE LOT
-        SET lotStatus = 'VALID'
-        WHERE num = NEW.num;
+        SET NEW.lotStatus = 'VALID';
     END IF;
 END */;;
 DELIMITER ;
@@ -328,7 +345,53 @@ CREATE TABLE `LOT_VERIFICATION` (
 
 LOCK TABLES `LOT_VERIFICATION` WRITE;
 /*!40000 ALTER TABLE `LOT_VERIFICATION` DISABLE KEYS */;
-INSERT INTO `LOT_VERIFICATION` VALUES (1,1,1,'2024-11-05 12:57:25'),(2,2,2,'2024-11-05 13:00:25'),(3,3,3,'2024-11-05 13:02:25'),(4,4,4,'2024-11-05 18:10:51'),(5,5,5,'2024-11-05 18:15:51');
+INSERT INTO `LOT_VERIFICATION` VALUES (1, 1, 1, '2024-11-05 12:57:25'),
+(2, 1, 2, '2024-11-05 12:58:25'),
+(3, 1, 3, '2024-11-05 12:59:25'),
+(4, 1, 4, '2024-11-05 13:00:25'),
+(5, 1, 5, '2024-11-05 13:01:25'),
+(6, 1, 6, '2024-11-05 13:02:25'),
+(7, 1, 7, '2024-11-05 13:03:25'),
+(8, 1, 8, '2024-11-05 13:04:25'),
+(9, 1, 9, '2024-11-05 13:05:25'),
+(10, 2, 10, '2024-11-05 13:06:25'),
+(11, 2, 11, '2024-11-05 13:07:25'),
+(12, 2, 12, '2024-11-05 13:08:25'),
+(13, 2, 13, '2024-11-05 13:09:25'),
+(14, 2, 14, '2024-11-05 13:10:25'),
+(15, 2, 15, '2024-11-05 13:11:25'),
+(16, 2, 16, '2024-11-05 13:12:25'),
+(17, 2, 17, '2024-11-05 13:13:25'),
+(18, 2, 18, '2024-11-05 13:14:25'),
+(19, 3, 19, '2024-11-05 13:15:25'),
+(20, 3, 20, '2024-11-05 13:16:25'),
+(21, 3, 21, '2024-11-05 13:17:25'),
+(22, 3, 22, '2024-11-05 13:18:25'),
+(23, 3, 23, '2024-11-05 13:19:25'),
+(24, 3, 24, '2024-11-05 13:20:25'),
+(25, 3, 25, '2024-11-05 13:21:25'),
+(26, 3, 26, '2024-11-05 13:22:25'),
+(27, 3, 27, '2024-11-05 13:23:25'),
+(28, 4, 28, '2024-11-05 13:24:25'),
+(29, 4, 29, '2024-11-05 13:25:25'),
+(30, 4, 30, '2024-11-05 13:26:25'),
+(31, 4, 31, '2024-11-05 13:27:25'),
+(32, 4, 32, '2024-11-05 13:28:25'),
+(33, 4, 33, '2024-11-05 13:29:25'),
+(34, 4, 34, '2024-11-05 13:30:25'),
+(35, 4, 35, '2024-11-05 13:31:25'),
+(36, 4, 36, '2024-11-05 13:32:25'),
+(37, 4, 37, '2024-11-05 13:33:25'),
+(38, 5, 38, '2024-11-05 13:34:25'),
+(39, 5, 39, '2024-11-05 13:35:25'),
+(40, 5, 40, '2024-11-05 13:36:25'),
+(41, 5, 41, '2024-11-05 13:37:25'),
+(42, 5, 42, '2024-11-05 13:38:25'),
+(43, 5, 43, '2024-11-05 13:39:25'),
+(44, 5, 44, '2024-11-05 13:40:25'),
+(45, 5, 45, '2024-11-05 13:41:25'),
+(46, 5, 46, '2024-11-05 13:42:25'),
+(47, 5, 47, '2024-11-05 13:43:25');
 /*!40000 ALTER TABLE `LOT_VERIFICATION` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,6 +591,29 @@ LOCK TABLES `PURCHASE_RAW_MATERIAL` WRITE;
 INSERT INTO `PURCHASE_RAW_MATERIAL` VALUES ('AIF6P',3,80,72000.00),('AIS24',1,80,72000.00),('AIS4P',2,80,100800.00),('AIUM5',2,80,115200.00),('AIZF6',3,80,129600.00),('BALS2',1,80,21600.00),('BAZF6',3,80,36000.00),('BFLP6',3,80,28800.00),('BLA4S',2,80,28800.00),('BLUM5',2,80,36000.00),('CAZ6F',3,80,36000.00),('CCS24',1,80,86400.00),('CCS4P',2,80,93600.00),('CCUM5',2,80,129600.00),('CCZ6P',3,80,59200.00),('CCZF6',3,80,96000.00),('CFS24',1,80,28800.00),('CFS4P',2,80,36000.00),('CFUM5',2,80,43200.00),('CFZ6F',3,80,43200.00),('CPS24',1,80,43200.00),('CPS4P',2,80,50400.00),('CPU5S',2,80,86400.00),('CPZF6',3,80,57600.00),('CZF6P',3,80,57600.00),('MAZ6F',3,80,57600.00),('MR8SP',2,80,64800.00),('MRS24',1,80,57600.00),('MRUM5',2,80,86400.00),('MRZ6F',3,80,100800.00),('PAMS2',1,80,288000.00),('PAUM5',2,80,432000.00),('PB4S4',2,80,158400.00),('PBBS2',1,80,144000.00),('PBU5S',2,80,216000.00),('PBZ6F',3,80,144000.00),('PBZF6',3,80,216000.00),('PE4SP',2,80,302400.00),('PEF6L',3,80,216000.00),('PEF6P',3,80,144000.00),('PES24',1,80,288000.00),('PEUM5',2,80,360000.00),('PFLP6',3,80,432000.00),('PFOL6',3,80,504000.00),('PMA4S',2,80,360000.00),('PSZ6F',3,80,302400.00),('PSZF6',3,80,288000.00);
 /*!40000 ALTER TABLE `PURCHASE_RAW_MATERIAL` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `purchaseRawMaterialCost` BEFORE INSERT ON `PURCHASE_RAW_MATERIAL` FOR EACH ROW BEGIN
+    SET NEW.cost = NEW.quantity * (SELECT cost FROM RAW_MATERIAL WHERE code = NEW.rawMaterial);
+    UPDATE PURCHASE_REQUEST SET 
+        totalQuantityPerMaterial = totalQuantityPerMaterial + NEW.quantity,
+        total = total + NEW.cost,
+        VAT = total * 0.16,
+        subtotal = total - VAT
+    WHERE num = NEW.purchaseRequest;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `PURCHASE_REQUEST`
@@ -559,9 +645,29 @@ CREATE TABLE `PURCHASE_REQUEST` (
 
 LOCK TABLES `PURCHASE_REQUEST` WRITE;
 /*!40000 ALTER TABLE `PURCHASE_REQUEST` DISABLE KEYS */;
-INSERT INTO `PURCHASE_REQUEST` VALUES (1,'2024-11-04 13:00:00',80,1029600.00,164736.00,1194336.00,'INPRO',15),(2,'2024-11-04 14:15:22',80,2700000.00,432000.00,3132000.00,'ACCEP',15),(3,'2024-11-04 15:02:40',80,3020800.00,483328.00,3504128.00,'ACCEP',15);
+INSERT INTO `PURCHASE_REQUEST` VALUES (1,'2024-11-04 13:00:00',80,1029600.00,164736.00,1194336.00,'ACCEP',15),(2,'2024-11-04 14:15:22',80,2700000.00,432000.00,3132000.00,'ACCEP',15),(3,'2024-11-04 15:02:40',80,3020800.00,483328.00,3504128.00,'ACCEP',15);
 /*!40000 ALTER TABLE `PURCHASE_REQUEST` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `createLot` AFTER UPDATE ON `PURCHASE_REQUEST` FOR EACH ROW BEGIN
+    IF NEW.purchaseRequestStatus = "ACCEP" THEN
+        INSERT INTO LOT(description, percentage, lotStatus, purchaseRequest)
+        VALUES(CONCAT('Raw material batch for purchase request ', NEW.num),0,"PENDI",NEW.num);
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `PURCHASE_REQUEST_STATUS`
@@ -736,9 +842,73 @@ CREATE TABLE `RAW_MATERIAL_LOT` (
 
 LOCK TABLES `RAW_MATERIAL_LOT` WRITE;
 /*!40000 ALTER TABLE `RAW_MATERIAL_LOT` DISABLE KEYS */;
-INSERT INTO `RAW_MATERIAL_LOT` VALUES (1,'AIS24',1,80),(1,'BALS2',1,80),(1,'CCS24',1,80),(1,'CFS24',1,80),(1,'CPS24',1,80),(1,'MRS24',1,80),(1,'PAMS2',1,80),(1,'PBBS2',1,80),(1,'PES24',1,80),(2,'AIS4P',2,80),(2,'BLA4S',2,80),(2,'CCS4P',2,80),(2,'CFS4P',2,80),(2,'CPS4P',2,80),(2,'MR8SP',2,80),(2,'PB4S4',2,80),(2,'PE4SP',2,80),(2,'PMA4S',2,80),(3,'AIUM5',3,80),(3,'BLUM5',3,80),(3,'CCUM5',3,80),(3,'CFUM5',3,80),(3,'CPU5S',3,80),(3,'MRUM5',3,80),(3,'PAUM5',3,80),(3,'PBU5S',3,80),(3,'PEUM5',3,80),(4,'AIZF6',4,80),(4,'BAZF6',4,80),(4,'CCZF6',4,80),(4,'CFZ6F',4,80),(4,'CPZF6',4,80),(4,'MRZ6F',4,80),(4,'PBZF6',4,80),(4,'PEF6L',4,80),(4,'PFOL6',4,80),(4,'PSZF6',4,80),(5,'AIF6P',5,80),(5,'BFLP6',5,80),(5,'CAZ6F',5,80),(5,'CCZ6P',5,80),(5,'CZF6P',5,80),(5,'MAZ6F',5,80),(5,'PBZ6F',5,80),(5,'PEF6P',5,80),(5,'PFLP6',5,80),(5,'PSZ6F',5,80);
+INSERT INTO `RAW_MATERIAL_LOT` VALUES (1, 'AIS24', 1, 80),
+(2, 'BALS2', 1, 80),
+(3, 'CCS24', 1, 80),
+(4, 'CFS24', 1, 80),
+(5, 'CPS24', 1, 80),
+(6, 'MRS24', 1, 80),
+(7, 'PAMS2', 1, 80),
+(8, 'PBBS2', 1, 80),
+(9, 'PES24', 1, 80),
+(10, 'AIS4P', 2, 80),
+(11, 'BLA4S', 2, 80),
+(12, 'CCS4P', 2, 80),
+(13, 'CFS4P', 2, 80),
+(14, 'CPS4P', 2, 80),
+(15, 'MR8SP', 2, 80),
+(16, 'PB4S4', 2, 80),
+(17, 'PE4SP', 2, 80),
+(18, 'PMA4S', 2, 80),
+(19, 'AIUM5', 3, 80),
+(20, 'BLUM5', 3, 80),
+(21, 'CCUM5', 3, 80),
+(22, 'CFUM5', 3, 80),
+(23, 'CPU5S', 3, 80),
+(24, 'MRUM5', 3, 80),
+(25, 'PAUM5', 3, 80),
+(26, 'PBU5S', 3, 80),
+(27, 'PEUM5', 3, 80),
+(28, 'AIZF6', 1, 80),
+(29, 'BAZF6', 2, 80),
+(30, 'CCZF6', 3, 80),
+(31, 'CFZ6F', 1, 80),
+(32, 'CPZF6', 2, 80),
+(33, 'MRZ6F', 3, 80),
+(34, 'PBZF6', 1, 80),
+(35, 'PEF6L', 2, 80),
+(36, 'PFOL6', 3, 80),
+(37, 'PSZF6', 1, 80),
+(38, 'AIF6P', 1, 80), 
+(39, 'BFLP6', 2, 80), 
+(40, 'CAZ6F', 3, 80), 
+(41, 'CCZ6P', 1, 80), 
+(42, 'CZF6P', 2, 80), 
+(43, 'MAZ6F', 3, 80), 
+(44, 'PBZ6F', 1, 80), 
+(45, 'PEF6P', 2, 80), 
+(46, 'PFLP6', 3, 80), 
+(47, 'PSZ6F', 1, 80); 
 /*!40000 ALTER TABLE `RAW_MATERIAL_LOT` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `insertVerificationToLot` AFTER INSERT ON `RAW_MATERIAL_LOT` FOR EACH ROW BEGIN
+    INSERT INTO VERIFICATION(receivedQuantity,defectiveQuantity,acceptedQuantity,observations,rawMaterialLot,verificationStatus)
+    VALUES(NEW.quantity,0,0,"-",NEW.num,"INPRO");
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `REQUISITION`
@@ -1033,6 +1203,7 @@ CREATE TABLE `VERIFICATION` (
   `defectiveQuantity` int NOT NULL,
   `acceptedQuantity` int NOT NULL,
   `observations` varchar(128) DEFAULT NULL,
+  `rawMaterialLot` int DEFAULT NULL,
   `verificationStatus` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`num`),
   KEY `verificationStatus` (`verificationStatus`),
@@ -1046,7 +1217,53 @@ CREATE TABLE `VERIFICATION` (
 
 LOCK TABLES `VERIFICATION` WRITE;
 /*!40000 ALTER TABLE `VERIFICATION` DISABLE KEYS */;
-INSERT INTO `VERIFICATION` VALUES (1,80,0,0,'Pending validation','INPRO'),(2,80,0,80,'Validation successful with no loss','FINIS'),(3,80,0,80,'Validation successful with no loss','FINIS'),(4,80,0,80,'Validation successful with no loss','FINIS'),(5,80,0,80,'Validation successful with no loss','FINIS');
+INSERT INTO `VERIFICATION` VALUES (1, 80, 0, 80, 'Validation successful with no loss', 1, 'FINIS'),
+(2, 80, 0, 80, 'Validation successful with no loss', 2, 'FINIS'),
+(3, 80, 0, 80, 'Validation successful with no loss', 3, 'FINIS'),
+(4, 80, 0, 80, 'Validation successful with no loss', 4, 'FINIS'),
+(5, 80, 0, 80, 'Validation successful with no loss', 5, 'FINIS'),
+(6, 80, 0, 80, 'Validation successful with no loss', 6, 'FINIS'),
+(7, 80, 0, 80, 'Validation successful with no loss', 7, 'FINIS'),
+(8, 80, 0, 80, 'Validation successful with no loss', 8, 'FINIS'),
+(9, 80, 0, 80, 'Validation successful with no loss', 9, 'FINIS'),
+(10, 80, 0, 80, 'Validation successful with no loss', 10, 'FINIS'),
+(11, 80, 0, 80, 'Validation successful with no loss', 11, 'FINIS'),
+(12, 80, 0, 80, 'Validation successful with no loss', 12, 'FINIS'),
+(13, 80, 0, 80, 'Validation successful with no loss', 13, 'FINIS'),
+(14, 80, 0, 80, 'Validation successful with no loss', 14, 'FINIS'),
+(15, 80, 0, 80, 'Validation successful with no loss', 15, 'FINIS'),
+(16, 80, 0, 80, 'Validation successful with no loss', 16, 'FINIS'),
+(17, 80, 0, 80, 'Validation successful with no loss', 17, 'FINIS'),
+(18, 80, 0, 80, 'Validation successful with no loss', 18, 'FINIS'),
+(19, 80, 0, 80, 'Validation successful with no loss', 19, 'FINIS'),
+(20, 80, 0, 80, 'Validation successful with no loss', 20, 'FINIS'),
+(21, 80, 0, 80, 'Validation successful with no loss', 21, 'FINIS'),
+(22, 80, 0, 80, 'Validation successful with no loss', 22, 'FINIS'),
+(23, 80, 0, 80, 'Validation successful with no loss', 23, 'FINIS'),
+(24, 80, 0, 80, 'Validation successful with no loss', 24, 'FINIS'),
+(25, 80, 0, 80, 'Validation successful with no loss', 25, 'FINIS'),
+(26, 80, 0, 80, 'Validation successful with no loss', 26, 'FINIS'),
+(27, 80, 0, 80, 'Validation successful with no loss', 27, 'FINIS'),
+(28, 80, 0, 80, 'Validation successful with no loss', 28, 'FINIS'),
+(29, 80, 0, 80, 'Validation successful with no loss', 29, 'FINIS'),
+(30, 80, 0, 80, 'Validation successful with no loss', 30, 'FINIS'),
+(31, 80, 0, 80, 'Validation successful with no loss', 31, 'FINIS'),
+(32, 80, 0, 80, 'Validation successful with no loss', 32, 'FINIS'),
+(33, 80, 0, 80, 'Validation successful with no loss', 33, 'FINIS'),
+(34, 80, 0, 80, 'Validation successful with no loss', 34, 'FINIS'),
+(35, 80, 0, 80, 'Validation successful with no loss', 35, 'FINIS'),
+(36, 80, 0, 80, 'Validation successful with no loss', 36, 'FINIS'),
+(37, 80, 0, 80, 'Validation successful with no loss', 37, 'FINIS'),
+(38, 80, 0, 80, 'Validation successful with no loss', 38, 'FINIS'),
+(39, 80, 0, 80, 'Validation successful with no loss', 39, 'FINIS'),
+(40, 80, 0, 80, 'Validation successful with no loss', 40, 'FINIS'),
+(41, 80, 0, 80, 'Validation successful with no loss', 41, 'FINIS'),
+(42, 80, 0, 80, 'Validation successful with no loss', 42, 'FINIS'),
+(43, 80, 0, 80, 'Validation successful with no loss', 43, 'FINIS'),
+(44, 80, 0, 80, 'Validation successful with no loss', 44, 'FINIS'),
+(45, 80, 0, 80, 'Validation successful with no loss', 45, 'FINIS'),
+(46, 80, 0, 80, 'Validation successful with no loss', 46, 'FINIS'),
+(47, 80, 0, 80, 'Validation successful with no loss', 47, 'FINIS');
 /*!40000 ALTER TABLE `VERIFICATION` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1059,19 +1276,45 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `updateLotPercentage` AFTER UPDATE ON `VERIFICATION` FOR EACH ROW BEGIN
-    DECLARE lote INT;
-    DECLARE totalVerifications INT;
-    DECLARE completedVerifications INT;
-    DECLARE percentage FLOAT;
-    SET lote = (SELECT lot FROM LOT_VERIFICATION WHERE verification = NEW.num);
-    SET totalVerifications = (SELECT COUNT(*) FROM LOT_VERIFICATION WHERE lot = lot);
-    SET completedVerifications = (SELECT COUNT(*) 
-                                    FROM VERIFICATION 
-                                    WHERE verificationStatus = "TERMI" AND num IN (SELECT verification 
-                                                                                    FROM LOT_VERIFICATION 
-                                                                                    WHERE lot = lote));
-    SET percentage = (completedVerifications/totalVerifications)*100;
-    UPDATE LOT SET percentage = percentage WHERE num = lote;
+    
+        DECLARE lote INT;
+        DECLARE totalVerifications INT;
+        DECLARE completedVerifications INT;
+        DECLARE percentage1 FLOAT;
+
+    IF NEW.verificationStatus = 'FINIS'
+    THEN
+
+        SET lote = (SELECT lot FROM RAW_MATERIAL_LOT WHERE num = NEW.rawMaterialLot);
+        SET totalVerifications = (SELECT COUNT(*) FROM RAW_MATERIAL_LOT WHERE lot = lote);
+        SET completedVerifications = (SELECT COUNT(*)
+                                        FROM VERIFICATION AS v
+                                        INNER JOIN RAW_MATERIAL_LOT AS rm ON rm.num = v.rawMaterialLot
+                                        WHERE lot = lote AND verificationStatus = "FINIS");
+        SET percentage1 = (completedVerifications/totalVerifications)*100;
+        UPDATE LOT SET percentage = percentage1 WHERE num = lote;
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `increseRawMaterialStock` AFTER UPDATE ON `VERIFICATION` FOR EACH ROW BEGIN
+    DECLARE rawMaterial VARCHAR(5);
+    SET rawMaterial = (SELECT rawMaterial FROM RAW_MATERIAL_LOT WHERE num = NEW.rawMaterialLot);
+    IF NEW.verificationStatus = 'FINIS' THEN
+        UPDATE RAW_MATERIAL SET stock = stock + NEW.acceptedQuantity WHERE code = rawMaterial;
+    END IF;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1397,6 +1640,46 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertOrderRM` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertOrderRM`(
+    IN rawMaterial VARCHAR(5),
+    IN quantity INT,
+    IN employee VARCHAR(16),
+    OUT msg VARCHAR(50)
+)
+BEGIN
+    DECLARE currentPurchase INT;
+    DECLARE numEmployee INT;
+    DECLARE rawExist TINYINT(1);
+    SET rawExist = (SELECT COUNT(*) FROM RAW_MATERIAL WHERE code = rawMaterial);
+    IF rawExist > 0
+    THEN
+
+        SET numEmployee = (SELECT e.num FROM EMPLOYEE AS e INNER JOIN USER AS u ON u.employee = e.num WHERE username = employee);
+        INSERT INTO PURCHASE_REQUEST(date,totalQuantityPerMaterial,subtotal,VAT,total,purchaseRequestStatus,employee)
+        VALUES(CURRENT_TIMESTAMP(),0,0,0,0,'INPRO',numEMployee);
+        SET currentPurchase = (SELECT MAX(num) FROM PURCHASE_REQUEST);
+        INSERT INTO PURCHASE_RAW_MATERIAL(rawMaterial,purchaseRequest,quantity,cost)
+        VALUES(rawMaterial,currentPurchase,quantity,0);
+        SET msg = "Purchase created successfully";
+    ELSE
+        SET msg = "Wrong raw material code";
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `insertProduct` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1657,7 +1940,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`cisco`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_PurchaseXRaw` AS select `pr`.`num` AS `num`,`pr`.`date` AS `date`,`pr`.`totalQuantityPerMaterial` AS `quantity`,concat('$',`pr`.`subtotal`) AS `subtotal`,concat('$',`pr`.`VAT`) AS `VAT`,concat('$',`pr`.`total`) AS `total`,`prs`.`description` AS `description`,`u`.`username` AS `username` from (((`PURCHASE_REQUEST` `pr` join `PURCHASE_REQUEST_STATUS` `prs` on((`pr`.`purchaseRequestStatus` = `prs`.`code`))) join `EMPLOYEE` `e` on((`pr`.`employee` = `e`.`num`))) join `USER` `u` on((`u`.`employee` = `e`.`num`))) order by `prs`.`description` desc */;
+/*!50001 VIEW `vw_PurchaseXRaw` AS select `pr`.`num` AS `num`,`pr`.`date` AS `date`,`pr`.`totalQuantityPerMaterial` AS `quantity`,concat('$',`pr`.`subtotal`) AS `subtotal`,concat('$',`pr`.`VAT`) AS `VAT`,concat('$',`pr`.`total`) AS `total`,`prs`.`description` AS `description`,`u`.`username` AS `username` from (((`PURCHASE_REQUEST` `pr` join `PURCHASE_REQUEST_STATUS` `prs` on((`pr`.`purchaseRequestStatus` = `prs`.`code`))) join `EMPLOYEE` `e` on((`pr`.`employee` = `e`.`num`))) join `USER` `u` on((`u`.`employee` = `e`.`num`))) order by `prs`.`description` desc,`pr`.`date` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1725,4 +2008,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-24 21:35:47
+-- Dump completed on 2024-11-25 19:30:36

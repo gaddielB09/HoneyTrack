@@ -138,7 +138,6 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Application Status</th>
                                         <th>No. Requirement</th>
                                         <th>Date Application Purchase</th>
                                         <th>Quantity Raw Material</th>
@@ -146,6 +145,7 @@
                                         <th>IVA</th>
                                         <th>Total</th>
                                         <th>Empleado</th>
+                                        <th>Application Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -157,7 +157,6 @@
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             
                                             <tr data-id="<?php echo $row['num'];?>">
-                                                <td><?php echo $row["description"] ?></td>
                                                 <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["date"] ?></td>
                                                 <td><?php echo $row["quantity"] ?></td>
@@ -165,10 +164,13 @@
                                                 <td><?php echo $row["VAT"] ?></td>
                                                 <td><?php echo $row["total"] ?></td>
                                                 <td><?php echo $row["username"] ?></td>
+                                                <td><?php echo $row["description"] ?></td>
 
                                                 <td class="buttons">
-                                                <button class="btn-plus">Add</button>
-                                                <button class="btn-check">Accept</button>
+                                                    <?php if ($row["description"] != "Accepted") { ?>
+                                                        <button class="btn-plus" onclick="window.location.href='tableButtons/purchaseAdd.php?num=<?php echo $row["num"]?>';">Add</button>
+                                                        <button class="btn-check" onclick="window.location.href='../php/updatePurchaseAccept.php?num=<?php echo $row["num"]?>';">Accept</button>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
