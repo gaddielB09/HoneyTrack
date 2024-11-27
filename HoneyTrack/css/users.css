@@ -352,8 +352,8 @@
     }
 
 .table-container {
-    max-height: 40vh; /* Ajusta esta altura según tus necesidades */
-    overflow-y: auto; /* Scroll vertical en la tabla */
+    max-height: 40vh;
+    overflow-y: auto; 
     margin-top: 20px;
     position: relative;
 }

@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="../css/toast.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </head>
 <body>
 
@@ -99,7 +103,7 @@
             
                 <div id="format1" class="format" style="display: none;">
                         <!-- users forms -->
-                        <form action="../php/insertUser.php" method="post">
+                        <form action="../php/insertUser.php" method="post" id="addUsers">
                             <h1 class="home">Add Users</h1>
                             <section class="data">
                                 <div class="addUsers">
@@ -171,7 +175,7 @@
                         </div>
                     </div>
                 <div id="format2" class="format" style="display: block;">
-                    <form action="searchUsersForm">
+                    <!-- <form action="searchUsersForm"> -->
                     <h2 class="home">Search Users</h2>
                     <div class="searchPanel">
                         
@@ -225,22 +229,6 @@
                     </div>
                 </div>
 
-                    <!-- Modal de confirmación -->
-                    <div id="confirmation-modal" style="display: none;">
-                        <div class="modal-content">
-                            <p id="modal-message">Are you sure you want to continue? You will change the user's status to inactive.</p>
-                            <div class="modal-buttons">
-                                <button id="confirm-yes" class="btn-confirm">Yes</button>
-                                <button id="confirm-no" class="btn-cancel">No</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Este es el contenedor para el mensaje de éxito -->
-                    <div id="success-message">El usuario ha sido desactivado.</div>
-
-
-                    <!-- Formulario Edit Users -->
                     <div id="editUserForm" style="display: none;" class="format">
                         <form id="updateForm" action="#" method="post">
                         <button id="backToSearchBtn" type="button" onclick="backToSearch()">Back to Search</button>
@@ -313,6 +301,33 @@
 
             </div>
     </div>
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x" id="toast-container">
+    <div id="toast-message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toast-title">Notification</strong>
+        </div>
+        <div class="toast-body" id="toast-body"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirm Action</h5>
+      </div>
+      <div class="modal-body" id="modalMessage">
+        <!-- El mensaje será insertado aquí -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="btn-yes">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../js/users.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="../js/loading.js"></script>

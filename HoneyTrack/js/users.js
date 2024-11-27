@@ -16,6 +16,7 @@ const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const roleSelect = document.getElementById("role");
 const submitButton = document.getElementById("add");
+const addUsersForm = document.getElementById('addusers');
 
 // Mostrar automáticamente el formulario de registrar al cargar
 formats[1].style.display = 'block'; 
@@ -40,7 +41,7 @@ searchBar.addEventListener('input', () => {
     });
 });
 
-// Mostrar formulario de edición de usuario
+// Mostrar formulario de edición de us  uario
 editButtons.forEach(button => {
     button.addEventListener("click", e => {
         e.preventDefault(); 
@@ -101,6 +102,7 @@ function validateLetters(input, errorId, maxLength) {
         input.value = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, "").replace(/\s/g, "");
     });
 }
+
 
 function validateField(input, errorId, maxLength, regex, errorMessageText) {
     const errorMessage = document.getElementById(errorId);
@@ -213,80 +215,134 @@ document.addEventListener("DOMContentLoaded", () => {
     checkFieldsFilled();          // Comprobar el estado inicial
 });
 
-// Selecciona el formulario y el contenedor del mensaje
-const form = document.querySelector('#format1 form');
-const messageContainer = document.getElementById('message-container');
-const messageText = document.getElementById('message-text');
 
-// Intercepta el evento de submit
-form.addEventListener('submit', (event) => {
-    // Prevenir el envío automático para mostrar el mensaje primero
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const btnX = document.querySelectorAll(".btn-x"); // Todos los botones con la clase .btn-x
+    
+    btnX.forEach(button => {
+        button.addEventListener("click", function() {
+            const userName = this.closest('tr').querySelector('td:nth-child(2)').textContent; // Obtener el nombre del usuario
+            const userId = this.closest('tr').getAttribute('data-id'); // Obtener el ID del usuario
 
-    // Mostrar el mensaje de éxito
-    messageText.textContent = 'User successfully registered!';
-    messageContainer.style.display = 'block';
+            // Definir el mensaje que quieres mostrar
+            const message = `Are you sure you want to continue? You will change the users's status.`; // Ejemplo de mensaje
 
-    // Ocultar el mensaje después de 3 segundos
-    setTimeout(() => {
-        messageContainer.style.display = 'none';
-        // Opcional: envía el formulario después de mostrar el mensaje
-        form.submit();
-    }, 3000);
-});
+            // Inserta el mensaje en el modal
+            document.getElementById('modalMessage').textContent = message;
 
-const deactivateButtons = document.querySelectorAll('.btn-x');
-const modal = document.getElementById('confirmation-modal');
-const confirmYes = document.getElementById('confirm-yes');
-const confirmNo = document.getElementById('confirm-no');
-let currentRow = null;
+            // Muestra el modal
+            var myModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            myModal.show();
 
-// Mostrar el modal al hacer clic en el botón
-deactivateButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        modal.style.display = 'flex'; // Mostrar el modal
-        currentRow = button.closest('tr'); // Guardamos la fila actual
+            // Cuando el usuario hace clic en "Yes"
+            document.getElementById('btn-yes').addEventListener('click', function() {
+                // Enviar los datos al PHP para actualizar la base de datos
+                fetch('../php/disableUser.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `num=${userId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Cierra el modal
+                    myModal.hide();
+
+                    // Muestra un mensaje en un toast
+                    const toastMessage = data.msg || 'User status updated';
+                    showToast(toastMessage);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
     });
 });
 
-// Acción al confirmar (Sí)
-confirmYes.addEventListener('click', () => {
-    const userId = currentRow.dataset.id;
+// Función para mostrar el toast
+function showToast(message) {
+    // Crear el contenedor del toast
+    const toastContainer = document.createElement('div');
+    toastContainer.classList.add('toast', 'fade', 'show');
+    toastContainer.style.position = 'absolute';
+    toastContainer.style.top = '20px';
+    toastContainer.style.left = '50%';
+    toastContainer.style.zIndex = '1050';
+    toastContainer.style.transform = 'translateX(-50%)';
+    toastContainer.style.backgroundColor = '#4caf50'
+    toastContainer.style.color = '#ffffff'
 
-    // Enviar solicitud al PHP para cambiar el estado a INACT
-    const formData = new FormData();
-    formData.append('num', userId);
+    // Crear el contenido del toast
+    toastContainer.innerHTML = `
+        <div class="toast-body">${message}</div>
+    `;
+    
+    // Añadir el toast al cuerpo del documento
+    document.body.appendChild(toastContainer);
 
-    fetch('../php/disableUser.php', {
+    // Eliminar el toast después de 2 segundos
+    setTimeout(() => {
+        toastContainer.classList.remove('show');
+        setTimeout(() => {
+            toastContainer.remove();
+        }, 500); // Tiempo para desaparecer
+    }, 2000); // Tiempo que permanece visible
+}
+
+
+
+// Escuchar el evento de envío del formulario
+document.getElementById('addUsers').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir el envío normal del formulario
+
+    // Obtener los datos del formulario
+    const formData = new FormData(this);
+
+    // Realizar la solicitud AJAX para enviar el formulario
+    fetch('../php/insertUser.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => response.json())  // Obtener la respuesta en formato JSON
     .then(data => {
-        if (data.msg === "Usuario desactivado con éxito") {
-            // Cambiar el estado en la tabla sin recargar
-            currentRow.querySelector('.estatus').textContent = 'INACT';
+        const message = data.msg;  // El mensaje enviado desde PHP
 
-            // Mostrar el mensaje de éxito
-            const successMessage = document.getElementById('success-message');
-            successMessage.style.display = 'block';  // Mostrar el mensaje
+        // Configurar el mensaje y estilo del Toast según la respuesta
+        const toastBody = document.getElementById('toast-body');
+        const toastTitle = document.getElementById('toast-title');
 
-            // Eliminar el mensaje después de 3 segundos
+        if (message === 'Employee created successfully') {
+            toastTitle.textContent = 'Success';
+            toastBody.textContent = 'Employee created successfully!';
+            document.getElementById('toast-message').classList.remove('bg-danger');
+            document.getElementById('toast-message').classList.add('bg-success');
+            
+            // Recargar la página después de 2 segundos
             setTimeout(() => {
-                successMessage.style.display = 'none';  // Ocultar el mensaje
-            }, 3000);
+                window.location.reload();
+            }, 2000);
+        } else if (message === 'Duplicated username') {
+            toastTitle.textContent = 'Error';
+            toastBody.textContent = 'Duplicated username';
+            document.getElementById('toast-message').classList.remove('bg-success');
+            document.getElementById('toast-message').classList.add('bg-danger');
         }
-        modal.style.display = 'none'; // Ocultar el modal
+
+        // Mostrar el Toast
+        const toast = new bootstrap.Toast(document.getElementById('toast-message'));
+        toast.show();
+
+        // Ocultar el toast después de 2 segundos
+        setTimeout(() => {
+            const toastElement = document.getElementById('toast-message');
+            if (toastElement) {
+                toastElement.classList.remove('show');  // Ocultar el toast después de 2 segundos
+            }
+        }, 2000);
     })
     .catch(error => {
         console.error('Error:', error);
-        modal.style.display = 'none'; // Ocultar el modal en caso de error
     });
 });
-
-// Acción al cancelar (No)
-confirmNo.addEventListener('click', () => {
-    modal.style.display = 'none'; // Ocultar el modal
-});
-

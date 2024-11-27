@@ -9,25 +9,17 @@
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../js/loading.js">
     <link rel="stylesheet" href="../css/colors.css">
-    <link rel="stylesheet" href="../css/access.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../css/toast.css">
 </head>
 <body>
     <div id="loadingScreen">
         <h1 class="loadingText">Loading</h1>
     </div>
 
-    <div class="container" id="container">
-    <!-- Formulario de Sign Up (Recuperar Usuario) -->
-    <div class="form-container sign-up-container">
-        <form id="recoverUserForm" autocomplete="off">
-            <h1>Forgot User</h1> <!-- Cambié el título a "Forgot User" -->
-            <input type="email" placeholder="Enter your email to recover" required> <!-- Placeholder para ingresar email -->
-            <button type="submit">Recover</button>
-        </form>
-    </div>
-    
-    <!-- Formulario de Sign In (Iniciar Sesión) -->
+    <div class="container" id="container">    
+
     <div class="form-container sign-in-container">
         <form action="../php/validateLogin.php" method="post" id="signInForm" autocomplete="off">
             <h1>Sign In</h1>
@@ -35,33 +27,34 @@
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Sign In</button>
 
-            <!--Mensaje que indica si hubo un error para iniciar-->
-            <p class="error"><?php if ($_GET) echo $_GET["msg"]; ?></p>
         </form>
     </div>
 
-    <button id="mobileRecoverButton">I Forgot my User</button>
 
     <!-- Panel de Overlay -->
     <div class="overlay-container">
         <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Welcome Back</h1>
-                <p>To keep connected with us please login with your personal info</p>
-                <button class="ghost" id="signInButton">Sign In</button>
-            </div>
             <div class="overlay-panel overlay-right">
-                <h1 class="honeyTrack">Honey Track</h1>
-                <p>It'll be the slogan here</p>
-                <button class="ghost" id="signUpButton">I Forgot my User</button> <!-- Cambié el texto del botón -->
+                <img src="../images/HoneyTrackicon.svg" alt="HONEY TRACK" width="500">
             </div>
+        </div>
+    </div>
+</div>
+<!-- Toast Container -->
+<div id="toast-container" class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">    <!-- Toast -->
+    <div id="loginToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Login Success</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ¡Has iniciado sesión exitosamente!
         </div>
     </div>
 </div>
 
 
 <script src="../js/login.js"></script>
-<script src="../js/access.js"></script>
 <script src="../js/loading.js"></script>
 </body>
 </html>
