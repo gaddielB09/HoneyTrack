@@ -96,7 +96,7 @@
                         <i class="fas fa-plus"></i>
                         </button>
                     <!-- Button 2 -->
-                    <button onclick="showFormat(format2)">
+                        <button onclick="showFormat(format2)">
                         <i class="fas fa-pen"></i>
                         </button>
                 </nav>

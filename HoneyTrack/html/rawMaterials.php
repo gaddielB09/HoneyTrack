@@ -102,7 +102,7 @@
                     <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertRawMaterial.php" method="post" id="addUsers">
+                        <form action="../php/insertRawMaterial.php" method="post" id="addOrderRMForm">
                             <h1 class="home">Add Raw Material</h1>
                             
                             <section class="data">
@@ -223,7 +223,7 @@
                         
                         <!-- users forms -->
                         <form action="../php/insertRawMaterial.php" method="post" id="updateForm">
-                            <h1 class="home">Add Raw Material</h1>
+                            <h1 class="home">Edit Raw Material</h1>
                             
                             <section class="data">
                                 <div class="addUsers">

@@ -23,9 +23,9 @@
     <div class="form-container sign-in-container">
         <form action="../php/validateLogin.php" method="post" id="signInForm" autocomplete="off">
             <h1>Sign In</h1>
-            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="text" id="username" name="username" placeholder="Username" style="margin-bottom: 20px;" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign In</button>
+            <button style="margin-top: 20px;" type="submit">Sign In</button>
 
         </form>
     </div>
