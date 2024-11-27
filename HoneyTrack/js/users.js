@@ -294,55 +294,55 @@ function showToast(message) {
 
 
 // Escuchar el evento de envío del formulario
-document.getElementById('addUsers').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío normal del formulario
+    document.getElementById('addUsers').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío normal del formulario
 
-    // Obtener los datos del formulario
-    const formData = new FormData(this);
+        // Obtener los datos del formulario
+        const formData = new FormData(this);
 
-    // Realizar la solicitud AJAX para enviar el formulario
-    fetch('../php/insertUser.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())  // Obtener la respuesta en formato JSON
-    .then(data => {
-        const message = data.msg;  // El mensaje enviado desde PHP
+        // Realizar la solicitud AJAX para enviar el formulario
+        fetch('../php/insertUser.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())  // Obtener la respuesta en formato JSON
+        .then(data => {
+            const message = data.msg;  // El mensaje enviado desde PHP
 
-        // Configurar el mensaje y estilo del Toast según la respuesta
-        const toastBody = document.getElementById('toast-body');
-        const toastTitle = document.getElementById('toast-title');
+            // Configurar el mensaje y estilo del Toast según la respuesta
+            const toastBody = document.getElementById('toast-body');
+            const toastTitle = document.getElementById('toast-title');
 
-        if (message === 'Employee created successfully') {
-            toastTitle.textContent = 'Success';
-            toastBody.textContent = 'Employee created successfully!';
-            document.getElementById('toast-message').classList.remove('bg-danger');
-            document.getElementById('toast-message').classList.add('bg-success');
-            
-            // Recargar la página después de 2 segundos
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        } else if (message === 'Duplicated username') {
-            toastTitle.textContent = 'Error';
-            toastBody.textContent = 'Duplicated username';
-            document.getElementById('toast-message').classList.remove('bg-success');
-            document.getElementById('toast-message').classList.add('bg-danger');
-        }
-
-        // Mostrar el Toast
-        const toast = new bootstrap.Toast(document.getElementById('toast-message'));
-        toast.show();
-
-        // Ocultar el toast después de 2 segundos
-        setTimeout(() => {
-            const toastElement = document.getElementById('toast-message');
-            if (toastElement) {
-                toastElement.classList.remove('show');  // Ocultar el toast después de 2 segundos
+            if (message === 'Employee created successfully') {
+                toastTitle.textContent = 'Success';
+                toastBody.textContent = 'Employee created successfully!';
+                document.getElementById('toast-message').classList.remove('bg-danger');
+                document.getElementById('toast-message').classList.add('bg-success');
+                
+                // Recargar la página después de 2 segundos
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } else if (message === 'Duplicated username') {
+                toastTitle.textContent = 'Error';
+                toastBody.textContent = 'Duplicated username';
+                document.getElementById('toast-message').classList.remove('bg-success');
+                document.getElementById('toast-message').classList.add('bg-danger');
             }
-        }, 2000);
-    })
-    .catch(error => {
-        console.error('Error:', error);
+
+            // Mostrar el Toast
+            const toast = new bootstrap.Toast(document.getElementById('toast-message'));
+            toast.show();
+
+            // Ocultar el toast después de 2 segundos
+            setTimeout(() => {
+                const toastElement = document.getElementById('toast-message');
+                if (toastElement) {
+                    toastElement.classList.remove('show');  // Ocultar el toast después de 2 segundos
+                }
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
-});

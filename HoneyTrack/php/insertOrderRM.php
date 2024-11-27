@@ -1,26 +1,43 @@
 <?php
-    require "../php/connection.php";
-    session_start(); 
-    $db = connectdb();
-    $msg = "";
+require_once "../php/connection.php";
+session_start(); 
+$db = connectdb();
+$response = []; // Array para construir la respuesta JSON
 
-    if ($_POST) {
-        //Se obtienen los datos del producto
-        $raw = $_POST["raw"];
-        $quantity = $_POST["quantity"];
-        $username = $_SESSION["user"];
+if ($_POST) {
+    // Se obtienen los datos del formulario y del usuario en sesión
+    $raw = $_POST["raw"];
+    $quantity = $_POST["quantity"];
+    $username = $_SESSION["user"];
 
-        //Se inserta el nuevo producto
-        $query = "CALL insertOrderRM('$raw','$quantity','$username',@msg)";
-        $response = mysqli_query($db, $query);
-
-        //Se recupera el mensaje
+    // Llama al procedimiento almacenado
+    $query = "CALL insertOrderRM('$raw', '$quantity', '$username', @msg)";
+    if (mysqli_query($db, $query)) {
+        // Recupera el mensaje de salida del procedimiento almacenado
         $query = "SELECT @msg AS msg";
-        $response = mysqli_query($db, $query);
-        while ($row = mysqli_fetch_assoc($response)) {
-            //Se asigna el mensaje a una variable para desplegarla en pantalla
-            $msg = $row["msg"];
-            header("Location: ../html/orderRW.php?msg=$msg");
+        $result = mysqli_query($db, $query);
+        if ($row = mysqli_fetch_assoc($result)) {
+            // Verifica si el mensaje contiene indicios de error
+            if (strpos($row['msg'], 'Wrong') !== false || strpos($row['msg'], 'Error') !== false) {
+                $response['status'] = 'error'; // Estado de error
+            } else {
+                $response['status'] = 'success'; // Estado de éxito
+            }
+            $response['msg'] = $row['msg']; // Mensaje del SP
+        } else {
+            $response['status'] = 'error';
+            $response['msg'] = 'Error fetching message from procedure.';
         }
+    } else {
+        $response['status'] = 'error';
+        $response['msg'] = 'Procedure execution failed: ' . mysqli_error($db);
     }
+} else {
+    $response['status'] = 'error';
+    $response['msg'] = 'No data received.';
+}
+
+// Retorna la respuesta como JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>

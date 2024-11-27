@@ -85,19 +85,19 @@
             <div class="wrapper">
 
                 <nav class="userOption">
-                    <button onclick="showFormat(format1)">
-                        <i class="fas fa-user-plus"></i>
-                    </button>
+                <button onclick="showFormat(format1)">
+                        <i class="fas fa-plus"></i>
+                        </button>
                     <!-- Button 2 -->
                     <button onclick="showFormat(format2)">
-                        <i class="fas fa-user-edit"></i>
-                    </button>
+                        <i class="fas fa-pen"></i>
+                        </button>
                 </nav>
 
                 <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertOrderFP.php" method="post">
+                        <form action="../php/insertOrderFP.php" method="post" id="addFPForm">
                             <h1 class="home">Do a Raw Material Requisition</h1>
                             
                             <section class="data">
@@ -108,8 +108,43 @@
                                     <div class="personalData">
                                         
                                         <div class="input-container">
-                                            <input type="text" id="product" name="product" placeholder="Product Code" autocomplete="off" maxlength="5" required>
-                                            <span id="error-product" class="error">Product code Format is not Allowed</span>
+                                            <select name="fp" id="fp" style="
+                                        width: 100%;
+                                        padding: 10px;
+                                        font-size: 16px;
+                                        height: 40px;
+                                        border: 2px solid #ccc;
+                                        border-radius: 5px;
+                                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                                        box-sizing: border-box;
+                                        background: transparent;
+                                        ">
+                                        <option value="" disabled hidden>Product Code</option>
+                                        <?php
+                                            require_once "../php/connection.php";  // Asegúrate de tener la conexión correcta
+                                            $db = connectdb();
+
+                                            // Consulta para obtener los códigos de la vista
+                                            $query = "SELECT code FROM vw_Product";
+                                            $response = mysqli_query($db, $query);
+
+                                            // Verificar si la consulta devolvió resultados
+                                            if ($response) {
+                                                // Iterar sobre los resultados y generar las opciones
+                                                while ($row = mysqli_fetch_assoc($response)) {
+                                                    echo "<option value=\"" . htmlspecialchars($row['code']) . "\">" . htmlspecialchars($row['code']) . "</option>";
+                                                }
+
+                                                // Liberar los recursos de la consulta
+                                                mysqli_free_result($response);
+                                            } else {
+                                                echo "<option value=\"\">No codes available</option>";
+                                            }
+
+                                            // Cerrar la conexión a la base de datos
+                                            mysqli_close($db);
+                                        ?>
+                                            </select>
                                         </div>
 
                                         <div class="input-container">

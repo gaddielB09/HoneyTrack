@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="../css/colors.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../css/toast.css">
     </head>
     <body>
     
@@ -88,19 +91,19 @@
     
                     <nav class="userOption">
                         
-                        <button onclick="showFormat(format1)">
-                            <i class="fas fa-plus"></i>
+                    <button onclick="showFormat(format1)">
+                        <i class="fas fa-plus"></i>
                         </button>
                         <!-- Button 2 -->
                         <button onclick="showFormat(format2)">
-                            <i class="fas fa-search"></i>
+                        <i class="fas fa-pen"></i>
                         </button>
                     </nav>
                 
                     <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertProduct.php" method="post">
+                        <form action="../php/insertProduct.php" method="post" id="addProductForm">
                             <h1 class="home">Add Product</h1>
                             
                             <section class="data">
@@ -210,12 +213,78 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="editUserForm" class="format" style="display: none;">
+                        
+                        <!-- users forms -->
+                        <form action="../php/insertProduct.php" method="post" id="editUserForm">
+                            <h1 class="home">Add Product</h1>
+                            
+                            <section class="data">
+                                <div class="addUsers">
+                                    
+                                    <h2 class="subtittle">Product Data</h2>
+                                    
+                                    <div class="personalData">
+                                        
+                                        <div class="input-container">
+                                            <input type="text" id="code" name="code" placeholder="Code" autocomplete="off" maxlength="5" required>
+                                            <span id="error-code" class="error">Code Format is not Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="text" id="name" name="name" placeholder="Name" autocomplete="off" maxlength="64" required>
+                                            <span id="error-name" class="error">Name Format is not Allowed</span>
+                                        </div>
+                                        
+                                        <div class="input-container">
+                                            <input type="text" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <span id="error-description" class="error">Description Format is not Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="number" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <span id="error-length" class="error">Only Numbers are Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="number" step="0.01" id="height" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
+                                            <span id="error-height" class="error">Only Numbers are Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="number" step="0.01" id="width" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
+                                            <span id="error-width" class="error">Only Numbers are Allowed</span>
+                                        </div>
+
+                                        <div class="input-container">
+                                            <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
+                                            <span id="error-cost" class="error">Only Numbers are Allowed</span>
+                                        </div>
+                                            <input type="submit" class="submit-button" value="Send">
+                                    </div>
+                                </div>
+                            </section>
+                            
+                        </form>
+                    </div>
                 </div>
         </div>  
+
+        <!-- Toast Container -->
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x" id="toast-container">
+    <div id="toast-message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toast-title">Notification</strong>
+        </div>
+        <div class="toast-body" id="toast-body"></div>
+    </div>
+</div>
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/functions.js"></script>
+    <script src="../js/insertProducts.js"></script>
     </body>
     </html>
     <!--Si intentan entrar directo a esta página, se les enviará al login-->
