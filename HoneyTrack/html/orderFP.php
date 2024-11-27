@@ -97,7 +97,7 @@
                 <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertOrderRM.php" method="post">
+                        <form action="../php/insertOrderRM.php" method="post" id="addFPForm">
                             <h1 class="home">Do a Raw Material Requisition</h1>
                             
                             <section class="data">
@@ -108,8 +108,20 @@
                                     <div class="personalData">
                                         
                                         <div class="input-container">
-                                            <input type="text" id="product" name="product" placeholder="Product Code" autocomplete="off" maxlength="5" required>
-                                            <span id="error-product" class="error">Product code Format is not Allowed</span>
+                                            <select name="fp" id="fp" style="
+                                        width: 100%;
+                                        padding: 10px;
+                                        font-size: 16px;
+                                        height: 40px;
+                                        border: 2px solid #ccc;
+                                        border-radius: 5px;
+                                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                                        box-sizing: border-box;
+                                        background: transparent;
+                                        ">
+                                        <option value="" disabled hidden>Product Code</option>
+                                            <?php include '../php/selectProducts.php';?>
+                                            </select>
                                         </div>
 
                                         <div class="input-container">

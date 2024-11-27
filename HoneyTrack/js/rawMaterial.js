@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.disabled = true;
 
     // Función para verificar si todos los campos están llenos
-    function checkInputs() {
+    function checkInputs() {    
         let allFilled = true;
 
         // Itera sobre los inputs y verifica que no estén vacíos
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Función para mostrar el toast
+/// Función para mostrar el toast
 function showToast(message, type) {
     const toastContainer = document.createElement('div');
     toastContainer.classList.add('toast', 'fade', 'show');
@@ -63,25 +63,35 @@ function showToast(message, type) {
         }, 500); // Tiempo para desaparecer
     }, 2000); // Tiempo que permanece visible
 }
-
-document.getElementById('addUsers').addEventListener('submit', function(event) {
+document.getElementById('addOrderRMForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío normal del formulario
+
+    const selectElement = document.getElementById('code');
+    const selectedValue = selectElement.value;
+
+    // Verificar que el valor seleccionado no sea la opción predeterminada
+    if (selectedValue === "" || selectedValue === "default") {
+        showToast("Please select a valid Raw Material Code", "error"); // Mostrar mensaje de error
+        return; // Evitar el envío del formulario
+    }
 
     const formData = new FormData(this);
 
-    fetch('../php/insertRawMaterial.php', {
+    fetch('../php/insertOrderRM.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
     .then(data => {
-        const message = data.msg;  // El mensaje enviado desde PHP
-        const type = (data.status === 'success') ? 'success' : 'error';  // Lógica para el tipo de mensaje
-
-        // Llamar a la función para mostrar el toast
+        const message = data.msg;
+        const type = (data.status === 'success') ? 'success' : 'error';
         showToast(message, type);
 
-        // Recargar la página si es un éxito
         if (type === 'success') {
             setTimeout(() => {
                 window.location.reload();
@@ -90,5 +100,6 @@ document.getElementById('addUsers').addEventListener('submit', function(event) {
     })
     .catch(error => {
         console.error('Error:', error);
+        showToast("Unexpected error occurred", "error");
     });
 });

@@ -100,7 +100,7 @@
                         
                         <!-- users forms -->
                         <form action="../php/insertOrderRM.php" method="post" id="addOrderRMForm">
-                            <h1 class="home">Do a Purchase Request</h1>
+                            <h1 class="home">Make a Purchase Request</h1>
                             
                             <section class="data">
                                 <div class="addUsers">
@@ -109,10 +109,35 @@
                                     
                                     <div class="personalData">
                                         
-                                        <div class="input-container">
-                                            <input type="text" id="raw" name="raw" placeholder="Raw Material Code" autocomplete="off" maxlength="5" required>
-                                            <span id="error-raw" class="error">Raw Material code Format is not Allowed</span>
-                                        </div>
+                                        <select name="raw" id="code" required style="
+                                        width: 100%;
+                                        padding: 10px;
+                                        font-size: 16px;
+                                        height: 40px;
+                                        border: 2px solid #ccc;
+                                        border-radius: 5px;
+                                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                                        box-sizing: border-box;
+                                        background: transparent;
+                                        ">
+                                            <option value="default" disabled select>Raw Material Code</option>
+                                            <?php
+                                                require "../php/connection.php";
+                                                $db = connectdb();
+                                                $query = "SELECT code FROM vw_RawMaterial";
+                                                $response = mysqli_query($db, $query);
+
+                                                if ($response) {
+                                                    while ($row = mysqli_fetch_assoc($response)) {
+                                                        echo "<option value=\"" . htmlspecialchars($row['code']) . "\">" . htmlspecialchars($row['code']) . "</option>";
+                                                    }
+                                                    mysqli_free_result($response);
+                                                } else {
+                                                    echo "<option value=\"\">No codes available</option>";
+                                                }
+                                                mysqli_close($db);
+    ?>
+                                        </select>
 
                                         <div class="input-container">
                                             <input type="number" min="1" max="999" id="quantity" name="quantity" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>

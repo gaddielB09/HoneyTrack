@@ -1,5 +1,5 @@
 <?php
-require "../php/connection.php";
+require_once "../php/connection.php";
 session_start(); 
 $db = connectdb();
 $response = []; // Array para construir la respuesta JSON
