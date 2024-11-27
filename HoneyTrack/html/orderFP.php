@@ -97,7 +97,7 @@
                 <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertOrderRM.php" method="post" id="addFPForm">
+                        <form action="../php/insertOrderFP.php" method="post" id="addFPForm">
                             <h1 class="home">Do a Raw Material Requisition</h1>
                             
                             <section class="data">
@@ -151,6 +151,11 @@
                                             <input type="number" min="1" max="99" id="quantity" name="quantity" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>
                                             <span id="error-quantity" class="error">Only Numbers are Allowed</span>
                                         </div>
+
+                                        <div class="input-container">
+                                            <input type="number" min="1" max="99" id="line" name="line" class="onlyNumbers" placeholder="Production line" autocomplete="off" required>
+                                            <span id="error-line" class="error">Only Numbers are Allowed</span>
+                                        </div>
                                             <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
@@ -173,14 +178,14 @@
                             <table>
                                 <thead>
                                     <tr>
-
-                                        <th>Requisition Status</th>
                                         <th>Number</th>
                                         <th>Date</th>
                                         <th>Description</th>
                                         <th>Quantity</th>
                                         <th>Employee</th>
                                         <th>Production Line</th>
+                                        <th>Requisition Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -190,13 +195,19 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
-                                                <td><?php echo $row["status"] ?></td>
                                                 <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["date"] ?></td>
                                                 <td><?php echo $row["description"] ?></td>
                                                 <td><?php echo $row["quantity"] ?></td>
                                                 <td><?php echo $row["username"] ?></td>
                                                 <td><?php echo $row["productionLine"] ?></td>
+                                                <td><?php echo $row["status"] ?></td>
+
+                                                <td class="buttons">
+                                                    <?php if ($row["status"] != "Approved") { ?>
+                                                        <button class="btn-check" onclick="window.location.href='../php/updateRequisition.php?num=<?php echo $row["num"]?>';">Approve</button>
+                                                    <?php } ?>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
