@@ -96,11 +96,11 @@
                     <nav class="userOption">
                         
                         <button onclick="showFormat(format1)">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="fas fa-plus"></i>
                         </button>
                         <!-- Button 2 -->
                         <button onclick="showFormat(format2)">
-                            <i class="fas fa-user-edit"></i>
+                            <i class="fas fa-search"></i>
                         </button>
                     </nav>
                 
@@ -133,8 +133,8 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="lenght" name="lenght" class="onlyNumbers" placeholder="Lenght (cm)" autocomplete="off" required>
-                                            <span id="error-lenght" class="error">Only Numbers are Allowed</span>
+                                            <input type="number" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <span id="error-length" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
@@ -185,7 +185,6 @@
                                         <th>Weight</th>
                                         <th>Stock</th>
                                         <th>Action</th>
-
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -195,20 +194,21 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
-                                                <td><?php echo $row["codigo"] ?></td>
-                                                <td><?php echo $row["nombre"] ?></td>
-                                                <td><?php echo $row["descripcion"] ?></td>
-                                                <td><?php echo $row["costoNeto"] ?></td>
-                                                <td><?php echo $row["largo"] ?></td>
-                                                <td><?php echo $row["alto"] ?></td>
-                                                <td><?php echo $row["ancho"] ?></td>
-                                                <td><?php echo $row["volumen"] ?></td>
-                                                <td><?php echo $row["peso"] ?></td>
+                                                <td><?php echo $row["code"] ?></td>
+                                                <td><?php echo $row["name"] ?></td>
+                                                <td><?php echo $row["description"] ?></td>
+                                                <td><?php echo $row["netCost"] ?></td>
+                                                <td><?php echo $row["length"] ?></td>
+                                                <td><?php echo $row["height"] ?></td>
+                                                <td><?php echo $row["width"] ?></td>
+                                                <td><?php echo $row["volume"] ?></td>
+                                                <td><?php echo $row["weight"] ?></td>
                                                 <td><?php echo $row["stock"] ?></td>
                                                 <td class="buttons">
     
                                                 <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                                <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
+                                                <!-- <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button> -->
+                                                <button class="btn-plus" onclick="window.location.href='tableButtons/productAdd.php?product=<?php echo $row["code"]?>';">Add</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        </div>  
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>

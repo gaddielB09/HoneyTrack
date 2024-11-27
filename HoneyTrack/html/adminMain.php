@@ -62,6 +62,7 @@
             <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">            <!-- <img src="../images/honeytracklogo.svg" alt="HoneyTrack" class="tittle" width="200"> -->
         </div>
         <div class="wrapper">
+            
             <h3 class="home">Home</h3>
                     
             <nav class="menu">
@@ -74,9 +75,9 @@
                     <i class="fas fa-map-marker-alt"></i>
                     <span> Areas</span></a>
                             
-                <a href="applications.php">
+                <!-- <a href="applications.php">
                     <i class="fas fa-receipt"></i>
-                    <span>Applications</span></a>
+                    <span>Applications</span></a> -->
                                 
                 <a href="analysis.php">
                     <i class="fas fa-chart-bar"></i>

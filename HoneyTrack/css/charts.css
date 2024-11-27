@@ -1,0 +1,193 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-items: center; 
+    width: 100%;
+    max-width: 100%;  
+}
+
+.chart-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    height: 100%; 
+    max-width: 100%;  
+    box-sizing: border-box;  
+}
+
+canvas {
+    width: 100% !important; 
+    height: 100% !important; 
+    max-height: 400px; 
+    object-fit: contain; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--wg);
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px); 
+    z-index: -1;
+}
+
+.tittle {
+    margin-bottom: 75px;
+}
+
+.home {
+    text-align: center;
+    color: var(--blk);
+    font-size: 50px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 75px;
+}
+
+.menu a {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--blk);
+    font-size: 34px;
+    padding: 15px;
+    background-color: var(--gold);
+    border-radius: 20px;
+    margin: 50px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 25%;
+    height: 150px;
+}
+
+.menu a:hover {
+    background-color: var(--do);
+    transform: scale(1.1);
+}
+
+/* DISPOSITIVOS MOVILES */
+@media (max-width: 768px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: var(--wg);
+        background-size: cover;
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(8px); 
+        z-index: -1;
+    }
+
+    .tittle {
+        margin-top: 110px;
+        width: 350px;
+    }
+
+    .home {
+        text-align: center;
+        color: var(--blk);
+        font-size: 50px;
+        margin-bottom: 20px;
+        margin-left: 0px;
+        font-weight: bold;
+    }
+
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 75px;
+    }
+
+    .menu a {
+        display: grid;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--blk);
+        font-size: 34px;
+        padding: 15px;
+        background-color: var(--gold);
+        border-radius: 20px;
+        margin: 50px;
+        margin-top: 25px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        width: 75%;
+        height: 130px;
+    }
+
+    .menu a:hover {
+        background-color: var(--do);
+        transform: scale(1.1);
+    }
+
+    .menu span {
+        font-size: 24px;
+    }
+
+    .container {
+        grid-template-columns: repeat(1, 1fr);  
+    }
+
+    .chart-container {
+        width: 100%; 
+        height: auto; 
+    }
+
+    canvas {
+        height: 250px;
+    }
+}

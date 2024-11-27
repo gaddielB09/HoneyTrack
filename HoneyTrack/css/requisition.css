@@ -1,0 +1,974 @@
+.error {
+    color: red;
+    font-size: 14px;
+    display: none;
+    position: absolute;
+    background-color: #ffe6e6; 
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 5px;
+    top: -25px; 
+    left: 10px; 
+    z-index: 1000; 
+    white-space: nowrap; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.input-container {
+    position: relative; 
+    margin-bottom: 30px; 
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    width: 100%; 
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--whi); 
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+/* .wrapper {
+    transition: margin-left 0.5s ease, width 0.5s ease; 
+    margin-left: calc(120px + 10px); 
+    margin-right: 10px; 
+    width: calc(100% - 160px); 
+    height: 800px;
+    background-color: var(--whi); 
+    border: 3px solid #d3d3d3; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+} */
+.tittle {
+    margin-bottom: 75px;
+    }
+
+.return{
+    margin-right: 75px;
+    align-content: left;
+}
+
+.home{
+    text-align: center;
+    color: var(--blk);
+    font-size: 50px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.btn-edit, .btn-x {
+    flex: 0 1 auto;
+    padding: 5px 10px;
+    font-size: 12px;
+    max-width: 100px;
+    min-width: 70px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit {
+    background-color: var(--gold);
+    color: var(--blk);
+}
+
+.btn-x {
+    background-color: red;
+    color: var(--blk);
+}
+/* .btn-edit{
+    width: 28%;
+    height: auto;
+    background-color: var(--gold);
+    color: var(--blk);
+}
+
+.btn-x{
+    width: 30%;
+    height: auto;
+    background-color: red;
+    color: var(--blk);
+} */
+
+.btn-edit:hover {
+    background-color: rgba(255, 223, 102, 0.8);
+    transform: scale(1.1);
+}
+.btn-x:hover {
+    background-color: rgba(255, 69, 69, 0.8); 
+    transform: scale(1.1);
+}
+
+.btn-edit i{
+    font-size: 16px;
+    padding: 2px;
+}
+.btn-x i{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    align-items: center;
+}
+
+
+.roles{
+    border-radius: 50px;
+}
+.userOption {
+    display: flex;
+    justify-content: center; 
+    margin-top: 30px;
+    margin-bottom: 15px;
+    gap: 20px; 
+}
+
+.userOption button {
+    background-color: var(--gold);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+}
+
+.userOption button:hover {
+    background-color: var(--do);
+    transform: scale(1.1);
+}
+
+.userOption i{
+    font-size: 24px;
+    margin-left: 6px;
+    color: var(--whi);
+}
+.userOption svg {
+    stroke: white;
+}
+
+.tittleU {
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.addUsers {
+    border: 1px solid gray;
+    width: 80%; 
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.subtittle {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.personalData {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.personalData input {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    box-sizing: border-box; /* Asegura que padding y border estén incluidos en el width */
+}
+
+/* Mejora del aspecto del input focus */
+input:focus {
+    border-color: #40c0cb;
+    outline: none;
+    box-shadow: 0 0 5px rgba(64, 192, 203, 0.5);
+}
+
+/* Ajuste de la sección de datos de usuario */
+.userData {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
+    gap: 20px; /* Espacio entre los inputs */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    box-sizing: border-box;
+
+}
+.dataUser input{
+    padding: 10px;
+    font-size: 16px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    box-sizing: border-box; 
+}
+.subtittle2{
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.roles {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    height: 45px; /* Altura igual que los inputs */
+    background: transparent; /* Fondo transparente */
+    border: 2px solid gray; /* Borde del mismo color que los inputs */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    color: var(--third); /* Color del texto */
+    text-align: center;
+    cursor:pointer;
+}
+
+.submit-button {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    height: 45px; /* Altura igual que los inputs */
+    background: var(--gold); /* Color de fondo definido en tu paleta */
+    border: none; /* Sin borde */
+    border-radius: 40px; /* Bordes redondeados */
+    color: var(--third); /* Color del texto definido en tu paleta */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.submit-button:hover {
+    background-color: var(--do); /* Cambia el color al pasar el mouse */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.searchPanel{
+    border: 1px solid gray;
+    width: 100%; /* Ajustado para que no sea tan ancho */
+    max-width: 1500px;
+    height: auto;
+    max-height: 1080px;
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.tittleS{
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.deletePanel{
+    border: 1px solid gray;
+    width: 100%; /* Ajustado para que no sea tan ancho */
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.tittleD{
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#search-bar {
+    width: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    transition: width 0.7s ease, padding 0.3s ease;
+    color: #000;
+    font-size: 16px;
+    border-bottom: 2px solid #000;
+    outline: none;
+}
+
+.icon-search {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #000;
+}
+
+/* Expande la barra de búsqueda cuando se pasa el cursor sobre el contenedor */
+.search-container:hover #search-bar {
+    width: 200px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.table-container {
+max-height: 40vh; /* Ajusta esta altura según tus necesidades */
+overflow-y: auto; /* Scroll vertical en la tabla */
+margin-top: 20px;
+position: relative;
+}
+
+/* Estilo del mensaje de éxito */
+#success-message {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: green;
+color: white;
+padding: 20px;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+z-index: 1000;  /* Asegura que el mensaje se muestre sobre otros elementos */
+display: none;   /* Ocultado inicialmente */
+text-align: center;
+}
+
+
+#backToSearchBtn {
+position: absolute;
+top: 40px;  
+left: 40px;  
+padding: 10px 20px; 
+background-color: var(--gold); 
+color: var(--blk); 
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#backToSearchBtn:hover {
+background-color: #e67e22;  
+transform: scale(1.1);
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+th, td {
+border: 1px solid var(--blk); 
+padding: 8px; 
+text-align: left; 
+}
+
+th {
+background-color: var(--gold); 
+color: var(--blk); 
+
+}
+
+thead {
+background-color: #f2f2f2;
+position: sticky; 
+top: 0;
+z-index: 2;
+}
+
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+
+tr:hover {
+background-color: #ddd; 
+}
+
+#message-container {
+position: fixed;
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #4caf50; /* Verde éxito */
+color: white;
+padding: 15px 30px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+font-size: 18px;
+text-align: center;
+z-index: 1000;
+}
+
+.submit-button:disabled {
+background-color: #c59504; /* color de fondo cuando está deshabilitado */
+color: var(--whi); /* color del texto cuando está deshabilitado */
+cursor: not-allowed; /* cambia el cursor */
+}
+
+/* Estilos generales para el modal */
+#confirmation-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+padding: 10px; /* Para evitar que el modal toque los bordes en pantallas pequeñas */
+}
+
+.modal-content {
+background: #fff;
+padding: 20px;
+border-radius: 8px;
+text-align: center;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+width: 100%;
+max-width: 400px; /* Tamaño máximo en pantallas grandes */
+box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+/* Ajustes para el texto del mensaje */
+.modal-content p {
+font-size: 16px;
+color: #333;
+margin-bottom: 20px;
+line-height: 1.5;
+}
+
+/* Estilo para los botones */
+.modal-buttons {
+display: flex;
+justify-content: space-between;
+gap: 10px; /* Espaciado entre botones */
+flex-wrap: wrap; /* Acomoda los botones en varias filas si es necesario */
+}
+
+.btn-confirm, .btn-cancel {
+flex: 1; /* Hacer que los botones se ajusten al espacio disponible */
+background-color: #4caf50;
+color: white;
+padding: 10px;
+border: none;
+border-radius: 4px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+transition: background-color 0.3s ease;
+}
+
+.btn-cancel {
+background-color: #f44336;
+}
+
+.btn-confirm:hover {
+background-color: #45a049;
+}
+
+.btn-cancel:hover {
+background-color: #d32f2f;
+}
+
+
+@media (max-width: 768px) {
+.error {
+    color: red;
+    font-size: 14px;
+    display: none;
+    position: absolute;
+    background-color: #ffe6e6; 
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 5px;
+    top: -25px; 
+    left: 10px; 
+    z-index: 1000; 
+    white-space: nowrap; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.input-container {
+    position: relative; 
+    margin-bottom: 30px; 
+}
+
+input {
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    width: 90%; 
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--whi); 
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+/* .wrapper {
+    transition: margin-left 0.5s ease, width 0.5s ease; 
+    margin-left: calc(120px + 10px); 
+    margin-right: 10px; 
+    width: calc(100% - 160px); 
+    height: 800px;
+    background-color: var(--whi); 
+    border: 3px solid #d3d3d3; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+} */
+.tittle {
+    margin-top: 110px;
+    width: 350px;
+}
+
+.return{
+    margin-right: 75px;
+    align-content: left;
+}
+
+.home{
+    text-align: center;
+    color: var(--blk);
+    font-size: 45px;
+    margin-bottom: 20px;
+    margin-left: auto;
+}
+
+.btn-edit, .btn-x {
+    flex: 0 1 auto;
+    padding: 5px 10px;
+    font-size: 12px;
+    max-width: 100px;
+    min-width: 70px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit {
+    background-color: var(--gold);
+    color: var(--blk);
+}
+
+.btn-x {
+    background-color: red;
+    color: var(--blk);
+}
+/* .btn-edit{
+    width: 28%;
+    height: auto;
+    background-color: var(--gold);
+    color: var(--blk);
+}
+
+.btn-x{
+    width: 30%;
+    height: auto;
+    background-color: red;
+    color: var(--blk);
+} */
+
+.btn-edit:hover {
+    background-color: rgba(255, 223, 102, 0.8);
+    transform: scale(1.1);
+}
+.btn-x:hover {
+    background-color: rgba(255, 69, 69, 0.8); 
+    transform: scale(1.1);
+}
+
+.btn-edit i{
+    font-size: 16px;
+    padding: 2px;
+}
+.btn-x i{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    align-items: center;
+}
+
+
+.roles{
+    border-radius: 50px;
+}
+.userOption {
+    display: flex;
+    justify-content: center; 
+    margin-top: 30px;
+    margin-bottom: 15px;
+    gap: 20px; 
+}
+
+.userOption button {
+    background-color: var(--gold);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+}
+
+.userOption button:hover {
+    background-color: var(--do);
+    transform: scale(1.1);
+}
+
+.userOption i{
+    font-size: 24px;
+    margin-left: 6px;
+    color: var(--whi);
+}
+.userOption svg {
+    stroke: white;
+}
+
+.tittleU {
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.addUsers {
+    border: 1px solid gray;
+    width: 100%; 
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.subtittle {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.personalData {
+    display: flex;
+    /* grid-template-columns: repeat(2, 1fr);  */
+    flex-direction: column;
+    gap: 7px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.personalData input {
+    width: 90%; 
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    box-sizing: border-box; /* Asegura que padding y border estén incluidos en el width */
+}
+
+/* Mejora del aspecto del input focus */
+input:focus {
+    border-color: #40c0cb;
+    outline: none;
+    box-shadow: 0 0 5px rgba(64, 192, 203, 0.5);
+}
+
+/* Ajuste de la sección de datos de usuario */
+.userData {
+    display: flex;
+    /* grid-template-columns: repeat(2, 1fr); Crea dos columnas iguales */
+    flex-direction: column;
+    gap: 30px; /* Espacio entre los inputs */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    box-sizing: border-box;
+
+}
+.dataUser input{
+    padding: 10px;
+    font-size: 16px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    box-sizing: border-box; 
+}
+.subtittle2{
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.roles {
+    width: 90%; /* Que ocupe todo el ancho disponible */
+    height: 45px; /* Altura igual que los inputs */
+    background: transparent; /* Fondo transparente */
+    border: 2px solid gray; /* Borde del mismo color que los inputs */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    color: var(--third); /* Color del texto */
+    text-align: center;
+    cursor:pointer;
+    margin-left: 13px;
+}
+
+.submit-button {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    height: 45px; /* Altura igual que los inputs */
+    background: var(--gold); /* Color de fondo definido en tu paleta */
+    border: none; /* Sin borde */
+    border-radius: 40px; /* Bordes redondeados */
+    color: var(--third); /* Color del texto definido en tu paleta */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+    margin: auto;
+}
+
+.submit-button:hover {
+    background-color: var(--do); /* Cambia el color al pasar el mouse */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.searchPanel{
+    border: 1px solid gray;
+    width: 100%; /* Ajustado para que no sea tan ancho */
+    max-width: 1500px;
+    height: auto;
+    max-height: 1080px;
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.tittleS{
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.deletePanel{
+    border: 1px solid gray;
+    width: 100%; /* Ajustado para que no sea tan ancho */
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.tittleD{
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#search-bar {
+    width: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    transition: width 0.7s ease, padding 0.3s ease;
+    color: #000;
+    font-size: 16px;
+    border-bottom: 2px solid #000;
+    outline: none;
+}
+
+.icon-search {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #000;
+}
+
+/* Expande la barra de búsqueda cuando se pasa el cursor sobre el contenedor */
+.search-container:hover #search-bar {
+    width: 200px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.table-container {
+max-height: 35vh; /* Ajusta esta altura según tus necesidades */
+overflow-y: auto; /* Scroll vertical en la tabla */
+margin-top: 20px;
+position: relative;
+}
+
+/* Estilos para el mensaje de éxito */
+#success-message {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: green;
+color: white;
+padding: 20px;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+z-index: 1000;  /* Asegura que el mensaje se muestre sobre otros elementos */
+display: none;   /* Ocultar inicialmente */
+text-align: center;
+}
+
+
+#backToSearchBtn {
+position: absolute;
+top: 10px;  /* Ajusta el valor según necesites */
+left: 10px;  /* Ajusta el valor según necesites */
+padding: 10px 20px;  /* Ajusta el tamaño del botón */
+background-color: #f39c12;  /* Color de fondo */
+color: white;  /* Color del texto */
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+#backToSearchBtn:hover {
+background-color: #e67e22;  /* Cambio de color al pasar el mouse */
+}
+
+#message-container {
+position: fixed;
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #4caf50; /* Verde éxito */
+color: white;
+padding: 15px 30px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+font-size: 18px;
+text-align: center;
+z-index: 1000;
+}
+
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+th, td {
+border: 1px solid var(--blk); 
+padding: 8px; 
+text-align: left; 
+}
+
+th {
+background-color: var(--gold); 
+color: var(--blk); 
+
+}
+
+thead {
+background-color: #f2f2f2;
+position: sticky; 
+top: 0;
+z-index: 2;
+}
+
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+
+tr:hover {
+background-color: #ddd; 
+}
+}
+
+

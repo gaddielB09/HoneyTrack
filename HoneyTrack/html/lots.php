@@ -1,3 +1,5 @@
+<!--Validar que haya iniciado sesión-->
+<?php session_start(); if ($_SESSION["user"]!="") { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,29 +107,39 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Número</th>
-                                    <th>Cantidad Recibida</th>
-                                    <th>Cantidad Aceptada</th>
-                                    <th>Cantidad Defectuosa</th>
-                                    <th>Observaciones</th>
-                                    <th>Fecha de Validación</th>
-                                    <th>Número de Lote</th>
+                                    <th>Lot Number</th>
+                                    <th>Purchase Number</th>
+                                    <th>Description</th>
+                                    <th>Percentage</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody id="activityTableBody">
-                                <!-- Aquí se agregarán las filas dinámicamente -->
-                            </tbody>
-                        </table>   
-                        
-                    </div>
+                                    <!-- Aquí se agregarán las filas dinámicamente -->
+                                    <?php 
+                                            include "../php/selectLot.php";
 
+                                    while($row = mysqli_fetch_assoc($response)) {?>
+                                        <tr data-id="<?php echo $row['num'];?>">
+                                            <td><?php echo $row["num"] ?></td>
+                                            <td><?php echo $row["purchase"] ?></td>
+                                            <td><?php echo $row["description"] ?></td>
+                                            <td><?php echo $row["percentage"] ?></td>
+                                            <td><?php echo $row["status"] ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                        </table>    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <script src="../js/loading.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/lots.js"></script>
 </body>
 </html>
+<!--Si intentan entrar directo a esta página, se les enviará al login-->
+<?php } else{$msg = "Unvalid user"; header("Location: ../html/login.php?msg=$msg"); } ?>

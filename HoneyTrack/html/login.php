@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    $_SESSION["user"]="";
-?>
+<?php session_start(); $_SESSION["user"]=""; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

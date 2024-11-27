@@ -125,7 +125,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="location" name="location" placeholder="Location code" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="location" name="location" placeholder="Location code" autocomplete="off" maxlength="8" required>
                                             <span id="error-location" class="error">Location code Format is not Allowed</span>
                                         </div>
 
@@ -157,13 +157,12 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Storage Code</th>
+                                        <th>Storage Number</th>
                                         <th>Location</th>
                                         <th>Area</th>
                                         <th>Item</th>
                                         <th>Quantity</th>
                                         <th>Description</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -173,17 +172,12 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
-                                                <td><?php echo $row["code"] ?></td>
+                                                <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["location"] ?></td>
                                                 <td><?php echo $row["area"] ?></td>
                                                 <td><?php echo $row["item"] ?></td>
                                                 <td><?php echo $row["quantity"] ?></td>
                                                 <td><?php echo $row["description"] ?></td>
-                                                <td class="buttons">
-    
-                                                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                                <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

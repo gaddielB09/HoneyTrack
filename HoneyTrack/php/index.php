@@ -1,4 +1,6 @@
 <?php
+
+/*
 require "../php/connection.php";
 $db = connectdb();
 
@@ -88,4 +90,5 @@ while ($row = mysqli_fetch_row($response)) {
         echo "Invalid location";
     }
 }
+    */
 ?>

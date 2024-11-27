@@ -1,9 +1,9 @@
 <?php
     function connectdb() : mysqli{
         $host = "localhost";
-        $user = "root";
-        $password = "";
-        $database = "HoneyTrack";
+        $user = "cisco";
+        $password = "class";
+        $database = "HoneyTrackv2";
 
         $db = mysqli_connect($host,$user,$password,$database);
         if(!$db){

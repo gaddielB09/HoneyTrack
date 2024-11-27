@@ -286,7 +286,7 @@
     .searchPanel{
         border: 1px solid gray;
         width: 100%; /* Ajustado para que no sea tan ancho */
-        max-width: 1500px;
+        max-width: 1800px;
         height: auto;
         max-height: 1080px;
         margin: 0 auto; /* Centra el contenedor */

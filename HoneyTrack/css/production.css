@@ -45,6 +45,7 @@ body::before {
     align-items: center;
     justify-content: center; /* Distribuye los elementos de manera uniforme */
     width: 100%;
+    margin-top: 75px;
 }
 
 .menu a {
@@ -59,9 +60,8 @@ body::before {
     background-color: var(--gold);
     border-radius: 20px;
     margin: 50px ;
-    margin-top: 150px;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    width: 35%;
+    width: 25%;
     height: 175px;
 }
 
