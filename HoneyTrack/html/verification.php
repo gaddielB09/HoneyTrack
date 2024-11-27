@@ -125,7 +125,7 @@
 
                                     <td class="buttons">
                                         <?php if ($row["status"] != "FINIS") { ?>
-                                            <button class="btn-check" onclick="window.location.href='tableButtons/verificationValidate.php?num=<?php echo $row["num"]?>&lot=<?php echo $row["lot"]?>&raw=<?php echo $row["raw"]?>&received=<?php echo $row["received"]?>&observations=<?php echo $row["observations"]?>&accepted=<?php echo $row["accepted"]?>&defective=<?php echo $row["defective"]?>';">Validate</button>
+                                            <button class="btn-plus" onclick="window.location.href='tableButtons/verificationValidate.php?num=<?php echo $row["num"]?>&lot=<?php echo $row["lot"]?>&raw=<?php echo $row["raw"]?>&received=<?php echo $row["received"]?>&observations=<?php echo $row["observations"]?>&accepted=<?php echo $row["accepted"]?>&defective=<?php echo $row["defective"]?>';">Validate</button>
                                         <?php } ?>
                                     </td>
                                 </tr>

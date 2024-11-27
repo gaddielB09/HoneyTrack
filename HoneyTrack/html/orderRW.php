@@ -87,13 +87,13 @@
             <div class="wrapper">
 
                 <nav class="userOption">
-                    <button onclick="showFormat(format1)">
-                        <i class="fas fa-user-plus"></i>
-                    </button>
+                <button onclick="showFormat(format1)">
+                        <i class="fas fa-plus"></i>
+                        </button>
                     <!-- Button 2 -->
                     <button onclick="showFormat(format2)">
-                        <i class="fas fa-user-edit"></i>
-                    </button>
+                        <i class="fas fa-pen"></i>
+                        </button>
                 </nav>
 
                 <div id="format1" class="format" style="display: none;">

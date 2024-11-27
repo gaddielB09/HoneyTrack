@@ -1,8 +1,16 @@
+
+
 // Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("#format1 form");
     const inputs = form.querySelectorAll("input[required]");
     const submitButton = form.querySelector(".submit-button");
+    const editButtons = document.querySelectorAll(".btn-edit");
+    const editUserForm = document.getElementById("editUserForm");
+    const searchUsersForm = document.getElementById("format2"); 
+
+
+
 
     // Desactiva el botón de submit inicialmente
     submitButton.disabled = true;
@@ -26,6 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
     inputs.forEach((input) => {
         input.addEventListener("input", checkInputs);
     });
+
+    // Mostrar formulario de edición de us  uario
+editButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        e.preventDefault(); 
+        searchUsersForm.style.display = "none";
+        editUserForm.style.display = "block";
+    });
+});
 });
 
 /// Función para mostrar el toast

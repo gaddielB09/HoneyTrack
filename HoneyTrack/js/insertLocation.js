@@ -1,3 +1,55 @@
+// document.addEventListener("DOMContentLoaded", () => {
+// const editButtons = document.querySelectorAll(".btn-edit");
+// const editUserForm = document.getElementById("editUserForm");
+// const searchUsersForm = document.getElementById("format2"); 
+
+//     // Mostrar formulario de edición de us  uario
+//     editButtons.forEach(button => {
+//         button.addEventListener("click", e => {
+//             e.preventDefault(); 
+//             searchUsersForm.style.display = "none";
+//             editUserForm.style.display = "block";
+//         });
+//     });
+
+// });
+const buttons = document.querySelectorAll('.userOption button');
+const formats = document.querySelectorAll('.format');
+const searchUsersForm = document.getElementById("format2"); 
+const editUserForm = document.getElementById("editUserForm");
+const editButtons = document.querySelectorAll(".btn-edit");
+// Mostrar automáticamente el formulario de registrar al cargar
+formats[1].style.display = 'block'; 
+
+// Mostrar el formulario correspondiente al botón presionado
+buttons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        formats.forEach(format => format.style.display = 'none');
+        formats[index].style.display = 'block';
+    });
+});
+
+// Filtrar resultados en la tabla
+searchBar.addEventListener('input', () => {
+    const filterText = searchBar.value.toLowerCase();
+    Array.from(tableBody.getElementsByTagName('tr')).forEach(row => {
+        const cells = row.getElementsByTagName('td');
+        const match = Array.from(cells).some(cell => 
+            cell.textContent.toLowerCase().includes(filterText)
+        );
+        row.style.display = match ? '' : 'none';
+    });
+});
+
+    // Mostrar formulario de edición de us  uario
+    editButtons.forEach(button => {
+        button.addEventListener("click", e => {
+            e.preventDefault(); 
+            searchUsersForm.style.display = "none";
+            editUserForm.style.display = "block";
+        });
+    });
+
 function showToast(message, type) {
     const toastContainer = document.createElement('div');
     toastContainer.classList.add('toast', 'fade', 'show');
@@ -61,3 +113,4 @@ document.getElementById('addLocationForm').addEventListener('submit', function(e
         console.error('Error:', error);
     });
 });
+

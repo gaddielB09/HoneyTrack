@@ -1,3 +1,15 @@
+const editButtons = document.querySelectorAll(".btn-edit");
+const editUserForm = document.getElementById("editUserForm");
+const searchUsersForm = document.getElementById("format2"); 
+
+editButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        e.preventDefault(); 
+        searchUsersForm.style.display = "none";
+        editUserForm.style.display = "block";
+    });
+});
+
 function showToast(message, type) {
     const toastContainer = document.createElement('div');
     toastContainer.classList.add('toast', 'fade', 'show');

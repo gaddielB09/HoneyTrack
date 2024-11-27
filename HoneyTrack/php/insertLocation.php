@@ -1,5 +1,5 @@
 <?php
-require "../php/connection.php";
+require_once "../php/connection.php";
 header('Content-Type: application/json'); // Indicar que la respuesta será JSON
 $db = connectdb();
 $response = [];

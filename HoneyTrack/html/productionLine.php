@@ -5,10 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/production.css">
+    <link rel="stylesheet" href="../css/productionLine.css">
+    <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/colors.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
     <title>productionMain</title>
 
 </head>
@@ -75,28 +77,58 @@
     </nav>
 
 <div class="content">
-    <h1 class="tittle">Produccion</h1>
-    <h3 class="option">Selecciona una opcion</h3>
-    <div class="wrapper">
-        <nav class="menu">
-            <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-receipt" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2" />
-                  </svg> Requisicion</a>
-            <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-mobile" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z" />
-                    <path d="M11 4h2" />
-                    <path d="M12 17v.01" />
-                  </svg> Producto Terminado</a>
-        </nav>
-    </div>
+    <div class="tittle-container">
+    <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="HONEY TRACK" width="600">
+</div>
+<div class="wrapper">
+        <h3 class="home">Production Line</h3>
+    <div class="view-activity">
+
+<div class="search-container">
+        <input type="search" id="search-bar" placeholder="Nombre o ID" required autocomplete="off">
+        <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+            <path d="M21 21l-6 -6" />
+            </svg></span>
+</div>  
+<div class="table-container">
+<table>
+    <thead>
+        <tr>
+            <!--Poner datos correctos-->
+            <th>Number</th>
+            <th>Production Line</th>
+            <th>Finished Product</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="activityTableBody">
+        <!-- Los datos de la BD se agregaran aquí -->
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+
+         <td class="buttons">
+
+         <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
+         <button class="btn-x" id="btn-x"><i class="fas fa-times"></i></button>    
+
+        </td>
+    </tbody>
+</table>  
+</div>
+</div>
+
 </div>
 
 <script src="../js/loading.js"></script>
 <script src="../js/sidebar.js"></script>
+<script src=".../js/productionLine.js"></script>
 </body>
 </html>
 <!--Si intentan entrar directo a esta página, se les enviará al login-->

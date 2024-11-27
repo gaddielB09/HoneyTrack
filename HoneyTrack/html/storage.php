@@ -94,11 +94,11 @@
                         
                         <!-- Button 1 -->
                         <button onclick="showFormat(format1)">
-                            <i class="fas fa-user-plus"></i>
+                        <i class="fas fa-plus"></i>
                         </button>
                         <!-- Button 2 -->
                         <button onclick="showFormat(format2)">
-                            <i class="fas fa-user-edit"></i>
+                        <i class="fas fa-pen"></i>
                         </button>
                     </nav>
                 
