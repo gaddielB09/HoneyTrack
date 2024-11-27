@@ -51,13 +51,6 @@
             </li>
 
             <li>
-                <a href="applications.php">
-                    <i class="fas fa-receipt fa-lg"></i>
-                    <span>Applications</span>
-                </a>
-            </li>
-
-            <li>
                 <a href="analysis.php">
                     <i class="fas fa-chart-bar fa-lg"></i>
                     <span>Analysis</span>
@@ -218,7 +211,7 @@
                                             <td><?php echo $row["email"] ?></td>
                                             <td><?php echo $row["taxId"] ?></td>
                                             <td><?php echo $row["description"] ?></td>
-                                            <td><?php echo $row["status"] ?></td>
+                                            <td id="status"><?php echo $row["status"] ?></td>
                                             <td class="buttons">
 
                                             <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>

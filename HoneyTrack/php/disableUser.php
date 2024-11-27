@@ -6,7 +6,7 @@
     $num = $_POST["num"];
 
     // Cambiar el estado del usuario a INACT
-    $query = "UPDATE EMPLEADO SET edoEmpleado = 'INACT' WHERE num = '$num'"; 
+    $query = "UPDATE EMPLOYEE SET employeeStatus = 'INACT' WHERE num = '$num'"; 
 
     $response = mysqli_query($db, $query);
     
@@ -16,5 +16,5 @@
         $msg = "Error when changing user status";
     }
 
-    echo json_encode(['msg' => $msg, 'num' => $num]);
-?>
+    header("Location: ../html/users.php?msg=$msg");
+    ?>

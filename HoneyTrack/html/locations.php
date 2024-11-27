@@ -51,13 +51,6 @@
             </li>
 
             <li>
-                <a href="applications.php">
-                    <i class="fas fa-receipt fa-lg"></i>
-                    <span>Applications</span>
-                </a>
-            </li>
-
-            <li>
                 <a href="analysis.php">
                     <i class="fas fa-chart-bar fa-lg"></i>
                     <span>Analysis</span>
