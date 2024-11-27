@@ -208,6 +208,23 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `calculateLocationVolume` BEFORE INSERT ON `LOCATION` FOR EACH ROW BEGIN
+    SET NEW.volume = NEW.length * NEW.height * NEW.width;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `LOT`
@@ -511,6 +528,29 @@ LOCK TABLES `PURCHASE_RAW_MATERIAL` WRITE;
 INSERT INTO `PURCHASE_RAW_MATERIAL` VALUES ('AIF6P',3,80,72000.00),('AIS24',1,80,72000.00),('AIS4P',2,80,100800.00),('AIUM5',2,80,115200.00),('AIZF6',3,80,129600.00),('BALS2',1,80,21600.00),('BAZF6',3,80,36000.00),('BFLP6',3,80,28800.00),('BLA4S',2,80,28800.00),('BLUM5',2,80,36000.00),('CAZ6F',3,80,36000.00),('CCS24',1,80,86400.00),('CCS4P',2,80,93600.00),('CCUM5',2,80,129600.00),('CCZ6P',3,80,59200.00),('CCZF6',3,80,96000.00),('CFS24',1,80,28800.00),('CFS4P',2,80,36000.00),('CFUM5',2,80,43200.00),('CFZ6F',3,80,43200.00),('CPS24',1,80,43200.00),('CPS4P',2,80,50400.00),('CPU5S',2,80,86400.00),('CPZF6',3,80,57600.00),('CZF6P',3,80,57600.00),('MAZ6F',3,80,57600.00),('MR8SP',2,80,64800.00),('MRS24',1,80,57600.00),('MRUM5',2,80,86400.00),('MRZ6F',3,80,100800.00),('PAMS2',1,80,288000.00),('PAUM5',2,80,432000.00),('PB4S4',2,80,158400.00),('PBBS2',1,80,144000.00),('PBU5S',2,80,216000.00),('PBZ6F',3,80,144000.00),('PBZF6',3,80,216000.00),('PE4SP',2,80,302400.00),('PEF6L',3,80,216000.00),('PEF6P',3,80,144000.00),('PES24',1,80,288000.00),('PEUM5',2,80,360000.00),('PFLP6',3,80,432000.00),('PFOL6',3,80,504000.00),('PMA4S',2,80,360000.00),('PSZ6F',3,80,302400.00),('PSZF6',3,80,288000.00);
 /*!40000 ALTER TABLE `PURCHASE_RAW_MATERIAL` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `purchaseRawMaterialCost` BEFORE INSERT ON `PURCHASE_RAW_MATERIAL` FOR EACH ROW BEGIN
+    SET NEW.cost = NEW.quantity * (SELECT cost FROM RAW_MATERIAL WHERE code = NEW.rawMaterial);
+    UPDATE PURCHASE_REQUEST SET 
+        totalQuantityPerMaterial = totalQuantityPerMaterial + NEW.quantity,
+        total = total + NEW.cost,
+        VAT = total * 0.16,
+        subtotal = total - VAT
+    WHERE num = NEW.purchaseRequest;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `PURCHASE_REQUEST`
@@ -545,6 +585,26 @@ LOCK TABLES `PURCHASE_REQUEST` WRITE;
 INSERT INTO `PURCHASE_REQUEST` VALUES (1,'2024-11-04 13:00:00',80,1029600.00,164736.00,1194336.00,'INPRO',15),(2,'2024-11-04 14:15:22',80,2700000.00,432000.00,3132000.00,'ACCEP',15),(3,'2024-11-04 15:02:40',80,3020800.00,483328.00,3504128.00,'ACCEP',15);
 /*!40000 ALTER TABLE `PURCHASE_REQUEST` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `createLot` AFTER UPDATE ON `PURCHASE_REQUEST` FOR EACH ROW BEGIN
+    IF NEW.purchaseRequestStatus = "ACCEP" THEN
+        INSERT INTO LOT(description, percentage, lotStatus, purchaseRequest)
+        VALUES((SELECT CONCAT('Batch for ',MIN(rawMaterial)) FROM PURCHASE_RAW_MATERIAL WHERE purchaseRequest = NEW.num),0,"PENDI",NEW.num);
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `PURCHASE_REQUEST_STATUS`
@@ -593,7 +653,7 @@ CREATE TABLE `RAW_MATERIAL` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `RAW_MATERIAL'
+-- Dumping data for table `RAW_MATERIAL`
 --
 
 LOCK TABLES `RAW_MATERIAL` WRITE;
@@ -1337,6 +1397,126 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertLocation` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertLocation`(
+    IN container VARCHAR(12),
+    IN aisle VARCHAR(2),
+    IN side VARCHAR(1),
+    IN bay VARCHAR(2),
+    IN level VARCHAR(1),
+    IN position VARCHAR(2),
+    IN length DECIMAL(10, 2),
+    IN height DECIMAL(10, 2),
+    IN width DECIMAL(10, 2),
+    IN area VARCHAR(5),
+    OUT msg VARCHAR(50)
+)
+BEGIN
+    DECLARE code1 VARCHAR(8);
+    DECLARE codeDub TINYINT(1);
+
+    SET code1 = CONCAT(aisle, side, bay, level, position);
+    SET codeDub = (SELECT COUNT(*) FROM LOCATION WHERE code = code1);
+
+    IF codeDub = 0 THEN
+        INSERT INTO LOCATION (code, containerName, aisle, side, bay, level, position, capacity, length, height, width, area)
+        VALUES (code1, container, aisle, side, bay, level, position, 0, length, height, width, area);
+        SET msg = "Location created successfully";
+    ELSE
+        SET msg = "Duplicated location";
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertOrderRM` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertOrderRM`(
+    IN rawMaterial VARCHAR(5),
+    IN quantity INT,
+    IN employee VARCHAR(16),
+    OUT msg VARCHAR(50)
+)
+BEGIN
+    DECLARE currentPurchase INT;
+    DECLARE numEmployee INT;
+    DECLARE rawExist TINYINT(1);
+    SET rawExist = (SELECT COUNT(*) FROM RAW_MATERIAL WHERE code = rawMaterial);
+    IF rawExist > 0
+    THEN
+
+        SET numEmployee = (SELECT e.num FROM EMPLOYEE AS e INNER JOIN USER AS u ON u.employee = e.num WHERE username = employee);
+        INSERT INTO PURCHASE_REQUEST(date,totalQuantityPerMaterial,subtotal,VAT,total,purchaseRequestStatus,employee)
+        VALUES(CURRENT_TIMESTAMP(),0,0,0,0,'INPRO',numEMployee);
+        SET currentPurchase = (SELECT MAX(num) FROM PURCHASE_REQUEST);
+        INSERT INTO PURCHASE_RAW_MATERIAL(rawMaterial,purchaseRequest,quantity,cost)
+        VALUES(rawMaterial,currentPurchase,quantity,0);
+        SET msg = "Purchase created successfully";
+    ELSE
+        SET msg = "Wrong raw material code";
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertProduct` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`cisco`@`localhost` PROCEDURE `insertProduct`(
+    IN code1 VARCHAR(5),
+    IN name VARCHAR(32),
+    IN description VARCHAR(256),
+    IN length DECIMAL(10, 2),
+    IN height DECIMAL(10, 2),
+    IN width DECIMAL(10, 2),
+    IN weight DECIMAL(10, 2),
+    OUT msg VARCHAR(50)
+)
+BEGIN
+    DECLARE codeDub TINYINT(1);
+    SET codeDub = (SELECT COUNT(*) FROM FINISHED_PRODUCT WHERE code = code1);
+    IF codeDub = 0 THEN
+        INSERT INTO FINISHED_PRODUCT (code, name, description, netCost,
+                                    length, height, width, weight, volume, stock)
+        VALUES (code1, name, description, 0, length, height, width, weight, 0, 0);
+        SET msg = "Product created successfully";
+    ELSE
+        SET msg = "Duplicated code";
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `insertRawMaterial` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1560,7 +1740,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`cisco`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_PurchaseXRaw` AS select `pr`.`num` AS `num`,`pr`.`date` AS `date`,`pr`.`totalQuantityPerMaterial` AS `quantity`,concat('$',`pr`.`subtotal`) AS `subtotal`,concat('$',`pr`.`VAT`) AS `VAT`,concat('$',`pr`.`total`) AS `total`,`prs`.`description` AS `description`,`u`.`username` AS `username` from (((`PURCHASE_REQUEST` `pr` join `PURCHASE_REQUEST_STATUS` `prs` on((`pr`.`purchaseRequestStatus` = `prs`.`code`))) join `EMPLOYEE` `e` on((`pr`.`employee` = `e`.`num`))) join `USER` `u` on((`u`.`employee` = `e`.`num`))) order by `prs`.`description` desc */;
+/*!50001 VIEW `vw_PurchaseXRaw` AS select `pr`.`num` AS `num`,`pr`.`date` AS `date`,`pr`.`totalQuantityPerMaterial` AS `quantity`,concat('$',`pr`.`subtotal`) AS `subtotal`,concat('$',`pr`.`VAT`) AS `VAT`,concat('$',`pr`.`total`) AS `total`,`prs`.`description` AS `description`,`u`.`username` AS `username` from (((`PURCHASE_REQUEST` `pr` join `PURCHASE_REQUEST_STATUS` `prs` on((`pr`.`purchaseRequestStatus` = `prs`.`code`))) join `EMPLOYEE` `e` on((`pr`.`employee` = `e`.`num`))) join `USER` `u` on((`u`.`employee` = `e`.`num`))) order by `prs`.`description` desc,`pr`.`date` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1628,4 +1808,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-24  9:20:12
+-- Dump completed on 2024-11-25  3:15:57

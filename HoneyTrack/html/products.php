@@ -208,7 +208,7 @@
     
                                                 <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
                                                 <!-- <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button> -->
-                                                <button class="btn-plus">Add</button>
+                                                <button class="btn-plus" onclick="window.location.href='tableButtons/productAdd.php?product=<?php echo $row["code"]?>';">Add</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>

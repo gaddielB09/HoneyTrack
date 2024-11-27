@@ -8,7 +8,7 @@
         $code = $_POST["code"];
         $name = $_POST["name"];
         $description = $_POST["description"];
-        $length = $_POST["lenght"];
+        $length = $_POST["length"];
         $height = $_POST["height"];
         $width = $_POST["width"];
         $weight = $_POST["weight"];

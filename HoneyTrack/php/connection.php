@@ -3,7 +3,7 @@
         $host = "localhost";
         $user = "cisco";
         $password = "class";
-        $database = "En_HoneyTrack";
+        $database = "HoneyTrackv2";
 
         $db = mysqli_connect($host,$user,$password,$database);
         if(!$db){

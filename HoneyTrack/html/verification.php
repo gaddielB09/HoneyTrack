@@ -104,41 +104,42 @@
                             <tr>
                                 <th>Number</th>
                                 <th>Lot Number</th>
+                                <th>Raw Material</th>
                                 <th>Amount Received</th>
                                 <th>Accepted Amount</th>
                                 <th>Defective Quantity</th>
-                                <th>Observactions</th>
+                                <th>Observations</th>
                                 <th>Status</th>
-                                <th>Last Validation Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="activityTableBody">
-                                        <!-- Aquí se agregarán las filas dinámicamente -->
-                                        <?php 
-                                            include "../php/selectVerification.php";
-                                            
-                                            while($row = mysqli_fetch_assoc($response)) {?>
-                                            
-                                            <tr data-id="<?php echo $row['num'];?>">
-                                                <td><?php echo $row["num"] ?></td>
-                                                <td><?php echo $row["lot"] ?></td>
-                                                <td><?php echo $row["received"] ?></td>
-                                                <td><?php echo $row["accepted"] ?></td>
-                                                <td><?php echo $row["defective"] ?></td>
-                                                <td><?php echo $row["observations"] ?></td>
-                                                <td><?php echo $row["status"] ?></td>
-                                                <td><?php echo $row["date"] ?></td>
+                            <!-- Aquí se agregarán las filas dinámicamente -->
+                            <?php 
+                                include "../php/selectVerification.php";
+                                
+                                while($row = mysqli_fetch_assoc($response)) {?>
+                                
+                                <tr data-id="<?php echo $row['num'];?>">
+                                    <td><?php echo $row["num"] ?></td>
+                                    <td><?php echo $row["lot"] ?></td>
+                                    <td><?php echo $row["raw"] ?></td>
+                                    <td><?php echo $row["received"] ?></td>
+                                    <td><?php echo $row["accepted"] ?></td>
+                                    <td><?php echo $row["defective"] ?></td>
+                                    <td><?php echo $row["observations"] ?></td>
+                                    <td><?php echo $row["status"] ?></td>
 
-                                                <td class="buttons">
-                                                <a class="btn-plus" href="verificationONE.php?num=<?php echo $row["num"]; ?>">Validate</a>
-                                                </td>
-                                            </tr>
+                                    <td class="buttons">
+                                        <?php if ($row["status"] != "FINIS") { ?>
+                                            <button class="btn-check" onclick="window.location.href='tableButtons/verificationValidate.php?num=<?php echo $row["num"]?>&lot=<?php echo $row["lot"]?>&raw=<?php echo $row["raw"]?>&received=<?php echo $row["received"]?>&observations=<?php echo $row["observations"]?>&accepted=<?php echo $row["accepted"]?>&defective=<?php echo $row["defective"]?>';">Validate</button>
                                         <?php } ?>
-                                    </tbody>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
                     </table>  
                 </div>
-
             </div>
         </div>
     </div>
