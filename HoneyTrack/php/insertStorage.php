@@ -1,93 +1,91 @@
 <?php
     require "../php/connection.php";
     $db = connectdb();
-    $msg = "";
+    $response = [];
 
     if ($_POST) {
-        //Se obtienen los datos de la ubicacion
+        // Se obtienen los datos de la ubicación
         $item = $_POST["item"];
         $location = $_POST["location"];
         $quantity = $_POST["quantity"];
         
-        //Validar que exista la ubicacion, el articulo y que haya suficiente stock
+        // Validar que exista la ubicación, el artículo y que haya suficiente stock
 
-        //Validar ubicacion
+        // Validar ubicación
         $query = "SELECT COUNT(*) FROM LOCATION WHERE code='$location'";
-        $response = mysqli_query($db, $query);
+        $responseDB = mysqli_query($db, $query);
         
-        while ($row = mysqli_fetch_row($response)) {
+        while ($row = mysqli_fetch_row($responseDB)) {
             if ($row[0] > 0) {
-                //Validar materia prima
+                // Validar materia prima
                 $query = "SELECT COUNT(*) FROM RAW_MATERIAL WHERE code='$item'";
-                $response = mysqli_query($db, $query);
+                $responseDB = mysqli_query($db, $query);
         
-                while ($row = mysqli_fetch_row($response)) {
+                while ($row = mysqli_fetch_row($responseDB)) {
                     if ($row[0] > 0) {
-                        //Validar stock suficiente
+                        // Validar stock suficiente
                         $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE rawMaterial='$item') FROM RAW_MATERIAL WHERE code='$item'";
-                        $response = mysqli_query($db, $query);
-                        while ($row = mysqli_fetch_row($response)) {
+                        $responseDB = mysqli_query($db, $query);
+                        while ($row = mysqli_fetch_row($responseDB)) {
                             if ($row[0] > $quantity) {
-                                //Validar si el item ya esta en esa ubicacion
+                                // Validar si el item ya está en esa ubicación
                                 
-                                $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item', '$item',NULL,'$location','RMARE')";
+                                $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) 
+                                          VALUES('$quantity','$item', '$item',NULL,'$location','RMARE')";
                                 if (mysqli_query($db, $query)) {
-                                    $msg = "Storage created successfully";
+                                    $response['status'] = 'success';
+                                    $response['msg'] = "Storage created successfully";
                                 } else {
-                                    echo mysqli_error($db);
-                                    $msg = "Storage can not be created";
+                                    $response['status'] = 'error';
+                                    $response['msg'] = "Storage can not be created";
                                 }
-                        
-                                header("Location: ../html/storage.php?msg=$msg");
-                            }
-                            else {
-                                $msg = "Insufficient quantity";
+                            } else {
+                                $response['status'] = 'error';
+                                $response['msg'] = "Insufficient quantity";
                             }
                         }
-                    }
-                    else {
-                        //item no se encontro en materia prima, buscar en prod terminado
+                    } else {
+                        // Item no se encontró en materia prima, buscar en producto terminado
                         $query = "SELECT COUNT(*) FROM FINISHED_PRODUCT WHERE code='$item'";
-                        $response = mysqli_query($db, $query);
+                        $responseDB = mysqli_query($db, $query);
         
-                        while ($row = mysqli_fetch_row($response)) {
+                        while ($row = mysqli_fetch_row($responseDB)) {
                             if ($row[0] > 0) {
-                                //Validar stock suficiente
+                                // Validar stock suficiente
                                 $query = "SELECT stock-(SELECT IFNULL(SUM(quantity),0) FROM STORAGE WHERE finishedProduct='$item') FROM FINISHED_PRODUCT WHERE code='$item'";
-                                $response = mysqli_query($db, $query);
-                                while ($row = mysqli_fetch_row($response)) {
+                                $responseDB = mysqli_query($db, $query);
+                                while ($row = mysqli_fetch_row($responseDB)) {
                                     if ($row[0] > $quantity) {
-                                        //Validar si el item ya esta en esa ubicacion
-                
-                                        $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) VALUES('$quantity','$item',NULL,'$item','$location','FPARE')";
+                                        // Validar si el item ya está en esa ubicación
+                                        $query = "INSERT INTO STORAGE(quantity, description, rawMaterial, finishedProduct, location, area) 
+                                                  VALUES('$quantity','$item',NULL,'$item','$location','FPARE')";
                                         if (mysqli_query($db, $query)) {
-                                            $msg = "Storage created successfully";
+                                            $response['status'] = 'success';
+                                            $response['msg'] = "Storage created successfully";
                                         } else {
-                                            $msg = "Storage can not be created";
+                                            $response['status'] = 'error';
+                                            $response['msg'] = "Storage can not be created";
                                         }
-                                
-                                        header("Location: ../html/storage.php?msg=$msg");
-                                    }
-                                    else {
-                                        $msg = "Insufficient quantity";
+                                    } else {
+                                        $response['status'] = 'error';
+                                        $response['msg'] = "Insufficient quantity";
                                     }
                                 }
-        
-                            }
-                            else {
-                                //item no se encontro en producto terminado, item invalido
-                                $msg = "Invalid item";
+                            } else {
+                                // Item no se encontró en producto terminado, item inválido
+                                $response['status'] = 'error';
+                                $response['msg'] = "Invalid item";
                             }
                         }
                     }
                 }
+            } else {
+                $response['status'] = 'error';
+                $response['msg'] = "Invalid location";
             }
-            else {
-                $msg = "Invalid location";
-            }
-
-            header("Location: ../html/storage.php?msg=$msg");
         }
-
     }
+
+    // Se envía la respuesta en formato JSON
+    echo json_encode($response);
 ?>

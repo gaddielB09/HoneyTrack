@@ -1,10 +1,10 @@
 <?php
     require "../php/connection.php";
+    $response = [];
     $db = connectdb();
-    $msg = "";
 
     if ($_POST) {
-        //Se obtienen los datos del producto
+        // Se obtienen los datos del producto
         $code = $_POST["code"];
         $name = $_POST["name"];
         $description = $_POST["description"];
@@ -13,19 +13,30 @@
         $width = $_POST["width"];
         $weight = $_POST["weight"];
 
+        // Se inserta el nuevo producto
+        $query = "CALL insertProduct('$code', '$name', '$description', '$length', '$height', '$width', '$weight', @msg)";
+        $execute = mysqli_query($db, $query);
 
-        //Se inserta el nuevo producto
-        $query = "CALL insertProduct('$code','$name','$description','$length',
-                                        '$height','$width','$weight',@msg)";
-        $response = mysqli_query($db, $query);
-
-        //Se recupera el mensaje
+        // Se recupera el mensaje
         $query = "SELECT @msg AS msg";
-        $response = mysqli_query($db, $query);
-        while ($row = mysqli_fetch_assoc($response)) {
-            //Se asigna el mensaje a una variable para desplegarla en pantalla
-            $msg = $row["msg"];
-            header("Location: ../html/products.php?msg=$msg");
+        $msgResult = mysqli_query($db, $query);
+        
+        if ($msgResult) {
+            while ($row = mysqli_fetch_assoc($msgResult)) {
+                $msg = $row["msg"];
+                if ($msg == 'Product created successfully') {
+                    $response['status'] = 'success'; // Respuesta exitosa
+                } else {
+                    $response['status'] = 'error'; // Error, por ejemplo, código duplicado
+                }
+                $response['msg'] = $msg;
+            }
+        } else {
+            $response['status'] = 'error';
+            $response['msg'] = 'Failed to retrieve message from database';
         }
     }
+
+    // Se envía la respuesta en formato JSON (sin redirección)
+    echo json_encode($response);
 ?>
