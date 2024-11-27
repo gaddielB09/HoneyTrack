@@ -1594,7 +1594,7 @@ BEGIN
     ELSE
         SET msg = 'Unvalid credentials';
     END IF;
-END ;;
+END ;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;

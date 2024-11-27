@@ -1,20 +1,22 @@
 <?php
     require "../php/connection.php";
-    $msg = "";
     $db = connectdb();
+    $msg = "";
 
-    $num = $_POST["num"];
+    // Obtener el ID del usuario
+    if (isset($_POST["num"])) {
+        $num = $_POST["num"];
 
-    // Cambiar el estado del usuario a INACT
-    $query = "UPDATE EMPLOYEE SET employeeStatus = 'INACT' WHERE num = '$num'"; 
+        // Cambiar el estado del usuario a INACT
+        $query = "UPDATE EMPLOYEE SET employeeStatus = 'INACT' WHERE num = '$num'"; 
 
-    $response = mysqli_query($db, $query);
-    
-    if ($response) {
-        $msg = "User's status changed succesfully";
-    } else {
-        $msg = "Error when changing user status";
+        if (mysqli_query($db, $query)) {
+            $msg = "User's status changed successfully";
+        } else {
+            $msg = "Error when changing user status";
+        }
     }
 
-    header("Location: ../html/users.php?msg=$msg");
-    ?>
+    // Devolver la respuesta en formato JSON
+    echo json_encode(['msg' => $msg]);
+?>
