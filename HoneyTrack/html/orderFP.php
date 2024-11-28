@@ -108,7 +108,7 @@
                                     <div class="personalData">
                                         
                                         <div class="input-container">
-                                            <select name="fp" id="fp" style="
+                                            <select  id="product" name="product" name="fp" id="fp" style="
                                         width: 100%;
                                         padding: 10px;
                                         font-size: 16px;
@@ -156,7 +156,7 @@
                                             <input type="number" min="1" max="99" id="line" name="line" class="onlyNumbers" placeholder="Production line" autocomplete="off" required>
                                             <span id="error-line" class="error">Only Numbers are Allowed</span>
                                         </div>
-                                            <button type="submit" class="submit-button" value="Send">Submit</button>
+                                        <button type="submit" class="submit-button" value="Send">Submit</button>
                                     </div>
                                 </div>
                             </section>

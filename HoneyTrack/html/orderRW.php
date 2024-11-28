@@ -197,7 +197,7 @@
                                                 <td class="buttons">
                                                     <?php if ($row["description"] != "Accepted") { ?>
                                                         <button class="btn-plus" onclick="window.location.href='tableButtons/purchaseAdd.php?num=<?php echo $row["num"]?>';">Add</button>
-                                                        <button class="btn-check" onclick="window.location.href='../php/updatePurchaseAccept.php?num=<?php echo $row["num"]?>';">Accept</button>
+                                                        <button class="btn-plus" onclick="window.location.href='../php/updatePurchaseAccept.php?num=<?php echo $row["num"]?>';">Accept</button>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
