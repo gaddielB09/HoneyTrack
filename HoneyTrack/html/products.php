@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="../css/sidebar2.css">
         <link rel="stylesheet" href="../css/colors.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="../css/toast.css">
@@ -147,7 +146,7 @@
                                             <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
-                                            <input type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button" value="Send">
                                     </div>
                                 </div>
                             </section>
@@ -218,7 +217,7 @@
                         
                         <!-- users forms -->
                         <form action="../php/insertProduct.php" method="post" id="editUserForm">
-                            <h1 class="home">Add Product</h1>
+                            <h1 class="home">Edit Product</h1>
                             
                             <section class="data">
                                 <div class="addUsers">
@@ -272,14 +271,14 @@
         </div>  
 
         <!-- Toast Container -->
-<div class="toast-container position-fixed top-0 start-50 translate-middle-x" id="toast-container">
+<!-- <div class="toast-container position-fixed top-0 start-50 translate-middle-x" id="toast-container">
     <div id="toast-message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <strong class="me-auto" id="toast-title">Notification</strong>
         </div>
         <div class="toast-body" id="toast-body"></div>
     </div>
-</div>
+</div> -->
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>

@@ -1,5 +1,5 @@
 <?php
-    require "../php/connection.php";
+    require_once "../php/connection.php";
     $response = [];
     $db = connectdb();
 
@@ -22,7 +22,7 @@
         $msgResult = mysqli_query($db, $query);
         
         if ($msgResult) {
-            while ($row = mysqli_fetch_assoc($msgResult)) {
+            $row = mysqli_fetch_assoc($msgResult);
                 $msg = $row["msg"];
                 if ($msg == 'Product created successfully') {
                     $response['status'] = 'success'; // Respuesta exitosa
@@ -35,7 +35,7 @@
             $response['status'] = 'error';
             $response['msg'] = 'Failed to retrieve message from database';
         }
-    }
+    
 
     // Se envía la respuesta en formato JSON (sin redirección)
     echo json_encode($response);

@@ -94,7 +94,7 @@ document.getElementById('addOrderRMForm').addEventListener('submit', function(ev
 
     const formData = new FormData(this);
 
-    fetch('../php/insertOrderRM.php', {
+    fetch('../php/insertRawMaterial.php', {
         method: 'POST',
         body: formData
     })
