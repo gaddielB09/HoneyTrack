@@ -1,18 +1,4 @@
-// document.addEventListener("DOMContentLoaded", () => {
-// const editButtons = document.querySelectorAll(".btn-edit");
-// const editUserForm = document.getElementById("editUserForm");
-// const searchUsersForm = document.getElementById("format2"); 
 
-//     // Mostrar formulario de edición de us  uario
-//     editButtons.forEach(button => {
-//         button.addEventListener("click", e => {
-//             e.preventDefault(); 
-//             searchUsersForm.style.display = "none";
-//             editUserForm.style.display = "block";
-//         });
-//     });
-
-// });
 const buttons = document.querySelectorAll('.userOption button');
 const formats = document.querySelectorAll('.format');
 const searchUsersForm = document.getElementById("format2"); 
@@ -50,67 +36,58 @@ searchBar.addEventListener('input', () => {
         });
     });
 
-function showToast(message, type) {
-    const toastContainer = document.createElement('div');
-    toastContainer.classList.add('toast', 'fade', 'show');
-    toastContainer.style.position = 'absolute';
-    toastContainer.style.top = '20px';
-    toastContainer.style.left = '50%';
-    toastContainer.style.transform = 'translateX(-50%)'; 
-    toastContainer.style.zIndex = '1050';
-
-    // Establecer el color basado en el tipo de mensaje (success o error)
-    if (type === 'success') {
-        toastContainer.classList.add('bg-success');
-    } else {
-        toastContainer.classList.add('bg-danger');
-    }
-
-    // Crear el contenido del toast
-    toastContainer.innerHTML = `
-        <div class="toast-body">
-            <strong>${type === 'success' ? 'Success: ' : 'Error: '}</strong> ${message}
-        </div>
-    `;
-
-    // Añadir el toast al cuerpo del documento
-    document.body.appendChild(toastContainer);
-
-    // Eliminar el toast después de 2 segundos
-    setTimeout(() => {
-        toastContainer.classList.remove('show');
-        setTimeout(() => {
-            toastContainer.remove();
-        }, 500); // Tiempo para desaparecer
-    }, 2000); // Tiempo que permanece visible
-}
-
-document.getElementById('addLocationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío normal del formulario
-
-    const formData = new FormData(this);
-
-    fetch('../php/insertLocation.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const message = data.msg;  // El mensaje enviado desde PHP
-        const type = (data.status === 'success') ? 'success' : 'error';  // Lógica para el tipo de mensaje
-
-        // Llamar a la función para mostrar el toast
-        showToast(message, type);
-
-        // Recargar la página si es un éxito
-        if (type === 'success') {
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    document.getElementById("addLocation").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+        
+        const form = event.target;
+        const formData = new FormData(form);
+    
+        fetch("../php/insertProduct.php", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Mostrar el mensaje en un toast según el tipo de respuesta
+            if (data.status === 'success') {
+                showToast(data.msg, 'success');
+            } else {
+                showToast(data.msg, 'error');
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            showToast('An error occurred while processing the form', 'error');
+        });
     });
-});
+    
+    function showToast(message, type) {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        
+        // Definir el color y la clase según el tipo de mensaje
+        const toastClass = type === 'success' ? 'text-bg-success' : 'text-bg-danger';
+        const strongText = type === 'success' ? 'Success' : 'Error';
+        
+        toast.className = `toast show align-items-center ${toastClass} border-0`;
+        toast.role = "alert";
+        toast.innerHTML = `
+            <div class="d-flex">
+                <div class="toast-body text-center">
+                    <strong>${strongText}:</strong> ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        `;
+        
+        toastContainer.appendChild(toast);
+    
+        // Eliminar el toast después de unos segundos
+        setTimeout(() => {
+            toast.remove();
+        }, 5000);
+    }
+    
+    
+
 

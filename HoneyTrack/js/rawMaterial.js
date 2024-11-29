@@ -1,4 +1,10 @@
 
+    // Volver al formulario de búsqueda
+    function backToSearch() {
+        editUserForm.style.display = 'none';
+        searchUsersForm.style.display = 'block';
+    }
+
 
 // Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
@@ -9,6 +15,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const editUserForm = document.getElementById("editUserForm");
     const searchUsersForm = document.getElementById("format2"); 
 
+    // Agregar evento para el botón de editar
+document.querySelectorAll('.btn-edit').forEach(button => {
+    button.addEventListener('click', function() {
+        // Obtener la fila (tr) de donde proviene el botón
+        const row = this.closest('tr');
+        
+        const code = row.cells[0].textContent;
+        const name = row.cells[1].textContent;
+        const description = row.cells[2].textContent;
+        const cost = parseFloat(row.cells[3].textContent); // Asegurarse de que los valores numéricos son tratados correctamente
+        const length = parseFloat(row.cells[4].textContent);
+        const height = parseFloat(row.cells[5].textContent);
+        const width = parseFloat(row.cells[6].textContent);
+        const volume = parseFloat(row.cells[7].textContent);
+        const weight = parseFloat(row.cells[8].textContent);
+        const stock = parseInt(row.cells[9].textContent); // En cas
+        
+        // Ocultar el formulario de búsqueda (format2)
+        document.getElementById('format2').style.display = 'none';
+        
+        // Mostrar el formulario de edición (editUserForm)
+        document.getElementById('editUserForm').style.display = 'block';
+        
+        // Rellenar los campos del formulario de edición con los datos obtenidos
+        document.getElementById('code-edit').value = code;
+        document.getElementById('name-edit').value = name;
+        document.getElementById('description-edit').value = description;
+        document.getElementById('cost-edit').value = cost;
+        document.getElementById('length-edit').value = length;
+        document.getElementById('height-edit').value = height;
+        document.getElementById('width-edit').value = width;
+        document.getElementById('weight-edit').value = weight;
+        // Si quieres mostrar otros valores puedes hacer lo mismo
+        
+
+
+    });
+});
 
 
 

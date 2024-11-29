@@ -1,3 +1,4 @@
+-- Active: 1728679034835@@127.0.0.1@3306@HoneyTrackv2
 <!--Validar que haya iniciado sesión-->
 <?php session_start(); if ($_SESSION["user"]!="") { ?>
     
@@ -12,9 +13,8 @@
         <link rel="stylesheet" href="../css/sidebar2.css">
         <link rel="stylesheet" href="../css/colors.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="../css/toast.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
     
@@ -102,7 +102,7 @@
                     <div id="format1" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertProduct.php" method="post" id="addProductForm">
+                        <form action="../php/insertProduct.php" method="post" id="addProduct">
                             <h1 class="home">Add Product</h1>
                             
                             <section class="data">
@@ -146,7 +146,7 @@
                                             <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
-                                            <button type="submit" class="submit-button" value="Send">
+                                            <button type="submit" class="submit-button">Submit</button>
                                     </div>
                                 </div>
                             </section>
@@ -202,8 +202,7 @@
                                                 <td class="buttons">
     
                                                 <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                                <!-- <button class="btn-x"><i class="fa-solid fa-user-xmark"></i></button> -->
-                                                <button class="btn-plus" onclick="window.location.href='tableButtons/productAdd.php?product=<?php echo $row["code"]?>';">Add</button>
+                                                <button class="btn-plus" onclick="window.location.href='productAdd.php?product=<?php echo $row["code"]?>';">Add</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -216,7 +215,7 @@
                     <div id="editUserForm" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertProduct.php" method="post" id="editUserForm">
+                        <form action="../php/updateProducts.php" method="post" id="editForm">
                             <h1 class="home">Edit Product</h1>
                             
                             <section class="data">
@@ -227,37 +226,37 @@
                                     <div class="personalData">
                                         
                                         <div class="input-container">
-                                            <input type="text" id="code" name="code" placeholder="Code" autocomplete="off" maxlength="5" required>
+                                            <input type="text" id="code-edit" name="code" placeholder="Code" autocomplete="off" maxlength="5" required readonly>
                                             <span id="error-code" class="error">Code Format is not Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="name" name="name" placeholder="Name" autocomplete="off" maxlength="64" required>
+                                            <input type="text" id="name-edit" name="name" placeholder="Name" autocomplete="off" maxlength="64" required>
                                             <span id="error-name" class="error">Name Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <input type="text" id="description-edit" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
                                             <span id="error-description" class="error">Description Format is not Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="length-edit" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
                                             <span id="error-length" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="height" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="height-edit" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
                                             <span id="error-height" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="width" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="width-edit" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
                                             <span id="error-width" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="weight-edit" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
                                             <input type="submit" class="submit-button" value="Send">
@@ -271,14 +270,9 @@
         </div>  
 
         <!-- Toast Container -->
-<!-- <div class="toast-container position-fixed top-0 start-50 translate-middle-x" id="toast-container">
-    <div id="toast-message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto" id="toast-title">Notification</strong>
-        </div>
-        <div class="toast-body" id="toast-body"></div>
-    </div>
-</div> -->
+        <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11;"></div>
+
+</div>
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>

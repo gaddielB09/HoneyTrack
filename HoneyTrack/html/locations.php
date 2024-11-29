@@ -103,7 +103,7 @@
                     <div id="format1" class="format" style="display: none;">
                         
                         <!-- locations forms -->
-                        <form action="../php/insertLocation.php" method="post" id="addLocationForm">
+                        <form action="../php/insertLocation.php" method="post" id="addLocation">
                             <h1 class="home">Add a Location</h1>
                             
                             <section class="data">
@@ -241,7 +241,7 @@
                     <div id="editUserForm" class="format" style="display: none;">
                         
                         <!-- locations forms -->
-                        <form action="../php/insertLocation.php" method="post" id="#">
+                        <form action="" method="post" id="editForm">
                             <h1 class="home">Edit a Location</h1>
                             
                             <section class="data">
@@ -315,6 +315,7 @@
                         </form>
                     </div>
                 </div>
+                
         </div>
     <script src="../js/users.js"></script>
     <script src="../js/sidebar.js"></script>
