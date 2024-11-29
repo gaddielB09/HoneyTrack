@@ -99,26 +99,27 @@
             <!--Poner datos correctos-->
             <th>Number</th>
             <th>Production Line</th>
-            <th>Finished Product</th>
-            <th>Date</th>
-            <th>Quantity</th>
-            <th>Action</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody id="activityTableBody">
         <!-- Los datos de la BD se agregaran aquí -->
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
+        <?php 
+            include "../php/selectProductionLine.php";
+            
+            while($row = mysqli_fetch_assoc($response)) {?>
+                <tr>
+                    <td><?php echo $row["num"] ?></td>
+                    <td><?php echo $row["name"] ?></td>
 
-         <td class="buttons">
+                    <td class="buttons">
 
-         <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-         <button class="btn-x" id="btn-x"><i class="fas fa-times"></i></button>    
+                    <button class="btn-edit" id="btn-edit"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn-x" id="btn-x"><i class="fas fa-times"></i></button>    
 
-        </td>
+                    </td>
+                </tr>
+            <?php } ?>
     </tbody>
 </table>  
 </div>
