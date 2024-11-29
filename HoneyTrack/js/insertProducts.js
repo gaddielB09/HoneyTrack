@@ -52,8 +52,14 @@ document.getElementById("addProduct").addEventListener("submit", function (event
         // Mostrar el mensaje en un toast según el tipo de respuesta
         if (data.status === 'success') {
             showToast(data.msg, 'success');
+            setTimeout(() => {
+                window.location.reload();
+            },2000)
         } else {
             showToast(data.msg, 'error');
+            setTimeout(() => {
+                window.location.reload();
+            },2000)
         }
     })
     .catch(error => {

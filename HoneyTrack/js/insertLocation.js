@@ -1,11 +1,4 @@
 
-const buttons = document.querySelectorAll('.userOption button');
-const formats = document.querySelectorAll('.format');
-const searchUsersForm = document.getElementById("format2"); 
-const editUserForm = document.getElementById("editUserForm");
-const editButtons = document.querySelectorAll(".btn-edit");
-
-
  // Agregar evento para el botón de editar
  document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function() {
@@ -46,6 +39,15 @@ const editButtons = document.querySelectorAll(".btn-edit");
 
     });
 });
+
+const buttons = document.querySelectorAll('.userOption button');
+const formats = document.querySelectorAll('.format');
+const searchUsersForm = document.getElementById("format2"); 
+const editUserForm = document.getElementById("editUserForm");
+const editButtons = document.querySelectorAll(".btn-edit");
+
+
+
 // Mostrar automáticamente el formulario de registrar al cargar
 formats[1].style.display = 'block'; 
 
