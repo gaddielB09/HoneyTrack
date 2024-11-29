@@ -1,75 +1,91 @@
-const editButtons = document.querySelectorAll(".btn-edit");
-const editUserForm = document.getElementById("editUserForm");
-const searchUsersForm = document.getElementById("format2"); 
 
-editButtons.forEach(button => {
-    button.addEventListener("click", e => {
-        e.preventDefault(); 
-        searchUsersForm.style.display = "none";
-        editUserForm.style.display = "block";
+
+    // Agregar evento para el botón de editar
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function() {
+            // Obtener la fila (tr) de donde proviene el botón
+            const row = this.closest('tr');
+            
+            const code = row.cells[0].textContent;
+            const name = row.cells[1].textContent;
+            const description = row.cells[2].textContent;
+            const length = parseFloat(row.cells[4].textContent);
+            const height = parseFloat(row.cells[5].textContent);
+            const width = parseFloat(row.cells[6].textContent);
+            const weight = parseFloat(row.cells[8
+
+            ].textContent);
+            
+            // Ocultar el formulario de búsqueda (format2)
+            document.getElementById('format2').style.display = 'none';
+            
+            // Mostrar el formulario de edición (editUserForm)
+            document.getElementById('editUserForm').style.display = 'block';
+            
+            // Rellenar los campos del formulario de edición con los datos obtenidos
+            document.getElementById('code-edit').value = code;
+            document.getElementById('name-edit').value = name;
+            document.getElementById('description-edit').value = description;
+            document.getElementById('length-edit').value = length;
+            document.getElementById('height-edit').value = height;
+            document.getElementById('width-edit').value = width;
+            document.getElementById('weight-edit').value = weight;
+            // Si quieres mostrar otros valores puedes hacer lo mismo
+            
+    
+    
+        });
+    });
+
+document.getElementById("addProduct").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch("../php/insertProduct.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mostrar el mensaje en un toast según el tipo de respuesta
+        if (data.status === 'success') {
+            showToast(data.msg, 'success');
+        } else {
+            showToast(data.msg, 'error');
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        showToast('An error occurred while processing the form', 'error');
     });
 });
 
 function showToast(message, type) {
-    const toastContainer = document.createElement('div');
-    toastContainer.classList.add('toast', 'fade', 'show');
-    toastContainer.style.position = 'absolute';
-    toastContainer.style.top = '20px';
-    toastContainer.style.left = '50%';
-    toastContainer.style.transform = 'translateX(-50%)'; 
-    toastContainer.style.zIndex = '1050';
-
-    // Establecer el color basado en el tipo de mensaje (success o error)
-    if (type === 'success') {
-        toastContainer.classList.add('bg-success');
-    } else {
-        toastContainer.classList.add('bg-danger');
-    }
-
-    // Crear el contenido del toast
-    toastContainer.innerHTML = `
-        <div class="toast-body">
-            <strong>${type === 'success' ? 'Success: ' : 'Error: '}</strong> ${message}
+    const toastContainer = document.getElementById("toast-container");
+    const toast = document.createElement("div");
+    
+    // Definir el color y la clase según el tipo de mensaje
+    const toastClass = type === 'success' ? 'text-bg-success' : 'text-bg-danger';
+    const strongText = type === 'success' ? 'Success' : 'Error';
+    
+    toast.className = `toast show align-items-center ${toastClass} border-0`;
+    toast.role = "alert";
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body text-center">
+                <strong>${strongText}:</strong> ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     `;
+    
+    toastContainer.appendChild(toast);
 
-    // Añadir el toast al cuerpo del documento
-    document.body.appendChild(toastContainer);
-
-    // Eliminar el toast después de 2 segundos
+    // Eliminar el toast después de unos segundos
     setTimeout(() => {
-        toastContainer.classList.remove('show');
-        setTimeout(() => {
-            toastContainer.remove();
-        }, 500); // Tiempo para desaparecer
-    }, 2000); // Tiempo que permanece visible
+        toast.remove();
+    }, 5000);
 }
 
-document.getElementById('addProductForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío normal del formulario
-
-    const formData = new FormData(this);
-
-    fetch('../php/insertProduct.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const message = data.msg;  // El mensaje enviado desde PHP
-        const type = (data.status === 'success') ? 'success' : 'error';  // Lógica para el tipo de mensaje
-
-        // Llamar a la función para mostrar el toast
-        showToast(message, type);
-
-        // Recargar la página si es un éxito
-        if (type === 'success') {
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});

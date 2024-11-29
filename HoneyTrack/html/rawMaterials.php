@@ -222,7 +222,9 @@
                     <div id="editUserForm" class="format" style="display: none;">
                         
                         <!-- users forms -->
-                        <form action="../php/insertRawMaterial.php" method="post" id="updateForm">
+                        <form action="../php/updateRawMaterial.php" method="post" id="updateForm">
+                        <button id="backToSearchBtn" type="button" onclick="backToSearch()">Back to Search</button>
+
                             <h1 class="home">Edit Raw Material</h1>
                             
                             <section class="data">
@@ -233,42 +235,42 @@
                                     <div class="personalData">
                                         
                                         <div class="input-container">
-                                            <input type="text" id="code" name="code" placeholder="Code" autocomplete="off" maxlength="5" required>
+                                            <input type="text" id="code-edit" name="code" placeholder="Code" autocomplete="off" maxlength="5" required readonly>
                                             <span id="error-code" class="error">Code Format is not Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="name" name="name" placeholder="Name" autocomplete="off" maxlength="64" required>
+                                            <input type="text" id="name-edit" name="name" placeholder="Name" autocomplete="off" maxlength="64" required>
                                             <span id="error-name" class="error">Name Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text   " id="description" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
+                                            <input type="text   " id="description-edit" name="description" placeholder="Description" autocomplete="off" maxlength="256" required>
                                             <span id="error-description" class="error">Description Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="number" min="0" step="0.01" id="cost" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
+                                            <input type="text" min="0" step="0.01" id="cost-edit" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="length-edit" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
                                             <span id="error-length" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="height" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="height-edit" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
                                             <span id="error-height" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="width" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="width-edit" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
                                             <span id="error-width" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="weight" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="weight-edit" name="weight" class="onlyNumbers" placeholder="Weight (gr)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
                                             <button type="submit" class="submit-button" value="Send">Submit</button>
