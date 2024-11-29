@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/sidebar2.css">
-    <link rel="stylesheet" href="../../css/loading.css">
-    <link rel="stylesheet" href="../../css/activity.css">
-    <link rel="stylesheet" href="../../css/colors.css">
+    <link rel="stylesheet" href="../css/sidebar2.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/rawMaterials.css">
+    <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
     <title>Document</title>
@@ -81,17 +81,23 @@
 
     <div class="content">
         <div class="tittle-container">
-        <img class="tittle" src="../../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
+        <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
             <h3 class="home">Add a Purchase Request</h3>
-                <div class="view-activity">
+                <div class="format">
                     <form action="../../php/insertPurchaseRawMaterial.php" method="POST">
-                        <label for="produc">Purchase Request #<?php echo $_GET["num"] ?></label><br>
-                        <input type="hidden" name="num" id="num" value="<?php echo $_GET["num"] ?>">
-                        <input type="text" name="raw" id="raw" placeholder="Raw Material Code"><br>
-                        <input type="number" name="quantity" id="quantity" placeholder="Quantity"><br>
-                        <button>Add Raw Material</button>
+                        <section class="data">
+                            <div class="addUsers">
+                                <div class="personalData">
+
+                                    <input type="hidden" name="num" id="num" value="<?php echo $_GET["num"] ?>">
+                                    <input type="text" name="raw" id="raw" placeholder="Raw Material Code">
+                                    <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+                                    <button class="submit-button">Add Raw Material</button>
+                                </div>
+                            </div>
+                        </section>
                     </form>
                 </div>
         </div>
