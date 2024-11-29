@@ -4,6 +4,48 @@ const formats = document.querySelectorAll('.format');
 const searchUsersForm = document.getElementById("format2"); 
 const editUserForm = document.getElementById("editUserForm");
 const editButtons = document.querySelectorAll(".btn-edit");
+
+
+ // Agregar evento para el botón de editar
+ document.querySelectorAll('.btn-edit').forEach(button => {
+    button.addEventListener('click', function() {
+        // Obtener la fila (tr) de donde proviene el botón
+        const row = this.closest('tr');
+        
+        const container = row.cells[1].textContent;
+        const aisle = row.cells[2].textContent;
+        const side = row.cells[3].textContent;
+        const bay = row.cells[4].textContent;
+        const level = row.cells[5].textContent;
+        const position = row.cells[6].textContent;
+        const length = parseFloat(row.cells[8].textContent);
+        const height = parseFloat(row.cells[9].textContent);
+        const width = parseFloat(row.cells[10].textContent);
+        const area = row.cells[11].textContent;
+        // Ocultar el formulario de búsqueda (format2)
+        document.getElementById('format2').style.display = 'none';
+        
+        // Mostrar el formulario de edición (editUserForm)
+        document.getElementById('editUserForm').style.display = 'block';
+        
+        // Rellenar los campos del formulario de edición con los datos obtenidos
+        document.getElementById('aisle-edit').value = aisle;
+        document.getElementById('side-edit').value = side;
+        document.getElementById('bay-edit').value = bay;
+        document.getElementById('level-edit').value = level;
+        document.getElementById('position-edit').value = position;
+        document.getElementById('length-edit').value = length;
+        document.getElementById('height-edit').value = height;
+        document.getElementById('width-edit').value = width;
+        document.getElementById('container-edit').value = container;
+        document.getElementById('area-edit').value = area;
+
+        // Si quieres mostrar otros valores puedes hacer lo mismo
+        
+
+
+    });
+});
 // Mostrar automáticamente el formulario de registrar al cargar
 formats[1].style.display = 'block'; 
 
@@ -14,6 +56,8 @@ buttons.forEach((button, index) => {
         formats[index].style.display = 'block';
     });
 });
+
+
 
 // Filtrar resultados en la tabla
 searchBar.addEventListener('input', () => {
