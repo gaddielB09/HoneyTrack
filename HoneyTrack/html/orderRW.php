@@ -128,19 +128,25 @@
                                             <?php
                                                 require "../php/connection.php";
                                                 $db = connectdb();
-                                                $query = "SELECT code FROM vw_RawMaterial";
+
+                                                // Consulta para obtener códigos y nombres de la vista
+                                                $query = "SELECT code, name FROM vw_RawMaterial";
                                                 $response = mysqli_query($db, $query);
 
                                                 if ($response) {
+                                                    // Iterar sobre los resultados y generar las opciones
                                                     while ($row = mysqli_fetch_assoc($response)) {
-                                                        echo "<option value=\"" . htmlspecialchars($row['code']) . "\">" . htmlspecialchars($row['code']) . "</option>";
+                                                        $code = htmlspecialchars($row['code']);
+                                                        $name = htmlspecialchars($row['name']);
+                                                        echo "<option value=\"$code\">$code - $name</option>";
                                                     }
-                                                    mysqli_free_result($response);
+                                                    mysqli_free_result($response); // Liberar recursos
                                                 } else {
                                                     echo "<option value=\"\">No codes available</option>";
                                                 }
-                                                mysqli_close($db);
-    ?>
+
+                                                mysqli_close($db); // Cerrar conexión
+                                            ?>
                                         </select>
 
                                         <div class="input-container">

@@ -119,20 +119,22 @@
                                         box-sizing: border-box;
                                         background: transparent;
                                         ">
-                                        <option value="" disabled hidden>Product Code</option>
+                                        <option value="" disabled select>Product Code</option>
                                         <?php
-                                            require_once "../php/connection.php";  // Asegúrate de tener la conexión correcta
+                                            require_once "../php/connection.php"; // Asegúrate de tener la conexión correcta
                                             $db = connectdb();
 
-                                            // Consulta para obtener los códigos de la vista
-                                            $query = "SELECT code FROM vw_Product";
+                                            // Consulta para obtener los códigos y nombres de la vista
+                                            $query = "SELECT code, name FROM vw_Product";
                                             $response = mysqli_query($db, $query);
 
                                             // Verificar si la consulta devolvió resultados
                                             if ($response) {
                                                 // Iterar sobre los resultados y generar las opciones
                                                 while ($row = mysqli_fetch_assoc($response)) {
-                                                    echo "<option value=\"" . htmlspecialchars($row['code']) . "\">" . htmlspecialchars($row['code']) . "</option>";
+                                                    $code = htmlspecialchars($row['code']);
+                                                    $name = htmlspecialchars($row['name']);
+                                                    echo "<option value=\"$code\">$code - $name</option>";
                                                 }
 
                                                 // Liberar los recursos de la consulta

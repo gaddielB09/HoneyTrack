@@ -250,7 +250,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" min="0" step="0.01" id="cost-edit" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
+                                            <input type="number" min="0" step="0.01" id="cost-edit" name="cost" class="onlyNumbers" placeholder="Cost ($)" autocomplete="off" required>
                                             <span id="error-cost" class="error">Only Numbers are Allowed</span>
                                         </div>
 
