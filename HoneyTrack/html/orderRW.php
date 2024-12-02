@@ -87,16 +87,20 @@
             <div class="wrapper">
 
                 <nav class="userOption">
-                <button onclick="showFormat(format1)">
+                    <button onclick="showFormat(format1)">
                         <i class="fas fa-plus"></i>
-                        </button>
+                    </button>
                     <!-- Button 2 -->
                     <button onclick="showFormat(format2)">
                         <i class="fas fa-pen"></i>
-                        </button>
+                    </button>
+
+                    <button onclick="showFormat(format3)">
+                        <i class="fas fa-history"></i>
+                    </button>
                 </nav>
 
-                <div id="format1" class="format" style="display: none;">
+                <div id="format1" class="format" style="display: block;">
                         
                         <!-- users forms -->
                         <form action="../php/insertOrderRM.php" method="post" id="addOrderRMForm">
@@ -124,19 +128,25 @@
                                             <?php
                                                 require "../php/connection.php";
                                                 $db = connectdb();
-                                                $query = "SELECT code FROM vw_RawMaterial";
+
+                                                // Consulta para obtener códigos y nombres de la vista
+                                                $query = "SELECT code, name FROM vw_RawMaterial";
                                                 $response = mysqli_query($db, $query);
 
                                                 if ($response) {
+                                                    // Iterar sobre los resultados y generar las opciones
                                                     while ($row = mysqli_fetch_assoc($response)) {
-                                                        echo "<option value=\"" . htmlspecialchars($row['code']) . "\">" . htmlspecialchars($row['code']) . "</option>";
+                                                        $code = htmlspecialchars($row['code']);
+                                                        $name = htmlspecialchars($row['name']);
+                                                        echo "<option value=\"$code\">$code - $name</option>";
                                                     }
-                                                    mysqli_free_result($response);
+                                                    mysqli_free_result($response); // Liberar recursos
                                                 } else {
                                                     echo "<option value=\"\">No codes available</option>";
                                                 }
-                                                mysqli_close($db);
-    ?>
+
+                                                mysqli_close($db); // Cerrar conexión
+                                            ?>
                                         </select>
 
                                         <div class="input-container">
@@ -150,8 +160,67 @@
                             
                         </form>
                     </div>
-                    <div id="format2" class="format" style="display: block;"> <!-- Formulario para buscar Materia prima -->
-                        <h2 class="home">Search Purchase Requests</h2>
+                    <div id="format2" class="format" style="display: none;"> <!-- Formulario para buscar Materia prima -->
+                        <h2 class="home">Purchase Request In Progress</h2>
+                        <div class="searchPanel">
+                            
+                            <div class="search-container">
+                                <input type="search" id="search-bar" placeholder="Nombre o ID" required>
+                                <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                    <path d="M21 21l-6 -6" />
+                                </svg></span>
+                            </div>
+                            <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>No. Requirement</th>
+                                        <th>Date Application Purchase</th>
+                                        <th>Quantity Raw Material</th>
+                                        <th>Subtotal</th>
+                                        <th>IVA</th>
+                                        <th>Total</th>
+                                        <th>Empleado</th>
+                                        <th>Application Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="activityTableBody">
+                                        <!-- Aquí se agregarán las filas dinámicamente -->
+                                        <?php 
+                                            include "../php/selectRawMaterialOrder.php";
+                                            
+                                            while($row = mysqli_fetch_assoc($responseAc)) {?>
+
+                                            
+                                            <tr data-id="<?php echo $row['num'];?>">
+                                                <td><?php echo $row["num"] ?></td>
+                                                <td><?php echo $row["date"] ?></td>
+                                                <td><?php echo $row["quantity"] ?></td>
+                                                <td><?php echo $row["subtotal"] ?></td>
+                                                <td><?php echo $row["VAT"] ?></td>
+                                                <td><?php echo $row["total"] ?></td>
+                                                <td><?php echo $row["username"] ?></td>
+                                                <td><?php echo $row["description"] ?></td>
+
+                                                <td class="buttons">
+                                                    <?php if ($row["description"] != "Accepted") { ?>
+                                                        <button class="btn-plus" onclick="window.location.href='purchaseAdd.php?num=<?php echo $row["num"]?>';">Add</button>
+                                                        <button class="btn-plus" onclick="window.location.href='../php/updatePurchaseAccept.php?num=<?php echo $row["num"]?>';">Accept</button>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
+
+                <div id="format3" class="format" style="display: none;"> <!-- Formulario para buscar Materia prima -->
+                        <h2 class="home"> Purchase Request History</h2>
                         <div class="searchPanel">
                             
                             <div class="search-container">
@@ -184,6 +253,7 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             
+                                            
                                             <tr data-id="<?php echo $row['num'];?>">
                                                 <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["date"] ?></td>
@@ -207,9 +277,11 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+
                 </div>
         </div>
-    <script src="../js/users.js"></script>
+    <!-- <script src="../js/users.js"></script> -->
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/functions.js"></script>

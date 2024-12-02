@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/sidebar2.css">
-    <link rel="stylesheet" href="../../css/loading.css">
-    <link rel="stylesheet" href="../../css/activity.css">
-    <link rel="stylesheet" href="../../css/colors.css">
+    <link rel="stylesheet" href="../css/sidebar2.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/rawMaterials.css">
+    <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
     <title>Document</title>
@@ -81,33 +81,66 @@
 
     <div class="content">
         <div class="tittle-container">
-        <img class="tittle" src="../../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
+        <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
             <h3 class="home">Add a Raw Material to a Product</h3>
-                <div class="view-activity">
-                    <form action="../../php/updateVerification.php" method="POST">
-                        <label for="lot">Lot #<?php echo $_GET["lot"] ?></label><br>
-                        <input type="hidden" name="lot" id="lot" value="<?php echo $_GET["lot"] ?>">
-                        
-                        <label for="raw">Raw Material: <?php echo $_GET["raw"] ?></label> <br>
-                        <label for="received">Quantity Received: <?php echo $_GET["received"] ?></label><br>
+                <div class="format">
+                    <form action="../php/updateVerification.php" method="POST">
+                        <section class="data">
+                            <div class="addUsers">
+                                <div class="personalData">
+                                    <div class="input-container">
+                                        <label for="lot">Lot #<?php echo $_GET["lot"] ?></label>
 
-                        <input type="hidden" name="num" id="num" value="<?php echo $_GET["num"] ?>">
-                        <input type="hidden" name="received" id="received" value="<?php echo $_GET["received"] ?>">
-                        <input type="number" name="accepted" id="accepted" placeholder="Accepted Quantity" value="<?php echo $_GET["accepted"] ?>"><br>
-                        <input type="number" name="defective" id="defective" placeholder="Defective Quantity" value="<?php echo $_GET["defective"] ?>"><br>
-                        <input type="text" name="observations" id="observations" placeholder="Observations" value="<?php echo $_GET["observations"] ?>"><br>
-                        <button>Validate</button>
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="hidden" name="lot" id="lot" value="<?php echo $_GET["lot"] ?>">
+
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="raw"S>Raw Material: <?php echo $_GET["raw"] ?></label>
+
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="received">Quantity Received: <?php echo $_GET["received"] ?></label>
+
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="hidden" name="num" id="num" value="<?php echo $_GET["num"] ?>">
+
+                                    </div>
+                                    <div class="input-container">
+
+                                        <input type="hidden" name="received" id="received" value="<?php echo $_GET["received"] ?>">
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="accepted">Quantity Accepted:</label>
+                                        <input type="number" name="accepted" id="accepted" placeholder="Accepted Quantity" value="<?php echo $_GET["accepted"] ?>">
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="defective">Quantity Defective:</label>
+                                        <input type="number" name="defective" id="defective" placeholder="Defective Quantity" value="<?php echo $_GET["defective"] ?>">
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="observations">Observations:</label>
+                                        <input type="text" name="observations" id="observations" placeholder="Observations" value="<?php echo $_GET["observations"] ?>">
+                                    </div>
+
+                        <button class="submit-button" style="margin-left: 0">Validate</button>
+                                </div>
+                            </div>
+                        </section>
+
                     </form>
                 </div>
         </div>
     </div>
 </div>
 
-    <script src="../../js/loading.js"></script>
-    <script src="../../js/sidebar.js"></script>
-    <script src="../../js/activity.js"></script>
+    <script src="../js/loading.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/activity.js"></script>
 </body>
 </html>
 

@@ -241,7 +241,7 @@
                     <div id="editUserForm" class="format" style="display: none;">
                         
                         <!-- locations forms -->
-                        <form action="" method="post" id="editForm">
+                        <form action="../php/updateLocation.php" method="post" id="editForm">
                             <h1 class="home">Edit a Location</h1>
                             
                             <section class="data">
@@ -252,53 +252,53 @@
                                         
                                     <div class="location">
                                         <div class="input-container">
-                                            <input type="text" id="aisle" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="aisle-edit" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" required>
                                             <span id="error-aisle" class="error">Aisle Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="side" name="side" placeholder="Side (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="side-edit" name="side" placeholder="Side (A)" autocomplete="off" maxlength="2" required>
                                             <span id="error-side" class="error">Side Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="bay" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="bay-edit" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-bay" class="error">Bay Format is not Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="level" name="level" placeholder="Level (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="level-edit" name="level" placeholder="Level (A)" autocomplete="off" maxlength="2" required>
                                             <span id="error-level" class="error">Level Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="position" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="position-edit" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-position" class="error">Position Format is not Allowed</span>
                                         </div>
                                         </div>
                                         <div class="personalData">
 
                                         <div class="input-container">
-                                            <input type="number" min="0" step="0.01" id="length" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
+                                            <input type="number" min="0" step="0.01" id="length-edit" name="length" class="onlyNumbers" placeholder="Length (cm)" autocomplete="off" required>
                                             <span id="error-length" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="height" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="height-edit" name="height" class="onlyNumbers" placeholder="Height (cm)" autocomplete="off" required>
                                             <span id="error-height" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="number" step="0.01" id="width" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
+                                            <input type="number" step="0.01" id="width-edit" name="width" class="onlyNumbers" placeholder="Width (cm)" autocomplete="off" required>
                                             <span id="error-width" class="error">Only Numbers are Allowed</span>
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="container" name="container" placeholder="Container name" autocomplete="off" maxlength="12" required>
+                                            <input type="text" id="container-edit" name="container" placeholder="Container name" autocomplete="off" maxlength="12" required>
                                             <span id="error-container" class="error">Container name Format is not Allowed</span>
                                         </div>
 
-                                        <select class="roles" id="area" name="area" required>
+                                        <select class="roles" id="area-edit" name="area" required>
                                             <option value="" disabled selected>Area</option>
                                             <!--Imprime dinámicamente las opciones-->
                                             <?php include "../php/selectLocations.php";

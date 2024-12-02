@@ -1,11 +1,11 @@
-<!--Validar que haya iniciado sesión-->
+    <!--Validar que haya iniciado sesión-->
 <?php session_start(); if ($_SESSION["user"]!="") { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/productionLine.css">
+    <link rel="stylesheet" href="../css/users.css">
     <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/colors.css">
@@ -82,7 +82,8 @@
 </div>
 <div class="wrapper">
         <h3 class="home">Production Line</h3>
-    <div class="view-activity">
+    <div class="format" id="format2" style="display:block">
+        <div class="searchPanel">
 
 <div class="search-container">
         <input type="search" id="search-bar" placeholder="Nombre o ID" required autocomplete="off">
@@ -124,12 +125,27 @@
 </table>  
 </div>
 </div>
+</div>
+<div class="format" id="editUserForm" style="display: none;">
+    <form action="updateProductionLine">
+        <section id="data">
+            <div class="addUsers">
+                <div class="personalData">
+                    <div class="input-container">
+                        <input type="text" id="productionLine" placeholder="Production Line">
+                    </div>
+                    <button class="submit-button">Submit</button>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
 
 </div>
 
 <script src="../js/loading.js"></script>
 <script src="../js/sidebar.js"></script>
-<script src=".../js/productionLine.js"></script>
+<script src="../js/users.js"></script>
 </body>
 </html>
 <!--Si intentan entrar directo a esta página, se les enviará al login-->
