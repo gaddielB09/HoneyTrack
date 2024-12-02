@@ -31,6 +31,7 @@ CREATE VIEW vw_RawMaterial AS(
     SELECT code, name, description, CONCAT('$',cost) AS cost, CONCAT(length,' cm') AS length,
     CONCAT(height,' cm') AS height, CONCAT(width,' cm') AS width, CONCAT(volume,' cm³') AS volume, CONCAT(weight,' gr') AS weight, stock
     FROM RAW_MATERIAL
+    INNER JOIN 
 );
 
 CREATE VIEW vw_Product AS(

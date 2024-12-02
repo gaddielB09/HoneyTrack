@@ -649,7 +649,11 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `createLot` AFTER UPDATE ON `PURCHASE_REQUEST` FOR EACH ROW BEGIN
     IF NEW.purchaseRequestStatus = "ACCEP" THEN
         INSERT INTO LOT(description, percentage, lotStatus, purchaseRequest)
-        VALUES(CONCAT('Raw material batch for purchase request ', NEW.num),0,"PENDI",NEW.num);
+        VALUES((SELECT CONCAT('Raw Material batch for ', (SELECT GROUP_CONCAT(rm.name SEPARATOR ', ')
+            FROM PURCHASE_RAW_MATERIAL AS prm
+            INNER JOIN RAW_MATERIAL AS rm ON prm.rawMaterial = rm.code
+            WHERE purchaseRequest = NEW.num
+            GROUP BY purchaseRequest))),0,"PENDI",NEW.num);
     END IF;
 END */;;
 DELIMITER ;
