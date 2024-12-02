@@ -86,7 +86,7 @@
         <div class="wrapper">
             <h3 class="home">Add a Raw Material to a Product</h3>
                 <div class="format">
-                    <form action="../../php/updateVerification.php" method="POST">
+                    <form action="../php/updateVerification.php" method="POST">
                         <section class="data">
                             <div class="addUsers">
                                 <div class="personalData">
@@ -138,9 +138,9 @@
     </div>
 </div>
 
-    <script src="../../js/loading.js"></script>
-    <script src="../../js/sidebar.js"></script>
-    <script src="../../js/activity.js"></script>
+    <script src="../js/loading.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/activity.js"></script>
 </body>
 </html>
 

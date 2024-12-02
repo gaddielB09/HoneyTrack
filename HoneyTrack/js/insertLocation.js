@@ -40,6 +40,7 @@
     });
 });
 
+
 const buttons = document.querySelectorAll('.userOption button');
 const formats = document.querySelectorAll('.format');
 const searchUsersForm = document.getElementById("format2"); 

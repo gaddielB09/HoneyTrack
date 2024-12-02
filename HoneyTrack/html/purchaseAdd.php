@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/rawMaterials.css">
     <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -86,7 +87,7 @@
         <div class="wrapper">
             <h3 class="home">Add a Purchase Request</h3>
                 <div class="format">
-                    <form action="../../php/insertPurchaseRawMaterial.php" method="POST">
+                    <form action="../php/insertPurchaseRawMaterial.php" method="POST">
                         <section class="data">
                             <div class="addUsers">
                                 <div class="personalData">
@@ -94,7 +95,7 @@
                                     <input type="hidden" name="num" id="num" value="<?php echo $_GET["num"] ?>">
                                     <input type="text" name="raw" id="raw" placeholder="Raw Material Code">
                                     <input type="number" name="quantity" id="quantity" placeholder="Quantity">
-                                    <button class="submit-button">Add Raw Material</button>
+                                    <button class="submit-button" type="submit">Add Raw Material</button>
                                 </div>
                             </div>
                         </section>
@@ -104,9 +105,9 @@
     </div>
 </div>
 
-    <script src="../../js/loading.js"></script>
-    <script src="../../js/sidebar.js"></script>
-    <script src="../../js/activity.js"></script>
+    <script src="../js/loading.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/activity.js"></script>
 </body>
 </html>
 

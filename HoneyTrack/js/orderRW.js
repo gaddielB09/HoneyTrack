@@ -1,3 +1,31 @@
+// Mostrar un formulario específico al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    showFormat('format1'); // Cambia 'format1' al ID del formato que quieras mostrar por defecto
+});
+
+function showFormat(formatId) {
+    // Ocultar todos los formatos
+    const formats = document.querySelectorAll('.format');
+    formats.forEach(format => {
+        format.style.display = 'none';
+    });
+
+    // Mostrar el formato correspondiente
+    const selectedFormat = document.getElementById(formatId);
+    if (selectedFormat) {
+        selectedFormat.style.display = 'block';
+    }
+}
+
+// Añade event listeners a los botones para asegurar funcionalidad
+document.querySelectorAll('.userOption button').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        const formatId = `format${index + 1}`; // Asumiendo IDs format1, format2, format3
+        showFormat(formatId);
+    });
+});
+
+
 /// Función para mostrar el toast
 function showToast(message, type) {
     const toastContainer = document.createElement('div');

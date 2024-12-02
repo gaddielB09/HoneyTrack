@@ -81,7 +81,7 @@
         <div class="wrapper">
             <h3 class="home">Add RW</h3>
 
-            <form action="../../php/insertRawProduct.php" method="POST">
+            <form action="../php/insertRawProduct.php" method="POST">
                 <section class="data">
                     <div class="addUsers">
                         <div class="personalData">

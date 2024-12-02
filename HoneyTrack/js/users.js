@@ -5,6 +5,7 @@ const searchBar = document.getElementById('search-bar');
 const tableBody = document.getElementById('activityTableBody');
 const searchUsersForm = document.getElementById("format2"); 
 const editUserForm = document.getElementById("editUserForm");
+const historyButton = document.getElementById('format3');
 const editButtons = document.querySelectorAll(".btn-edit");
 const nameInput = document.getElementById("name");
 const apInput = document.getElementById("ap");

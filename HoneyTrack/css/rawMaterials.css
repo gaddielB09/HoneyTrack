@@ -270,7 +270,6 @@ input:focus {
     cursor: pointer; /* Cambiar cursor al pasar el mouse */
     font-size: 16px; /* Tamaño de fuente */
     transition: background-color 0.3s; /* Transición suave para el color de fondo */
-    margin-left: 300px;
 }
 
 .submit-button:hover {
