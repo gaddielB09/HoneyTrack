@@ -1,4 +1,3 @@
--- Active: 1728679034835@@127.0.0.1@3306@HoneyTrackv2
 <!--Validar que haya iniciado sesión-->
 <?php session_start(); if ($_SESSION["user"]!="") { ?>
     

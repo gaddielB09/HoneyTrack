@@ -124,7 +124,7 @@
                                     <td><?php echo $row["status"] ?></td>
 
                                     <td class="buttons">
-                                        <?php if ($row["status"] != "FINIS") { ?>
+                                        <?php if ($row["status"] != "Finished") { ?>
                                             <button class="btn-plus" onclick="window.location.href='verificationValidate.php?num=<?php echo $row["num"]?>&lot=<?php echo $row["lot"]?>&raw=<?php echo $row["raw"]?>&received=<?php echo $row["received"]?>&observations=<?php echo $row["observations"]?>&accepted=<?php echo $row["accepted"]?>&defective=<?php echo $row["defective"]?>';">Validate</button>
                                         <?php } ?>
                                     </td>

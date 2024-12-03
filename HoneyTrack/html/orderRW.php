@@ -243,7 +243,6 @@
                                         <th>Total</th>
                                         <th>Empleado</th>
                                         <th>Application Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
@@ -263,13 +262,6 @@
                                                 <td><?php echo $row["total"] ?></td>
                                                 <td><?php echo $row["username"] ?></td>
                                                 <td><?php echo $row["description"] ?></td>
-
-                                                <td class="buttons">
-                                                    <?php if ($row["description"] != "Accepted") { ?>
-                                                        <button class="btn-plus" onclick="window.location.href='purchaseAdd.php?num=<?php echo $row["num"]?>';">Add</button>
-                                                        <button class="btn-plus" onclick="window.location.href='../php/updatePurchaseAccept.php?num=<?php echo $row["num"]?>';">Accept</button>
-                                                    <?php } ?>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

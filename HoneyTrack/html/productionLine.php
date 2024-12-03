@@ -136,7 +136,7 @@
                             font-size: 24px;">Edit Production Line</h3>
                 <div class="personalData">
                     <div class="input-container">
-                        <input type="text" id="productionLine" placeholder="Production Line" required>
+                        <input type="text" id="productionLine" placeholder="Production Line Name" required>
                     </div>
                     <button class="submit-button">Submit</button>
                 </div>
