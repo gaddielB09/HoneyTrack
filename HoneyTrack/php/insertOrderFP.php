@@ -28,7 +28,6 @@
             
             if (mysqli_query($db, $query)) {
                 $msg = "Requisition created successfully";
-
                 //Recuperar el numero de requisicion recien insertado
                 $query = "SELECT MAX(num) FROM REQUISITION";
                 $response = mysqli_query($db, $query);
