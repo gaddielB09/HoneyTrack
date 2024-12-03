@@ -153,7 +153,6 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Storage Number</th>
                                         <th>Location</th>
                                         <th>Area</th>
                                         <th>Item</th>
@@ -168,7 +167,6 @@
                                             
                                             while($row = mysqli_fetch_assoc($response)) {?>
                                             <tr>
-                                                <td><?php echo $row["num"] ?></td>
                                                 <td><?php echo $row["location"] ?></td>
                                                 <td><?php echo $row["area"] ?></td>
                                                 <td><?php echo $row["item"] ?></td>

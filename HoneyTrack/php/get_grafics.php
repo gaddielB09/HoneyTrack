@@ -4,13 +4,15 @@
         $db = connectdb(); // Conexión a la base de datos
 
         // Consulta para los productos con mayor y menor cantidad
-        $sqlHighStorage = "SELECT COALESCE(rawMaterial, finishedProduct) AS product, quantity 
+        $sqlHighStorage = "SELECT COALESCE(rawMaterial, finishedProduct) AS product, SUM(quantity) AS quantity
                         FROM STORAGE 
-                        ORDER BY quantity DESC 
+                        GROUP BY COALESCE(rawMaterial, finishedProduct)
+                        ORDER BY SUM(quantity) DESC 
                         LIMIT 3";
-        $sqlLowStorage = "SELECT COALESCE(rawMaterial, finishedProduct) AS product, quantity 
+        $sqlLowStorage = "SELECT COALESCE(rawMaterial, finishedProduct) AS product, SUM(quantity) AS quantity
                         FROM STORAGE 
-                        ORDER BY quantity ASC 
+                        GROUP BY COALESCE(rawMaterial, finishedProduct)
+                        ORDER BY SUM(quantity) ASC 
                         LIMIT 3";
 
         // Consulta para los 3 materias primas más repetidas
