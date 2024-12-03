@@ -417,6 +417,20 @@ tr:hover {
 background-color: #ddd; 
 }
 
+.addRW{
+    background-color: green;
+    color: var(--whi);
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.addRW:hover{
+    background-color: rgb(2, 99, 2);
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
 .error {
     color: red;

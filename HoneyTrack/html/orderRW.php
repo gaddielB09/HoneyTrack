@@ -108,6 +108,8 @@
         <section class="data">
             <div class="addUsers">
                 <h2 class="subtittle">Purchase Request Data</h2>
+                <button class="addRW" type="button" id="add-field-button"><i class="fas fa-plus"></i></button>
+
                 
                 <!-- Contenedor para los campos dinámicos -->
                 <div id="fields-container">
@@ -153,7 +155,6 @@
                 </div>
 
                 <!-- Botón para añadir más campos -->
-                <button type="button" id="add-field-button">Add More</button>
                 <button type="submit" class="submit-button" value="Send">Submit</button>
             </div>
         </section>
