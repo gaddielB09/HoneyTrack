@@ -35,6 +35,7 @@ function showToast(message, type) {
     toastContainer.style.left = '50%';
     toastContainer.style.transform = 'translateX(-50%)'; 
     toastContainer.style.zIndex = '1050';
+    toastContainer.style.color = '#ffffff'
 
     // Establecer el color basado en el tipo de mensaje (success o error)
     if (type === 'success') {
@@ -103,5 +104,76 @@ fetch('../php/insertOrderRM.php', {
     showToast("Unexpected error occurred", "error");
 });
 
+});
+
+document.getElementById('add-field-button').addEventListener('click', async function () {
+    const container = document.getElementById('fields-container');
+
+    // Crear el nuevo conjunto de campos
+    const newFieldSet = document.createElement('div');
+    newFieldSet.classList.add('personalData');
+
+    // Petición para obtener los códigos de la base de datos
+    const response = await fetch('../php/getRawCodes.php');
+    const rawCodes = await response.json();
+
+    // Generar opciones para el select
+    let options = '<option value="default" disabled selected>Raw Material Code</option>';
+    rawCodes.forEach(code => {
+        options += `<option value="${code.code}">${code.code} - ${code.name}</option>`;
+    });
+
+    // Contenido del nuevo conjunto de campos
+    newFieldSet.innerHTML = `
+        <select name="raw[]" required style="
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            height: 40px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            background: transparent;">
+            ${options}
+        </select>
+        <div class="input-container">
+            <input type="number" min="1" max="999" name="quantity[]" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>
+            <span class="error">Only Numbers are Allowed</span>
+        </div>
+    `;
+
+    container.appendChild(newFieldSet);
+});
+
+document.getElementById('addOrderRMForm').addEventListener('submit', function (e) {
+    const selects = document.querySelectorAll('select[name="raw[]"]');
+    const quantities = document.querySelectorAll('input[name="quantity[]"]');
+    const selectedCodes = new Set();
+    let valid = true;
+
+    selects.forEach((select, index) => {
+        const code = select.value;
+        const quantity = quantities[index].value;
+
+        // Verificar si el código ya fue seleccionado
+        if (selectedCodes.has(code)) {
+            showToast(`The raw material ${code} is duplicated.`, 'error');
+            valid = false;
+            return;
+        }
+        selectedCodes.add(code);
+
+        // Verificar si la cantidad es válida
+        if (quantity <= 0 || isNaN(quantity)) {
+            showToast(`Invalid quantity for material ${code}.`, 'error');
+            valid = false;
+            return;
+        }
+    });
+
+    if (!valid) {
+        e.preventDefault(); // Detiene el envío si hay errores
+    }
 });
 

@@ -2,35 +2,56 @@
 require_once "../php/connection.php";
 session_start(); 
 $db = connectdb();
-$response = []; // Array para construir la respuesta JSON
+$response = [];
 
 if ($_POST) {
-    // Se obtienen los datos del formulario y del usuario en sesión
     $raw = $_POST["raw"];
     $quantity = $_POST["quantity"];
     $username = $_SESSION["user"];
 
-    // Llama al procedimiento almacenado
-    $query = "CALL insertOrderRM('$raw', '$quantity', '$username', @msg)";
-    if (mysqli_query($db, $query)) {
-        // Recupera el mensaje de salida del procedimiento almacenado
-        $query = "SELECT @msg AS msg";
-        $result = mysqli_query($db, $query);
-        if ($row = mysqli_fetch_assoc($result)) {
-            // Verifica si el mensaje contiene indicios de error
-            if (strpos($row['msg'], 'Wrong') !== false || strpos($row['msg'], 'Error') !== false) {
-                $response['status'] = 'error'; // Estado de error
-            } else {
-                $response['status'] = 'success'; // Estado de éxito
-            }
-            $response['msg'] = $row['msg']; // Mensaje del SP
-        } else {
-            $response['status'] = 'error';
-            $response['msg'] = 'Error fetching message from procedure.';
-        }
-    } else {
+    if (count($raw) !== count($quantity)) {
         $response['status'] = 'error';
-        $response['msg'] = 'Procedure execution failed: ' . mysqli_error($db);
+        $response['msg'] = 'Mismatch between raw materials and quantities.';
+    } else {
+        mysqli_begin_transaction($db);
+
+        try {
+            // Insertael primer material como el que abre la requisicion
+            $firstRaw = $raw[0];
+            $firstQuantity = $quantity[0];
+            $query = "CALL insertOrderRM('$firstRaw', '$firstQuantity', '$username', @msg)";
+            if (!mysqli_query($db, $query)) {
+                throw new Exception("First insertion failed: " . mysqli_error($db));
+            }
+
+            // Obtén el ID de la solicitud recién creada
+            $result = mysqli_query($db, "SELECT MAX(num) AS purchaseRequest FROM PURCHASE_REQUEST");
+            if (!$result || !($row = mysqli_fetch_assoc($result))) {
+                throw new Exception("Failed to retrieve purchase request ID.");
+            }
+            $currentPurchase = $row['purchaseRequest'];
+
+            // Inserta los materiales restantes directamente en PURCHASE_RAW_MATERIAL
+            for ($i = 1; $i < count($raw); $i++) {
+                $itemRaw = $raw[$i];
+                $itemQuantity = $quantity[$i];
+                $query = "INSERT INTO PURCHASE_RAW_MATERIAL (rawMaterial, purchaseRequest, quantity, cost)
+                          VALUES ('$itemRaw', $currentPurchase, $itemQuantity, 0)";
+                if (!mysqli_query($db, $query)) {
+                    throw new Exception("Insertion failed for raw material $itemRaw: " . mysqli_error($db));
+                }
+            }
+
+            // Confirma la transacción
+            mysqli_commit($db);
+            $response['status'] = 'success';
+            $response['msg'] = 'Purchase request and materials added successfully.';
+        } catch (Exception $e) {
+            // Si hay un error, deshace la transacción
+            mysqli_rollback($db);
+            $response['status'] = 'error';
+            $response['msg'] = $e->getMessage();
+        }
     }
 } else {
     $response['status'] = 'error';

@@ -101,66 +101,67 @@
                 </nav>
 
                 <div id="format1" class="format" style="display: block;">
-                        
-                        <!-- users forms -->
-                        <form action="../php/insertOrderRM.php" method="post" id="addOrderRMForm">
-                            <h1 class="home">Make a Purchase Request</h1>
-                            
-                            <section class="data">
-                                <div class="addUsers">
-                                    
-                                    <h2 class="subtittle">Purchase Request Data</h2>
-                                    
-                                    <div class="personalData">
-                                        
-                                        <select name="raw" id="code" required style="
-                                        width: 100%;
-                                        padding: 10px;
-                                        font-size: 16px;
-                                        height: 40px;
-                                        border: 2px solid #ccc;
-                                        border-radius: 5px;
-                                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-                                        box-sizing: border-box;
-                                        background: transparent;
-                                        ">
-                                            <option value="default" disabled select>Raw Material Code</option>
-                                            <?php
-                                                require "../php/connection.php";
-                                                $db = connectdb();
+    <!-- users forms -->
+    <form action="../php/insertOrderRM.php" method="post" id="addOrderRMForm">
+        <h1 class="home">Make a Purchase Request</h1>
+        
+        <section class="data">
+            <div class="addUsers">
+                <h2 class="subtittle">Purchase Request Data</h2>
+                
+                <!-- Contenedor para los campos dinámicos -->
+                <div id="fields-container">
+                    <div class="personalData">
+                        <select name="raw[]" id="code" required style="
+                        width: 100%;
+                        padding: 10px;
+                        font-size: 16px;
+                        height: 40px;
+                        border: 2px solid #ccc;
+                        border-radius: 5px;
+                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                        box-sizing: border-box;
+                        background: transparent;">
+                            <option value="default" disabled selected>Raw Material Code</option>
+                            <?php
+                                require "../php/connection.php";
+                                $db = connectdb();
 
-                                                // Consulta para obtener códigos y nombres de la vista
-                                                $query = "SELECT code, name FROM vw_RawMaterial";
-                                                $response = mysqli_query($db, $query);
+                                $query = "SELECT code, name FROM vw_RawMaterial";
+                                $response = mysqli_query($db, $query);
 
-                                                if ($response) {
-                                                    // Iterar sobre los resultados y generar las opciones
-                                                    while ($row = mysqli_fetch_assoc($response)) {
-                                                        $code = htmlspecialchars($row['code']);
-                                                        $name = htmlspecialchars($row['name']);
-                                                        echo "<option value=\"$code\">$code - $name</option>";
-                                                    }
-                                                    mysqli_free_result($response); // Liberar recursos
-                                                } else {
-                                                    echo "<option value=\"\">No codes available</option>";
-                                                }
+                                if ($response) {
+                                    while ($row = mysqli_fetch_assoc($response)) {
+                                        $code = htmlspecialchars($row['code']);
+                                        $name = htmlspecialchars($row['name']);
+                                        echo "<option value=\"$code\">$code - $name</option>";
+                                    }
+                                    mysqli_free_result($response);
+                                } else {
+                                    echo "<option value=\"\">No codes available</option>";
+                                }
 
-                                                mysqli_close($db); // Cerrar conexión
-                                            ?>
-                                        </select>
+                                mysqli_close($db);
+                            ?>
+                        </select>
 
-                                        <div class="input-container">
-                                            <input type="number" min="1" max="999" id="quantity" name="quantity" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>
-                                            <span id="error-quantity" class="error">Only Numbers are Allowed</span>
-                                        </div>
-                                            <button type="submit" class="submit-button" value="Send">Submit</button>
-                                    </div>
-                                </div>
-                            </section>
-                            
-                        </form>
+                        <div class="input-container">
+                            <input type="number" min="1" max="999" id="quantity" name="quantity[]" class="onlyNumbers" placeholder="Quantity" autocomplete="off" required>
+                            <span id="error-quantity" class="error">Only Numbers are Allowed</span>
+                        </div>
                     </div>
-                    <div id="format2" class="format" style="display: none;"> <!-- Formulario para buscar Materia prima -->
+                </div>
+
+                <!-- Botón para añadir más campos -->
+                <button type="button" id="add-field-button">Add More</button>
+                <button type="submit" class="submit-button" value="Send">Submit</button>
+            </div>
+        </section>
+    </form>
+</div>
+
+
+                    <div id="format2" class="format" style="display: none;"> 
                         <h2 class="home">Purchase Request In Progress</h2>
                         <div class="searchPanel">
                             
@@ -243,7 +244,6 @@
                                         <th>Total</th>
                                         <th>Empleado</th>
                                         <th>Application Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                     <tbody id="activityTableBody">
