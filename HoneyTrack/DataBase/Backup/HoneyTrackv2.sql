@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Linux (x86_64)
 --
--- Host: localhost    Database: En_HoneyTrack
+-- Host: localhost    Database: HoneyTrackv2
 -- ------------------------------------------------------
 -- Server version	8.0.40-0ubuntu0.24.04.1
 
@@ -129,6 +129,40 @@ LOCK TABLES `FINISHED_PRODUCT` WRITE;
 INSERT INTO `FINISHED_PRODUCT` VALUES ('GS24P','Galaxy S24+','High-end smartphone with large screen',14940.00,16.10,7.80,0.80,200.00,100.46,20),('GS24U','Galaxy S24 Ultra','Smartphone with advanced camera, 5G',18810.00,16.50,7.80,0.90,228.00,115.83,16),('GYS24','Galaxy S24','High-end smartphone, 5G',12870.00,15.60,7.30,0.80,168.00,91.10,0),('GZFL6','Galaxy Z Flip 6','Compact foldable smartphone',16670.00,8.50,7.20,1.00,187.00,61.20,18),('GZFO6','Galaxy Z Fold 6','Foldable smartphone with flexible screen',21090.00,16.70,7.80,1.30,280.00,169.34,12);
 /*!40000 ALTER TABLE `FINISHED_PRODUCT` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `calculateFinishedProductVolume` BEFORE INSERT ON `FINISHED_PRODUCT` FOR EACH ROW BEGIN
+    SET NEW.volume = NEW.length * NEW.height * NEW.width;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `updateVolumeProduct` BEFORE UPDATE ON `FINISHED_PRODUCT` FOR EACH ROW BEGIN
+    SET NEW.volume = (NEW.length * NEW.height * NEW.width);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `JOB_POSITION`
@@ -217,8 +251,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `calculateFinishedProductVolume` BEFORE INSERT ON `FINISHED_PRODUCT` FOR EACH ROW BEGIN
-    SET NEW.volume = NEW.length * NEW.height * NEW.width;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `updateCodeOrVolumeLocation` BEFORE UPDATE ON `LOCATION` FOR EACH ROW BEGIN
+    SET NEW.code = CONCAT(NEW.aisle, NEW.side, NEW.bay, NEW.level, NEW.position);
+    SET NEW.volume = (NEW.length * NEW.height * NEW.width);
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -336,7 +371,7 @@ CREATE TABLE `LOT_VERIFICATION` (
   KEY `lot` (`lot`),
   CONSTRAINT `LOT_VERIFICATION_ibfk_1` FOREIGN KEY (`verification`) REFERENCES `VERIFICATION` (`num`) ON DELETE CASCADE,
   CONSTRAINT `LOT_VERIFICATION_ibfk_2` FOREIGN KEY (`lot`) REFERENCES `LOT` (`num`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -345,53 +380,7 @@ CREATE TABLE `LOT_VERIFICATION` (
 
 LOCK TABLES `LOT_VERIFICATION` WRITE;
 /*!40000 ALTER TABLE `LOT_VERIFICATION` DISABLE KEYS */;
-INSERT INTO `LOT_VERIFICATION` VALUES (1, 1, 1, '2024-11-05 12:57:25'),
-(2, 1, 2, '2024-11-05 12:58:25'),
-(3, 1, 3, '2024-11-05 12:59:25'),
-(4, 1, 4, '2024-11-05 13:00:25'),
-(5, 1, 5, '2024-11-05 13:01:25'),
-(6, 1, 6, '2024-11-05 13:02:25'),
-(7, 1, 7, '2024-11-05 13:03:25'),
-(8, 1, 8, '2024-11-05 13:04:25'),
-(9, 1, 9, '2024-11-05 13:05:25'),
-(10, 2, 10, '2024-11-05 13:06:25'),
-(11, 2, 11, '2024-11-05 13:07:25'),
-(12, 2, 12, '2024-11-05 13:08:25'),
-(13, 2, 13, '2024-11-05 13:09:25'),
-(14, 2, 14, '2024-11-05 13:10:25'),
-(15, 2, 15, '2024-11-05 13:11:25'),
-(16, 2, 16, '2024-11-05 13:12:25'),
-(17, 2, 17, '2024-11-05 13:13:25'),
-(18, 2, 18, '2024-11-05 13:14:25'),
-(19, 3, 19, '2024-11-05 13:15:25'),
-(20, 3, 20, '2024-11-05 13:16:25'),
-(21, 3, 21, '2024-11-05 13:17:25'),
-(22, 3, 22, '2024-11-05 13:18:25'),
-(23, 3, 23, '2024-11-05 13:19:25'),
-(24, 3, 24, '2024-11-05 13:20:25'),
-(25, 3, 25, '2024-11-05 13:21:25'),
-(26, 3, 26, '2024-11-05 13:22:25'),
-(27, 3, 27, '2024-11-05 13:23:25'),
-(28, 4, 28, '2024-11-05 13:24:25'),
-(29, 4, 29, '2024-11-05 13:25:25'),
-(30, 4, 30, '2024-11-05 13:26:25'),
-(31, 4, 31, '2024-11-05 13:27:25'),
-(32, 4, 32, '2024-11-05 13:28:25'),
-(33, 4, 33, '2024-11-05 13:29:25'),
-(34, 4, 34, '2024-11-05 13:30:25'),
-(35, 4, 35, '2024-11-05 13:31:25'),
-(36, 4, 36, '2024-11-05 13:32:25'),
-(37, 4, 37, '2024-11-05 13:33:25'),
-(38, 5, 38, '2024-11-05 13:34:25'),
-(39, 5, 39, '2024-11-05 13:35:25'),
-(40, 5, 40, '2024-11-05 13:36:25'),
-(41, 5, 41, '2024-11-05 13:37:25'),
-(42, 5, 42, '2024-11-05 13:38:25'),
-(43, 5, 43, '2024-11-05 13:39:25'),
-(44, 5, 44, '2024-11-05 13:40:25'),
-(45, 5, 45, '2024-11-05 13:41:25'),
-(46, 5, 46, '2024-11-05 13:42:25'),
-(47, 5, 47, '2024-11-05 13:43:25');
+INSERT INTO `LOT_VERIFICATION` VALUES (1,1,1,'2024-11-05 12:57:25'),(2,1,2,'2024-11-05 12:58:25'),(3,1,3,'2024-11-05 12:59:25'),(4,1,4,'2024-11-05 13:00:25'),(5,1,5,'2024-11-05 13:01:25'),(6,1,6,'2024-11-05 13:02:25'),(7,1,7,'2024-11-05 13:03:25'),(8,1,8,'2024-11-05 13:04:25'),(9,1,9,'2024-11-05 13:05:25'),(10,2,10,'2024-11-05 13:06:25'),(11,2,11,'2024-11-05 13:07:25'),(12,2,12,'2024-11-05 13:08:25'),(13,2,13,'2024-11-05 13:09:25'),(14,2,14,'2024-11-05 13:10:25'),(15,2,15,'2024-11-05 13:11:25'),(16,2,16,'2024-11-05 13:12:25'),(17,2,17,'2024-11-05 13:13:25'),(18,2,18,'2024-11-05 13:14:25'),(19,3,19,'2024-11-05 13:15:25'),(20,3,20,'2024-11-05 13:16:25'),(21,3,21,'2024-11-05 13:17:25'),(22,3,22,'2024-11-05 13:18:25'),(23,3,23,'2024-11-05 13:19:25'),(24,3,24,'2024-11-05 13:20:25'),(25,3,25,'2024-11-05 13:21:25'),(26,3,26,'2024-11-05 13:22:25'),(27,3,27,'2024-11-05 13:23:25'),(28,4,28,'2024-11-05 13:24:25'),(29,4,29,'2024-11-05 13:25:25'),(30,4,30,'2024-11-05 13:26:25'),(31,4,31,'2024-11-05 13:27:25'),(32,4,32,'2024-11-05 13:28:25'),(33,4,33,'2024-11-05 13:29:25'),(34,4,34,'2024-11-05 13:30:25'),(35,4,35,'2024-11-05 13:31:25'),(36,4,36,'2024-11-05 13:32:25'),(37,4,37,'2024-11-05 13:33:25'),(38,5,38,'2024-11-05 13:34:25'),(39,5,39,'2024-11-05 13:35:25'),(40,5,40,'2024-11-05 13:36:25'),(41,5,41,'2024-11-05 13:37:25'),(42,5,42,'2024-11-05 13:38:25'),(43,5,43,'2024-11-05 13:39:25'),(44,5,44,'2024-11-05 13:40:25'),(45,5,45,'2024-11-05 13:41:25'),(46,5,46,'2024-11-05 13:42:25'),(47,5,47,'2024-11-05 13:43:25');
 /*!40000 ALTER TABLE `LOT_VERIFICATION` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -833,7 +822,7 @@ CREATE TABLE `RAW_MATERIAL_LOT` (
   KEY `lot` (`lot`),
   CONSTRAINT `RAW_MATERIAL_LOT_ibfk_1` FOREIGN KEY (`rawMaterial`) REFERENCES `RAW_MATERIAL` (`code`) ON DELETE CASCADE,
   CONSTRAINT `RAW_MATERIAL_LOT_ibfk_2` FOREIGN KEY (`lot`) REFERENCES `LOT` (`num`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -842,53 +831,7 @@ CREATE TABLE `RAW_MATERIAL_LOT` (
 
 LOCK TABLES `RAW_MATERIAL_LOT` WRITE;
 /*!40000 ALTER TABLE `RAW_MATERIAL_LOT` DISABLE KEYS */;
-INSERT INTO `RAW_MATERIAL_LOT` VALUES (1, 'AIS24', 1, 80),
-(2, 'BALS2', 1, 80),
-(3, 'CCS24', 1, 80),
-(4, 'CFS24', 1, 80),
-(5, 'CPS24', 1, 80),
-(6, 'MRS24', 1, 80),
-(7, 'PAMS2', 1, 80),
-(8, 'PBBS2', 1, 80),
-(9, 'PES24', 1, 80),
-(10, 'AIS4P', 1, 80),
-(11, 'BLA4S', 1, 80),
-(12, 'CCS4P', 1, 80),
-(13, 'CFS4P', 1, 80),
-(14, 'CPS4P', 1, 80),
-(15, 'MR8SP', 1, 80),
-(16, 'PB4S4', 1, 80),
-(17, 'PE4SP', 1, 80),
-(18, 'PMA4S', 1, 80),
-(19, 'AIUM5', 1, 80),
-(20, 'BLUM5', 1, 80),
-(21, 'CCUM5', 1, 80),
-(22, 'CFUM5', 1, 80),
-(23, 'CPU5S', 1, 80),
-(24, 'MRUM5', 2, 80),
-(25, 'PAUM5', 2, 80),
-(26, 'PBU5S', 2, 80),
-(27, 'PEUM5', 2, 80),
-(28, 'AIZF6', 2, 80),
-(29, 'BAZF6', 2, 80),
-(30, 'CCZF6', 2, 80),
-(31, 'CFZ6F', 2, 80),
-(32, 'CPZF6', 2, 80),
-(33, 'MRZ6F', 2, 80),
-(34, 'PBZF6', 2, 80),
-(35, 'PEF6L', 2, 80),
-(36, 'PFOL6', 2, 80),
-(37, 'PSZF6', 2, 80),
-(38, 'AIF6P', 2, 80), 
-(39, 'BFLP6', 2, 80), 
-(40, 'CAZ6F', 3, 80), 
-(41, 'CCZ6P', 3, 80), 
-(42, 'CZF6P', 3, 80), 
-(43, 'MAZ6F', 3, 80), 
-(44, 'PBZ6F', 3, 80), 
-(45, 'PEF6P', 3, 80), 
-(46, 'PFLP6', 3, 80), 
-(47, 'PSZ6F', 3, 80); 
+INSERT INTO `RAW_MATERIAL_LOT` VALUES (1,'AIS24',1,80),(2,'BALS2',1,80),(3,'CCS24',1,80),(4,'CFS24',1,80),(5,'CPS24',1,80),(6,'MRS24',1,80),(7,'PAMS2',1,80),(8,'PBBS2',1,80),(9,'PES24',1,80),(10,'AIS4P',1,80),(11,'BLA4S',1,80),(12,'CCS4P',1,80),(13,'CFS4P',1,80),(14,'CPS4P',1,80),(15,'MR8SP',1,80),(16,'PB4S4',1,80),(17,'PE4SP',1,80),(18,'PMA4S',1,80),(19,'AIUM5',1,80),(20,'BLUM5',1,80),(21,'CCUM5',1,80),(22,'CFUM5',1,80),(23,'CPU5S',1,80),(24,'MRUM5',2,80),(25,'PAUM5',2,80),(26,'PBU5S',2,80),(27,'PEUM5',2,80),(28,'AIZF6',2,80),(29,'BAZF6',2,80),(30,'CCZF6',2,80),(31,'CFZ6F',2,80),(32,'CPZF6',2,80),(33,'MRZ6F',2,80),(34,'PBZF6',2,80),(35,'PEF6L',2,80),(36,'PFOL6',2,80),(37,'PSZF6',2,80),(38,'AIF6P',2,80),(39,'BFLP6',2,80),(40,'CAZ6F',3,80),(41,'CCZ6P',3,80),(42,'CZF6P',3,80),(43,'MAZ6F',3,80),(44,'PBZ6F',3,80),(45,'PEF6P',3,80),(46,'PFLP6',3,80),(47,'PSZ6F',3,80);
 /*!40000 ALTER TABLE `RAW_MATERIAL_LOT` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -961,7 +904,7 @@ CREATE TABLE `REQUISITION_RAW_MATERIAL` (
   KEY `rawMaterial` (`rawMaterial`),
   CONSTRAINT `REQUISITION_RAW_MATERIAL_ibfk_1` FOREIGN KEY (`requisition`) REFERENCES `REQUISITION` (`num`) ON DELETE CASCADE,
   CONSTRAINT `REQUISITION_RAW_MATERIAL_ibfk_2` FOREIGN KEY (`rawMaterial`) REFERENCES `RAW_MATERIAL` (`code`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -970,53 +913,7 @@ CREATE TABLE `REQUISITION_RAW_MATERIAL` (
 
 LOCK TABLES `REQUISITION_RAW_MATERIAL` WRITE;
 /*!40000 ALTER TABLE `REQUISITION_RAW_MATERIAL` DISABLE KEYS */;
-INSERT INTO `REQUISITION_RAW_MATERIAL` VALUES (1,1,'AIS24','2024-11-06 08:30:29',10),
-(2,1,'BALS2','2024-11-06 08:05:04',10),
-(3,1,'CCS24','2024-11-06 08:40:38',10),
-(4,1,'CFS24','2024-11-06 08:15:12',10),
-(5,1,'CPS24','2024-11-06 08:10:09',10),
-(6,1,'MRS24','2024-11-06 08:25:23',10),
-(7,1,'PAMS2','2024-11-06 08:00:00',10),
-(8,1,'PBBS2','2024-11-06 08:35:34',10),
-(9,1,'PES24','2024-11-06 08:20:17',10),
-(10,1,'AIS4P','2024-11-06 09:16:11',20),
-(11,1,'BLA4S','2024-11-06 08:50:49',20),
-(12,1,'CCS4P','2024-11-06 09:26:22',20),
-(13,1,'CFS4P','2024-11-06 09:00:58',20),
-(14,1,'CPS4P','2024-11-06 08:55:53',20),
-(15,1,'MR8SP','2024-11-06 09:11:05',20),
-(16,1,'PB4S4','2024-11-06 09:21:17',20),
-(17,2,'PE4SP','2024-11-06 09:06:01',20),
-(18,2,'PMA4S','2024-11-06 08:45:44',20),
-(19,2,'AIUM5','2024-11-06 10:02:00',16),
-(20,2,'BLUM5','2024-11-06 09:36:34',16),
-(21,2,'CCUM5','2024-11-06 10:12:10',16),
-(22,2,'CFUM5','2024-11-06 09:46:45',16),
-(23,2,'CPU5S','2024-11-06 09:41:39',16),
-(24,2,'MRUM5','2024-11-06 09:56:55',16),
-(25,2,'PAUM5','2024-11-06 09:31:28',16),
-(26,2,'PBU5S','2024-11-06 10:07:05',16),
-(27,2,'PEUM5','2024-11-06 09:51:50',16),
-(28,2,'AIZF6','2024-11-06 10:52:51',12),
-(29,2,'BAZF6','2024-11-06 10:27:24',12),
-(30,2,'CCZF6','2024-11-06 11:02:00',12),
-(31,2,'CFZ6F','2024-11-06 10:37:35',12),
-(32,2,'CPZF6','2024-11-06 10:32:30',12),
-(33,2,'MRZ6F','2024-11-06 10:47:46',12),
-(34,2,'PBZF6','2024-11-06 10:57:56',12),
-(35,2,'PEF6L','2024-11-06 10:22:19',12),
-(36,3,'PFLP6','2024-11-06 11:07:06',18),
-(37,3,'PFOL6','2024-11-06 10:17:14',12),
-(38,3,'PSZF6','2024-11-06 10:42:41',12),
-(39,3,'AIF6P','2024-11-06 11:42:42',18),
-(40,3,'BFLP6','2024-11-06 11:17:16',18),
-(41,3,'CAZ6F','2024-11-06 11:27:27',18),
-(42,3,'CCZ6P','2024-11-06 11:52:53',18),
-(43,3,'CZF6P','2024-11-06 11:22:22',18),
-(44,3,'MAZ6F','2024-11-06 11:37:37',18),
-(45,3,'PBZ6F','2024-11-06 11:47:47',18),
-(46,3,'PEF6P','2024-11-06 11:12:11',18),
-(47,3,'PSZ6F','2024-11-06 11:32:32',18);
+INSERT INTO `REQUISITION_RAW_MATERIAL` VALUES (1,1,'AIS24','2024-11-06 08:30:29',10),(2,1,'BALS2','2024-11-06 08:05:04',10),(3,1,'CCS24','2024-11-06 08:40:38',10),(4,1,'CFS24','2024-11-06 08:15:12',10),(5,1,'CPS24','2024-11-06 08:10:09',10),(6,1,'MRS24','2024-11-06 08:25:23',10),(7,1,'PAMS2','2024-11-06 08:00:00',10),(8,1,'PBBS2','2024-11-06 08:35:34',10),(9,1,'PES24','2024-11-06 08:20:17',10),(10,1,'AIS4P','2024-11-06 09:16:11',20),(11,1,'BLA4S','2024-11-06 08:50:49',20),(12,1,'CCS4P','2024-11-06 09:26:22',20),(13,1,'CFS4P','2024-11-06 09:00:58',20),(14,1,'CPS4P','2024-11-06 08:55:53',20),(15,1,'MR8SP','2024-11-06 09:11:05',20),(16,1,'PB4S4','2024-11-06 09:21:17',20),(17,2,'PE4SP','2024-11-06 09:06:01',20),(18,2,'PMA4S','2024-11-06 08:45:44',20),(19,2,'AIUM5','2024-11-06 10:02:00',16),(20,2,'BLUM5','2024-11-06 09:36:34',16),(21,2,'CCUM5','2024-11-06 10:12:10',16),(22,2,'CFUM5','2024-11-06 09:46:45',16),(23,2,'CPU5S','2024-11-06 09:41:39',16),(24,2,'MRUM5','2024-11-06 09:56:55',16),(25,2,'PAUM5','2024-11-06 09:31:28',16),(26,2,'PBU5S','2024-11-06 10:07:05',16),(27,2,'PEUM5','2024-11-06 09:51:50',16),(28,2,'AIZF6','2024-11-06 10:52:51',12),(29,2,'BAZF6','2024-11-06 10:27:24',12),(30,2,'CCZF6','2024-11-06 11:02:00',12),(31,2,'CFZ6F','2024-11-06 10:37:35',12),(32,2,'CPZF6','2024-11-06 10:32:30',12),(33,2,'MRZ6F','2024-11-06 10:47:46',12),(34,2,'PBZF6','2024-11-06 10:57:56',12),(35,2,'PEF6L','2024-11-06 10:22:19',12),(36,3,'PFLP6','2024-11-06 11:07:06',18),(37,3,'PFOL6','2024-11-06 10:17:14',12),(38,3,'PSZF6','2024-11-06 10:42:41',12),(39,3,'AIF6P','2024-11-06 11:42:42',18),(40,3,'BFLP6','2024-11-06 11:17:16',18),(41,3,'CAZ6F','2024-11-06 11:27:27',18),(42,3,'CCZ6P','2024-11-06 11:52:53',18),(43,3,'CZF6P','2024-11-06 11:22:22',18),(44,3,'MAZ6F','2024-11-06 11:37:37',18),(45,3,'PBZ6F','2024-11-06 11:47:47',18),(46,3,'PEF6P','2024-11-06 11:12:11',18),(47,3,'PSZ6F','2024-11-06 11:32:32',18);
 /*!40000 ALTER TABLE `REQUISITION_RAW_MATERIAL` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1254,7 +1151,7 @@ CREATE TABLE `VERIFICATION` (
   PRIMARY KEY (`num`),
   KEY `verificationStatus` (`verificationStatus`),
   CONSTRAINT `VERIFICATION_ibfk_1` FOREIGN KEY (`verificationStatus`) REFERENCES `VERIFICATION_STATUS` (`code`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1263,55 +1160,30 @@ CREATE TABLE `VERIFICATION` (
 
 LOCK TABLES `VERIFICATION` WRITE;
 /*!40000 ALTER TABLE `VERIFICATION` DISABLE KEYS */;
-INSERT INTO `VERIFICATION` VALUES (1, 80, 0, 80, 'Validation successful with no loss', 1, 'FINIS'),
-(2, 80, 0, 80, 'Validation successful with no loss', 2, 'FINIS'),
-(3, 80, 0, 80, 'Validation successful with no loss', 3, 'FINIS'),
-(4, 80, 0, 80, 'Validation successful with no loss', 4, 'FINIS'),
-(5, 80, 0, 80, 'Validation successful with no loss', 5, 'FINIS'),
-(6, 80, 0, 80, 'Validation successful with no loss', 6, 'FINIS'),
-(7, 80, 0, 80, 'Validation successful with no loss', 7, 'FINIS'),
-(8, 80, 0, 80, 'Validation successful with no loss', 8, 'FINIS'),
-(9, 80, 0, 80, 'Validation successful with no loss', 9, 'FINIS'),
-(10, 80, 0, 80, 'Validation successful with no loss', 10, 'FINIS'),
-(11, 80, 0, 80, 'Validation successful with no loss', 11, 'FINIS'),
-(12, 80, 0, 80, 'Validation successful with no loss', 12, 'FINIS'),
-(13, 80, 0, 80, 'Validation successful with no loss', 13, 'FINIS'),
-(14, 80, 0, 80, 'Validation successful with no loss', 14, 'FINIS'),
-(15, 80, 0, 80, 'Validation successful with no loss', 15, 'FINIS'),
-(16, 80, 0, 80, 'Validation successful with no loss', 16, 'FINIS'),
-(17, 80, 0, 80, 'Validation successful with no loss', 17, 'FINIS'),
-(18, 80, 0, 80, 'Validation successful with no loss', 18, 'FINIS'),
-(19, 80, 0, 80, 'Validation successful with no loss', 19, 'FINIS'),
-(20, 80, 0, 80, 'Validation successful with no loss', 20, 'FINIS'),
-(21, 80, 0, 80, 'Validation successful with no loss', 21, 'FINIS'),
-(22, 80, 0, 80, 'Validation successful with no loss', 22, 'FINIS'),
-(23, 80, 0, 80, 'Validation successful with no loss', 23, 'FINIS'),
-(24, 80, 0, 80, 'Validation successful with no loss', 24, 'FINIS'),
-(25, 80, 0, 80, 'Validation successful with no loss', 25, 'FINIS'),
-(26, 80, 0, 80, 'Validation successful with no loss', 26, 'FINIS'),
-(27, 80, 0, 80, 'Validation successful with no loss', 27, 'FINIS'),
-(28, 80, 0, 80, 'Validation successful with no loss', 28, 'FINIS'),
-(29, 80, 0, 80, 'Validation successful with no loss', 29, 'FINIS'),
-(30, 80, 0, 80, 'Validation successful with no loss', 30, 'FINIS'),
-(31, 80, 0, 80, 'Validation successful with no loss', 31, 'FINIS'),
-(32, 80, 0, 80, 'Validation successful with no loss', 32, 'FINIS'),
-(33, 80, 0, 80, 'Validation successful with no loss', 33, 'FINIS'),
-(34, 80, 0, 80, 'Validation successful with no loss', 34, 'FINIS'),
-(35, 80, 0, 80, 'Validation successful with no loss', 35, 'FINIS'),
-(36, 80, 0, 80, 'Validation successful with no loss', 36, 'FINIS'),
-(37, 80, 0, 80, 'Validation successful with no loss', 37, 'FINIS'),
-(38, 80, 0, 80, 'Validation successful with no loss', 38, 'FINIS'),
-(39, 80, 0, 80, 'Validation successful with no loss', 39, 'FINIS'),
-(40, 80, 0, 80, 'Validation successful with no loss', 40, 'FINIS'),
-(41, 80, 0, 80, 'Validation successful with no loss', 41, 'FINIS'),
-(42, 80, 0, 80, 'Validation successful with no loss', 42, 'FINIS'),
-(43, 80, 0, 80, 'Validation successful with no loss', 43, 'FINIS'),
-(44, 80, 0, 80, 'Validation successful with no loss', 44, 'FINIS'),
-(45, 80, 0, 80, 'Validation successful with no loss', 45, 'FINIS'),
-(46, 80, 0, 80, 'Validation successful with no loss', 46, 'FINIS'),
-(47, 80, 0, 80, 'Validation successful with no loss', 47, 'FINIS');
+INSERT INTO `VERIFICATION` VALUES (1,80,0,80,'Validation successful with no loss',1,'FINIS'),(2,80,0,80,'Validation successful with no loss',2,'FINIS'),(3,80,0,80,'Validation successful with no loss',3,'FINIS'),(4,80,0,80,'Validation successful with no loss',4,'FINIS'),(5,80,0,80,'Validation successful with no loss',5,'FINIS'),(6,80,0,80,'Validation successful with no loss',6,'FINIS'),(7,80,0,80,'Validation successful with no loss',7,'FINIS'),(8,80,0,80,'Validation successful with no loss',8,'FINIS'),(9,80,0,80,'Validation successful with no loss',9,'FINIS'),(10,80,0,80,'Validation successful with no loss',10,'FINIS'),(11,80,0,80,'Validation successful with no loss',11,'FINIS'),(12,80,0,80,'Validation successful with no loss',12,'FINIS'),(13,80,0,80,'Validation successful with no loss',13,'FINIS'),(14,80,0,80,'Validation successful with no loss',14,'FINIS'),(15,80,0,80,'Validation successful with no loss',15,'FINIS'),(16,80,0,80,'Validation successful with no loss',16,'FINIS'),(17,80,0,80,'Validation successful with no loss',17,'FINIS'),(18,80,0,80,'Validation successful with no loss',18,'FINIS'),(19,80,0,80,'Validation successful with no loss',19,'FINIS'),(20,80,0,80,'Validation successful with no loss',20,'FINIS'),(21,80,0,80,'Validation successful with no loss',21,'FINIS'),(22,80,0,80,'Validation successful with no loss',22,'FINIS'),(23,80,0,80,'Validation successful with no loss',23,'FINIS'),(24,80,0,80,'Validation successful with no loss',24,'FINIS'),(25,80,0,80,'Validation successful with no loss',25,'FINIS'),(26,80,0,80,'Validation successful with no loss',26,'FINIS'),(27,80,0,80,'Validation successful with no loss',27,'FINIS'),(28,80,0,80,'Validation successful with no loss',28,'FINIS'),(29,80,0,80,'Validation successful with no loss',29,'FINIS'),(30,80,0,80,'Validation successful with no loss',30,'FINIS'),(31,80,0,80,'Validation successful with no loss',31,'FINIS'),(32,80,0,80,'Validation successful with no loss',32,'FINIS'),(33,80,0,80,'Validation successful with no loss',33,'FINIS'),(34,80,0,80,'Validation successful with no loss',34,'FINIS'),(35,80,0,80,'Validation successful with no loss',35,'FINIS'),(36,80,0,80,'Validation successful with no loss',36,'FINIS'),(37,80,0,80,'Validation successful with no loss',37,'FINIS'),(38,80,0,80,'Validation successful with no loss',38,'FINIS'),(39,80,0,80,'Validation successful with no loss',39,'FINIS'),(40,80,0,80,'Validation successful with no loss',40,'FINIS'),(41,80,0,80,'Validation successful with no loss',41,'FINIS'),(42,80,0,80,'Validation successful with no loss',42,'FINIS'),(43,80,0,80,'Validation successful with no loss',43,'FINIS'),(44,80,0,80,'Validation successful with no loss',44,'FINIS'),(45,80,0,80,'Validation successful with no loss',45,'FINIS'),(46,80,0,80,'Validation successful with no loss',46,'FINIS'),(47,80,0,80,'Validation successful with no loss',47,'FINIS');
 /*!40000 ALTER TABLE `VERIFICATION` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `increseRawMaterialStock` BEFORE UPDATE ON `VERIFICATION` FOR EACH ROW BEGIN
+    DECLARE rawMaterial1 VARCHAR(5);
+    SET rawMaterial1 = (SELECT rawMaterial FROM RAW_MATERIAL_LOT WHERE num = NEW.rawMaterialLot);
+    IF NEW.verificationStatus = 'FINIS' THEN
+        UPDATE RAW_MATERIAL SET stock = stock + NEW.acceptedQuantity WHERE code = rawMaterial1;
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1339,27 +1211,6 @@ DELIMITER ;;
                                         WHERE lot = lote AND verificationStatus = "FINIS");
         SET percentage1 = (completedVerifications/totalVerifications)*100;
         UPDATE LOT SET percentage = percentage1 WHERE num = lote;
-    END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`cisco`@`localhost`*/ /*!50003 TRIGGER `increseRawMaterialStock` BEFORE UPDATE ON `VERIFICATION` FOR EACH ROW BEGIN
-    DECLARE rawMaterial1 VARCHAR(5);
-    SET rawMaterial1 = (SELECT rawMaterial FROM RAW_MATERIAL_LOT WHERE num = NEW.rawMaterialLot);
-    IF NEW.verificationStatus = 'FINIS' THEN
-        UPDATE RAW_MATERIAL SET stock = stock + NEW.acceptedQuantity WHERE code = rawMaterial1;
     END IF;
 END */;;
 DELIMITER ;
@@ -1591,7 +1442,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
--- Dumping routines for database 'En_HoneyTrack'
+-- Dumping routines for database 'HoneyTrackv2'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `insertEmployee` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -2054,4 +1905,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25 19:30:36
+-- Dump completed on 2024-11-29  8:26:11
