@@ -183,6 +183,25 @@ body {
     gap: 10px; 
     align-items: center;
 }
+
+#backToSearchBtn {
+  position: absolute;
+  top: 40px;  
+  left: 40px;  
+  padding: 10px 20px; 
+  background-color: var(--gold); 
+  color: var(--blk); 
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#backToSearchBtn:hover {
+  background-color: #e67e22;  
+  transform: scale(1.1);
+}
   
   @media (max-width: 768px) {
   .tittle {

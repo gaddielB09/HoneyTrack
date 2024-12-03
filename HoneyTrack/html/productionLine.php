@@ -127,12 +127,16 @@
 </div>
 </div>
 <div class="format" id="editUserForm" style="display: none;">
-    <form action="updateProductionLine">
+    <form action="../php/updateProductionLine">
+        <button id="backToSearchBtn" type="button" onclick="backToSearch()">Back</button>
         <section id="data">
             <div class="addUsers">
+                <h3 style="text-align: center;
+                            margin-bottom: 30px;
+                            font-size: 24px;">Edit Production Line</h3>
                 <div class="personalData">
                     <div class="input-container">
-                        <input type="text" id="productionLine" placeholder="Production Line">
+                        <input type="text" id="productionLine" placeholder="Production Line" required>
                     </div>
                     <button class="submit-button">Submit</button>
                 </div>
@@ -145,7 +149,8 @@
 
 <script src="../js/loading.js"></script>
 <script src="../js/sidebar.js"></script>
-<script src="../js/users.js"></script>
+<!-- <script src="../js/users.js"></script> -->
+<script src="../js/productionLine.js"></script>
 </body>
 </html>
 <!--Si intentan entrar directo a esta página, se les enviará al login-->

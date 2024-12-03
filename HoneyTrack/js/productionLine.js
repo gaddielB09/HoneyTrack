@@ -1,24 +1,24 @@
-const searchBar = document.getElementById('search-bar');
-const editForm = document.getElementById('editForm');
-const button = document.getElementById('.btn-edit');
-const format2 = document.getElementById('searchForm');
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener los botones y formularios
+    const editButtons = document.querySelectorAll('.btn-edit');
+    const editUserForm = document.getElementById('editUserForm');
+    const format2 = document.getElementById('format2');
 
-button.forEach(button => {
-    button.addEventListener("click", e => {
-        e.preventDefault();
-        format2.style.display = 'none';
-        editForm.style.display = 'block';
+    // Añadir el evento de clic a cada botón de edición
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Ocultar el formato actual (format2)
+            format2.style.display = 'none';
+
+            // Mostrar el formulario de edición
+            editUserForm.style.display = 'block';
+        });
     });
+
 });
 
-// Filtrar resultados en la tabla
-searchBar.addEventListener('input', () => {
-    const filterText = searchBar.value.toLowerCase();
-    Array.from(tableBody.getElementsByTagName('tr')).forEach(row => {
-        const cells = row.getElementsByTagName('td');
-        const match = Array.from(cells).some(cell => 
-            cell.textContent.toLowerCase().includes(filterText)
-        );
-        row.style.display = match ? '' : 'none';
-    });
-});
+    // Volver al formulario de búsqueda
+    function backToSearch() {
+        editUserForm.style.display = 'none';
+        format2.style.display = 'block';
+    }
