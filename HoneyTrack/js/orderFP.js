@@ -52,6 +52,7 @@ function showToast(message, type) {
         toastContainer.classList.remove('show');
         setTimeout(() => {
             toastContainer.remove();
+            window.location.reload();
         }, 500); // Tiempo para desaparecer
     }, 2000); // Tiempo que permanece visible
 }

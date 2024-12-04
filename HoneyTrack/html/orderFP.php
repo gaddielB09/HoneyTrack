@@ -209,7 +209,7 @@
 
                                                 <td class="buttons">
                                                     <?php if ($row["status"] != "Approved") { ?>
-                                                        <button class="btn-check" onclick="window.location.href='../php/updateRequisition.php?num=<?php echo $row["num"]?>';">Approve</button>
+                                                        <button class="btn-edit" onclick="window.location.href='../php/updateRequisition.php?num=<?php echo $row["num"]?>';">Approve</button>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
