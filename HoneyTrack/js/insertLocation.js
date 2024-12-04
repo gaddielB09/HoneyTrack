@@ -31,15 +31,9 @@
         document.getElementById('height-edit').value = height;
         document.getElementById('width-edit').value = width;
         document.getElementById('container-edit').value = container;
-        document.getElementById('area-edit').value = area;
-
-        // Si quieres mostrar otros valores puedes hacer lo mismo
-        
-
-
+        document.getElementById('area-edit').value = area;    
     });
 });
-
 
 const buttons = document.querySelectorAll('.userOption button');
 const formats = document.querySelectorAll('.format');
@@ -83,30 +77,40 @@ searchBar.addEventListener('input', () => {
         });
     });
 
-    document.getElementById("addLocation").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
-        
-        const form = event.target;
-        const formData = new FormData(form);
+    const addLocationForm = document.getElementById("addLocation");
+
+    addLocationForm.addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevenir el comportamiento por defecto
     
-        fetch("../php/insertProduct.php", {
-            method: "POST",
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Mostrar el mensaje en un toast según el tipo de respuesta
-            if (data.status === 'success') {
-                showToast(data.msg, 'success');
-            } else {
-                showToast(data.msg, 'error');
+        const formData = new FormData(this); // Obtener los datos del formulario
+        
+        try {
+            const response = await fetch("../php/insertLocation.php", {
+                method: "POST",
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        })
-        .catch(error => {
+    
+            const data = await response.json();
+            console.log(data); // Verifica que el mensaje esté correcto en la consola
+    
+            // Muestra un toast según el tipo de respuesta
+            if (data.status === "success") {
+                showToast(data.msg, "success");
+                this.reset(); // Limpia el formulario si es necesario
+            } else {
+                showToast(data.msg, "error");
+            }
+        } catch (error) {
             console.error("Error:", error);
-            showToast('An error occurred while processing the form', 'error');
-        });
+            showToast("An error occurred while processing the form.", "error");
+        }
     });
+    
+    
     
     function showToast(message, type) {
         const toastContainer = document.getElementById("toast-container");

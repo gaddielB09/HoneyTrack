@@ -23,14 +23,14 @@ if ($_POST) {
     } else {
         // Llamar al procedimiento almacenado para insertar la ubicación
         $query = "CALL insertLocation('$container','$aisle','$side','$bay','$level',
-                                        '$position','$length','$height','$width','$area',@msg)";
+                                        '$position','$length','$height','$width','$area', @msg)";
         $execute = mysqli_query($db, $query);
 
         // Verificar si la consulta se ejecutó correctamente
         if ($execute) {
             // Recuperar el mensaje generado por el procedimiento almacenado
-            $query = "SELECT @msg AS msg";
-            $msgResult = mysqli_query($db, $query);
+            $msgQuery = "SELECT @msg AS msg";
+            $msgResult = mysqli_query($db, $msgQuery);
 
             if ($msgResult) {
                 $row = mysqli_fetch_assoc($msgResult);

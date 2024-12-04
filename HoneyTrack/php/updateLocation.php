@@ -3,7 +3,7 @@
 $code = $_POST['code']; // Este es el código que no cambiarás, solo es usado para identificar la fila
 $aisle = $_POST['aisle'];
 $side = $_POST['side'];
-$bay = $_POST['Bay'];
+$bay = $_POST['bay'];
 $level = $_POST['level'];
 $position = $_POST['position'];
 $length = $_POST['length'];
@@ -13,8 +13,9 @@ $container = $_POST['container'];
 $area = $_POST['area'];
 
 // Conexión a la base de datos
-include_once 'connection.php'; // Asegúrate de que tu archivo de conexión esté correctamente incluido
+include_once '../php/connection.php'; // Asegúrate de que tu archivo de conexión esté correctamente incluido
 $db = connectdb();
+
 // Consulta SQL para actualizar los datos (sin actualizar stock)
 $query = "UPDATE LOCATION SET 
           containerName = ?,
@@ -33,7 +34,19 @@ $query = "UPDATE LOCATION SET
 $stmt = mysqli_prepare($db, $query);
 
 // Vincula los parámetros de la consulta (sin stock)
-mysqli_stmt_bind_param($stmt, "sssddds", $containerName, $aisle, $side, $bay, $level, $position,  $length, $height, $width, $code);
+mysqli_stmt_bind_param($stmt, 
+"sdsdsddddss", 
+$container, 
+$aisle, 
+$side, 
+$bay, 
+$level, 
+$position, 
+$length, 
+$height, 
+$width, 
+$area, 
+$code);
 
 // Ejecutar la consulta
 if (mysqli_stmt_execute($stmt)) {

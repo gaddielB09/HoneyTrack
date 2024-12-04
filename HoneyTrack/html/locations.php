@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="../css/toast.css">
     </head>
     <body>
@@ -228,7 +228,6 @@
                                                 <td class="buttons">
     
                                                 <button class="btn-edit"><i class="fa-solid fa-pencil"></i></button>
-                                                <button class="btn-x"><i class="fas fa-times"></i></i></button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -249,10 +248,11 @@
                                     
                                     <h2 class="subtittle">Location Data</h2>
                                     
-                                        
+                                    <input type="hidden" name="code" value="<?php echo $location['code']; ?>">
+
                                     <div class="location">
                                         <div class="input-container">
-                                            <input type="text" id="aisle-edit" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" required>
+                                            <input type="number" id="aisle-edit" name="aisle" placeholder="Aisle (03)" autocomplete="off" maxlength="2" min="1" required>
                                             <span id="error-aisle" class="error">Aisle Format is not Allowed</span>
                                         </div>
                                         
@@ -262,7 +262,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="bay-edit" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="number" id="bay-edit" name="bay" placeholder="Bay (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-bay" class="error">Bay Format is not Allowed</span>
                                         </div>
 
@@ -272,7 +272,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="position-edit" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
+                                            <input type="number" id="position-edit" name="position" placeholder="Position (01)" autocomplete="off" maxlength="2" required>
                                             <span id="error-position" class="error">Position Format is not Allowed</span>
                                         </div>
                                         </div>
@@ -315,9 +315,11 @@
                         </form>
                     </div>
                 </div>
+                <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050;"></div>
+
                 
         </div>
-    <script src="../js/users.js"></script>
+    <!-- <script src="../js/users.js"></script> -->
     <script src="../js/sidebar.js"></script>
     <script src="../js/loading.js"></script>
     <script src="../js/functions.js"></script>
