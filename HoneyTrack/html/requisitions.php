@@ -94,9 +94,8 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Number</th>
-                                    <th>Raw Material</th>
                                     <th>Finished Product</th>
+                                    <th>Raw Material</th>
                                     <th>Quantity</th>
                                     <th>Total Material Cost</th>
                                 </tr>
@@ -106,9 +105,8 @@
                                     <?php include "../php/selectRW&FP.php";
                                      while($row = mysqli_fetch_assoc($responseRWFP)) {?>
                                         <tr>
-                                            <td><?php echo $row["num"] ?></td>
-                                            <td><?php echo $row["rawMaterial"] ?></td>
                                             <td><?php echo $row["finishedProduct"] ?></td>
+                                            <td><?php echo $row["rawMaterial"] ?></td>
                                             <td><?php echo $row["quantity"] ?></td>
                                             <td><?php echo $row["totalMaterialCost"] ?></td>
                                         </tr>

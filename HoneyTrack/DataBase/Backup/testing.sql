@@ -20,12 +20,14 @@ CREATE VIEW vw_JobPosition AS(
 
 --View para selectStorage
 CREATE VIEW vw_Storage AS(
-    SELECT num, quantity, description,
+    SELECT quantity, s.description,
     IF(rawMAterial IS NOT NULL, rawMAterial, finishedProduct) AS item,
-    location, area
-    FROM STORAGE
+    location, a.description AS area
+    FROM STORAGE AS s
+    INNER JOIN AREA AS a ON s.area = a.code
+    ORDER BY location ASC
 );
-
+DROP VIEW vw_Storage;
 --View para selectRawMaterials
 CREATE VIEW vw_RawMaterial AS(
     SELECT code, name, description, CONCAT('$',cost) AS cost, CONCAT(length,' cm') AS length,

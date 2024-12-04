@@ -68,9 +68,9 @@ function createChart(chartId, labels, data, title) {
 function getMaxValueForChart(chartId) {
     switch (chartId) {
         case 'chart1': 
-            return 100; // Máximo de 100 para chart1
+            return 200; // Máximo de 100 para chart1
         case 'chart2': 
-            return 60;  // Máximo de 60 para chart2
+            return 50;  // Máximo de 60 para chart2
         case 'chart3': 
         case 'chart4': 
             return 10;  // Máximo de 10 para chart3 y chart4

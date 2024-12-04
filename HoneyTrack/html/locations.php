@@ -119,7 +119,7 @@
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="text" id="side" name="side" placeholder="Side (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="side" name="side" placeholder="Side (A)" autocomplete="off" maxlength="1" required>
                                             <span id="error-side" class="error">Side Format is not Allowed</span>
                                         </div>
                                         
@@ -129,7 +129,7 @@
                                         </div>
 
                                         <div class="input-container">
-                                            <input type="text" id="level" name="level" placeholder="Level (A)" autocomplete="off" maxlength="2" required>
+                                            <input type="text" id="level" name="level" placeholder="Level (A)" autocomplete="off" maxlength="1" required>
                                             <span id="error-level" class="error">Level Format is not Allowed</span>
                                         </div>
                                         

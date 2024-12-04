@@ -1437,7 +1437,6 @@ DROP TABLE IF EXISTS `vw_Storage`;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `vw_Storage` AS SELECT 
- 1 AS `num`,
  1 AS `quantity`,
  1 AS `description`,
  1 AS `item`,
@@ -1895,7 +1894,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`cisco`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_Storage` AS select `STORAGE`.`num` AS `num`,`STORAGE`.`quantity` AS `quantity`,`STORAGE`.`description` AS `description`,if((`STORAGE`.`rawMaterial` is not null),`STORAGE`.`rawMaterial`,`STORAGE`.`finishedProduct`) AS `item`,`STORAGE`.`location` AS `location`,`STORAGE`.`area` AS `area` from `STORAGE` */;
+/*!50001 VIEW `vw_Storage` AS select `s`.`quantity` AS `quantity`,`s`.`description` AS `description`,if((`s`.`rawMaterial` is not null),`s`.`rawMaterial`,`s`.`finishedProduct`) AS `item`,`s`.`location` AS `location`,`a`.`description` AS `area` from (`STORAGE` `s` join `AREA` `a` on((`s`.`area` = `a`.`code`))) order by `s`.`location` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1909,4 +1908,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-29  8:26:11
+-- Dump completed on 2024-12-02 20:07:31
