@@ -1,29 +1,49 @@
 <?php
-    require "../php/connection.php";
-    $response = [];
-    $db = connectdb();
+require "../php/connection.php";
+$response = [];
+$db = connectdb();
 
-    if ($_POST) {
-        // Se obtienen los datos del usuario
-        $product = $_POST["product"];
-        $raw = $_POST["raw"];
-        $quantity = $_POST["quantity"];
+if ($_POST) {
+    // Obtener los datos del formulario
+    $product = $_POST["product"];
+    $rawMaterials = $_POST["raw"];
+    $quantities = $_POST["quantity"];
 
-        // Se inserta el nuevo registro en RAW_MATERIAL_FINISHED_PRODUCT
-        $query = "INSERT INTO RAW_MATERIAL_FINISHED_PRODUCT VALUES(NULL, '$raw', '$product', '$quantity', NULL)";
-        
-        if (mysqli_query($db, $query)) {
-            $response['status'] = 'success';
-            $response['msg'] = "Raw material added successfully";
-        } else {
-            $response['status'] = 'error';
-            $response['msg'] = "Error trying to add the raw material";
-        }
-    } else {
+    if (count($rawMaterials) !== count($quantities)) {
         $response['status'] = 'error';
-        $response['msg'] = "No data received";
-    }
+        $response['msg'] = 'Select a Raw Material';
+    } else {
+        // Iniciar una transacción
+        mysqli_begin_transaction($db);
 
-    // Se envía la respuesta en formato JSON
-    echo json_encode($response);
+        try {
+            // Recorrer los materiales y cantidades para insertar cada registro
+            foreach ($rawMaterials as $index => $rawMaterial) {
+                $quantity = $quantities[$index];
+                $query = "INSERT INTO RAW_MATERIAL_FINISHED_PRODUCT VALUES(NULL, '$rawMaterial', '$product', '$quantity', NULL)";
+
+                if (!mysqli_query($db, $query)) {
+                    throw new Exception("Error inserting raw material $rawMaterial: " . mysqli_error($db));
+                }
+            }
+
+            // Confirmar la transacción
+            mysqli_commit($db);
+            $response['status'] = 'success';
+            $response['msg'] = 'Raw materials added successfully.';
+        } catch (Exception $e) {
+            // Revertir la transacción si ocurre un error
+            mysqli_rollback($db);
+            $response['status'] = 'error';
+            $response['msg'] = $e->getMessage();
+        }
+    }
+} else {
+    $response['status'] = 'error';
+    $response['msg'] = "No data received.";
+}
+
+// Enviar la respuesta en formato JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>

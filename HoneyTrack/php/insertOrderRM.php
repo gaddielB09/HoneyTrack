@@ -11,7 +11,7 @@ if ($_POST) {
 
     if (count($raw) !== count($quantity)) {
         $response['status'] = 'error';
-        $response['msg'] = 'Mismatch between raw materials and quantities.';
+        $response['msg'] = 'Select a Raw Material';
     } else {
         mysqli_begin_transaction($db);
 

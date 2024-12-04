@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/loading.css">
-    <link rel="stylesheet" href="../css/rawMaterials.css">
+    <link rel="stylesheet" href="../css/verificationValidate.css">
     <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
-    <title>Document</title>
+    <script src="../js/verificationValidate.js"></script>
+<title>Document</title>
 </head>
 <body>
     <div id="loadingScreen">
@@ -84,12 +84,16 @@
         <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
-            <h3 class="home">Add a Raw Material to a Product</h3>
+            <button class="back" onclick="back()">
+             <i class="fas fa-long-arrow-alt-left"></i>
+            </button>
+            <h3 class="home">Verification</h3>
                 <div class="format">
                     <form action="../php/updateVerification.php" method="POST">
                         <section class="data">
                             <div class="addUsers">
-                                <div class="personalData">
+                                <h2 class="information">Lot Information</h2>
+                                <div class="infoVerif">
                                     <div class="input-container">
                                         <label for="lot">Lot #<?php echo $_GET["lot"] ?></label>
 
@@ -99,9 +103,14 @@
 
                                     </div>
                                     <div class="input-container">
-                                        <label for="raw"S>Raw Material: <?php echo $_GET["raw"] ?></label>
+                                        <label for="raw">Raw Material: <?php echo $_GET["raw"] ?></label>
 
                                     </div>
+
+                                    <div class="input-container">
+                                        <input type="hidden">
+                                    </div>
+
                                     <div class="input-container">
                                         <label for="received">Quantity Received: <?php echo $_GET["received"] ?></label>
 
@@ -114,6 +123,9 @@
 
                                         <input type="hidden" name="received" id="received" value="<?php echo $_GET["received"] ?>">
                                     </div>
+                                    </div>
+                                    <div class="personalData">
+
                                     <div class="input-container">
                                         <label for="accepted">Quantity Accepted:</label>
                                         <input type="number" name="accepted" id="accepted" placeholder="Accepted Quantity" value="<?php echo $_GET["accepted"] ?>">
@@ -127,7 +139,7 @@
                                         <input type="text" name="observations" id="observations" placeholder="Observations" value="<?php echo $_GET["observations"] ?>">
                                     </div>
 
-                        <button class="submit-button" style="margin-left: 0">Validate</button>
+                                        <button class="submit-button" style="margin-left: 0">Validate</button>
                                 </div>
                             </div>
                         </section>
@@ -140,7 +152,7 @@
 
     <script src="../js/loading.js"></script>
     <script src="../js/sidebar.js"></script>
-    <script src="../js/activity.js"></script>
+    <script src="../js/verificationValidate.js"></script>
 </body>
 </html>
 

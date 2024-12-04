@@ -85,6 +85,8 @@
         <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
+        <button onclick="back()" class="back"><i class="fas fa-long-arrow-alt-left"></i></button>
+
             <h3 class="home">Add a Purchase Request</h3>
                 <div class="format">
                     <form action="../php/insertPurchaseRawMaterial.php" method="POST">

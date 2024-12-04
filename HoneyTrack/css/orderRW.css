@@ -31,6 +31,17 @@ input {
     box-sizing: border-box;
 }
 
+.back{
+    background-color: var(--gold);
+    padding: 5px 10px;
+    font-size: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back:hover{
+    background-color: var(--do);
+    transform: scale(1.1);
+}
 body {
     background: var(--whi); 
     background-size: cover;

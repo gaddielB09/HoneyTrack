@@ -1,3 +1,7 @@
+function back(){
+    window.location.href = "../html/orderRW.php"
+}
+
 // Espera a que el contenido del DOM se cargue completamente
 document.addEventListener("DOMContentLoaded", function() {
     // Realiza una solicitud para obtener los datos desde el archivo PHP

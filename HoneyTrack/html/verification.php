@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="../css/sidebar2.css">
     <link rel="stylesheet" href="../css/colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>  
+<script src="../js/verification.js"></script>
+
+<title>Document</title>
 </head>
 <body>
 
@@ -80,7 +83,21 @@
         <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
         </div>
         <div class="wrapper">
-            <h3 class="home">Verification</h3>
+
+        <nav class="userOption">
+                    
+                    <button onclick="showFormat(format1)">
+                        <i class="fas fa-tasks"></i>
+                    </button>
+
+                    <button onclick="showFormat(format2)">
+                        <i class="fas fa-history"></i>
+                    </button>
+
+        </nav>
+                    
+        <div id="format1" style="display:block" class="format">
+                <h3 class="home">Verification In Progress</h3>
             <div class="view-activity">
                     <div class="search-container">
                         <input type="search" id="search-bar" placeholder="Nombre o ID" required>
@@ -134,13 +151,66 @@
                     </table>  
                 </div>
             </div>
+
+            </div>
+
+        <div id="format2" style="display: none" class="format">
+            <h3 class="home">Verification History</h3>
+            <div class="view-activity">
+
+                    <div class="search-container">
+                        <input type="search" id="search-bar" placeholder="Nombre o ID" required>
+                        <span id="search-icon" class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                            <path d="M21 21l-6 -6" />
+                        </svg></span>
+                    </div>  
+                    <div class="table-container">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Lot Number</th>
+                                <th>Raw Material</th>
+                                <th>Amount Received</th>
+                                <th>Accepted Amount</th>
+                                <th>Defective Quantity</th>
+                                <th>Observations</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityTableBody">
+                            <!-- Aquí se agregarán las filas dinámicamente -->
+                            <?php 
+                                include "../php/selectVerification.php";
+                                
+                                while($row = mysqli_fetch_assoc($responseF)) {?>
+                                
+                                <tr data-id="<?php echo $row['num'];?>">
+                                    <td><?php echo $row["num"] ?></td>
+                                    <td><?php echo $row["lot"] ?></td>
+                                    <td><?php echo $row["raw"] ?></td>
+                                    <td><?php echo $row["received"] ?></td>
+                                    <td><?php echo $row["accepted"] ?></td>
+                                    <td><?php echo $row["defective"] ?></td>
+                                    <td><?php echo $row["observations"] ?></td>
+                                    <td><?php echo $row["status"] ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>  
+                </div>
+            </div>
+
+            </div>
         </div>
     </div>
 </div>
 
     <script src="../js/loading.js"></script>
     <script src="../js/sidebar.js"></script>
-    <script src="../js/verification.js"></script>
 </body>
 </html>
 <!--Si intentan entrar directo a esta página, se les enviará al login-->

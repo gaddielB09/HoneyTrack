@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sidebar2.css">
-    <link rel="stylesheet" href="../css/rawMaterials.css">
+    <link rel="stylesheet" href="../css/orderRW.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="../css/toast.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/toast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -79,29 +79,63 @@
                     <img class="tittle" src="../images/HoneyTrack Letras chikita.svg" alt="Honey TRACK" width="600">
                     </div>
         <div class="wrapper">
+            <button onclick="back()" class="back"><i class="fas fa-long-arrow-alt-left"></i></button>
             <h3 class="home">Add RW</h3>
 
-            <form action="../php/insertRawProduct.php" method="POST">
-                <section class="data">
-                    <div class="addUsers">
-                        <div class="personalData">
-                        <div class="input-container">
-                            <input type="text" name="raw" id="raw" placeholder="Raw Material Code" required>
-                        </div>
-                        <div class="input-container">
-                            <input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
+            <form action="../php/insertRawProduct.php" method="POST" id="addOrderRMForm">
+    <section class="data">
+        <div class="addUsers">
+            <button class="addRW" type="button" id="add-field-button"><i class="fas fa-plus"></i></button>
 
-                        </div>
-                        <input type="hidden" name="product" id="product" value="<?php echo $_GET["product"] ?>">
-                        <button class="submit-button">Add Raw Material</button>
+            <div id="fields-container">
+                <div class="personalData">
+                    <select name="raw[]" id="code" required style="
+                        width: 100%;
+                        padding: 10px;
+                        font-size: 16px;
+                        height: 40px;
+                        border: 2px solid #ccc;
+                        border-radius: 5px;
+                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                        box-sizing: border-box;
+                        background: transparent;">
+                        <option value="default" disabled selected>Raw Material Code</option>
+                        <?php
+                            require "../php/connection.php";
+                            $db = connectdb();
+
+                            $query = "SELECT code, name FROM vw_RawMaterial";
+                            $response = mysqli_query($db, $query);
+
+                            if ($response) {
+                                while ($row = mysqli_fetch_assoc($response)) {
+                                    $code = htmlspecialchars($row['code']);
+                                    $name = htmlspecialchars($row['name']);
+                                    echo "<option value=\"$code\">$code - $name</option>";
+                                }
+                                mysqli_free_result($response);
+                            } else {
+                                echo "<option value=\"\">No codes available</option>";
+                            }
+
+                            mysqli_close($db);
+                        ?>
+                    </select>
+                    <div class="input-container">
+                        <input type="number" name="quantity[]" id="quantity" placeholder="Quantity" required>
                     </div>
-                    </div>
-                </section>
-c
-    </form>
+                </div>
+            </div>
+            <input type="hidden" name="product" id="product" value="<?php echo $_GET["product"]; ?>">
+            <button type="submit" class="submit-button">Add Raw Materials</button>
+        </div>
+    </section>
+</form>
         </div>
     </div>
 </div>
+<script src="../js/addRawToAProduct.js"></script>
+
 </body>
 </html>
 
