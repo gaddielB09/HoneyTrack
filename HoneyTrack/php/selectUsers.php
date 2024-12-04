@@ -1,5 +1,5 @@
 <?php
-    require "../php/connection.php";
+    require_once "../php/connection.php";
     $db = connectdb();
 
     //Consulta todos los usuarios con su información

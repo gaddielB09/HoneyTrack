@@ -192,7 +192,9 @@
                             <thead>
                                 <tr>
                                     <th>Number</th>
-                                    <th>Name</th>
+                                    <th>Firstame</th>
+                                    <th>LastName</th>
+                                    <th>MiddleName</th>
                                     <th>Username</th>
                                     <th>Password</th>
                                     <th>Phone</th>
@@ -206,9 +208,11 @@
                                 <tbody id="activityTableBody">
                                     <!-- Aquí se agregarán las filas dinámicamente -->
                                     <?php while($row = mysqli_fetch_assoc($response)) {?>
-                                        <tr data-id="<?php echo $row['num'];?>">
+                                        <tr data-user-id="<?php echo $row['num']; ?>">
                                             <td><?php echo $row["num"] ?></td>
-                                            <td><?php echo $row["name"] ?></td>
+                                            <td><?php echo $row["firstName"] ?></td>
+                                            <td><?php echo $row["lastName"]?></td>
+                                            <td><?php echo $row["middleName"]?></td>
                                             <td><?php echo $row["username"] ?></td>
                                             <td><?php echo $row["password"] ?></td>
                                             <td><?php echo $row["phone"] ?></td>
@@ -230,7 +234,7 @@
                 </div>
 
                     <div id="editUserForm" style="display: none;" class="format">
-                        <form id="updateForm" action="#" method="post">
+                        <form id="updateForm" action="../php/updateUser.php" method="post">
                         <button id="backToSearchBtn" type="button" onclick="backToSearch()">Back to Search</button>
                             <h1 class="home">Edit User</h1>
                             <input type="hidden" id="userId" name="userId">
@@ -241,53 +245,46 @@
                                 <h2 class="subtittle">Personal Data</h2>
                                 
                                 <div class="personalData">
+
+                                <input type="hidden" id="userId-edit" name="userId">
+
                                     
                                     <div class="input-container">
-                                        <input type="text" id="name" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
+                                        <input type="text" id="name-edit" name="name" class="onlyLetters" placeholder="Name" autocomplete="off" required>
                                         <span id="error-name" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="ap" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
+                                        <input type="text" id="ap-edit" name="ap" class="onlyLetters" placeholder="Last Name (Paternal)" autocomplete="off" required>
                                         <span id="error-ap" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="am" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
+                                        <input type="text" id="am-edit" name="am" class="onlyLetters" placeholder="Last Name (Maternal)" autocomplete="off" required>
                                         <span id="error-am" class="error">Only Letters are Allowed</span>
                                     </div>
                                     
                                     <div class="input-container">
-                                        <input type="text" id="rfc" name="rfc" placeholder="Tax Id" autocomplete="off" required>
+                                        <input type="text" id="rfc-edit" name="rfc" placeholder="Tax Id" autocomplete="off" required>
                                         <span id="error-rfc" class="error">RFC Format is not Allowed</span>
                                     </div>
                                     
                                         <div class="input-container">
-                                            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
+                                            <input type="email" id="email-edit" name="email" placeholder="Email" autocomplete="off" required>
                                             <span id="error-email" class="error">Email Format is not Allowed</span>
                                         </div>
                                         
                                         <div class="input-container">
-                                            <input type="tel" id="phone" name="phone" minlength="10" maxlength="10" placeholder="Contact Number" autocomplete="off" required>
+                                            <input type="number" id="phone-edit" name="phone" minlength="10" maxlength="10" placeholder="Contact Number" autocomplete="off" required>
                                             <span id="error-phone" class="error" style="display: none;">Contact Number not Valid</span>
                                         </div>
                                     </div>
                                     
                                     <h2 class="subtittle2">User Data</h2>
                                     <div class="userData">
-                                        <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+                                        <input type="text" id="username-edit" name="username" placeholder="Username" autocomplete="off" required>
                                         
-                                        <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
-                                        
-                                        <select class="roles" id="role" name="role" required>
-                                            <option value="">Role</option required>
-                                            <!--Imprime dinámicamente las opciones-->
-                                            <?php while($row = mysqli_fetch_assoc($responseJP)) {?>
-                                                <option value="<?php echo $row["code"] ?>"><?php echo $row["description"] ?></option required>
-                                            <?php } ?>
-                                        </select>
-                                        
-                                        <button type="submit" class="submit-button" value="Update">
+                                        <button type="submit" class="submit-button" value="Update">Submit</button>
                                     </div>
                             </div>
                         </section>

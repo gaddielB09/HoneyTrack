@@ -6,7 +6,6 @@ const tableBody = document.getElementById('activityTableBody');
 const searchUsersForm = document.getElementById("format2"); 
 const editUserForm = document.getElementById("editUserForm");
 const historyButton = document.getElementById('format3');
-const editButtons = document.querySelectorAll(".btn-edit");
 const nameInput = document.getElementById("name");
 const apInput = document.getElementById("ap");
 const amInput = document.getElementById("am");
@@ -39,6 +38,51 @@ searchBar.addEventListener('input', () => {
             cell.textContent.toLowerCase().includes(filterText)
         );
         row.style.display = match ? '' : 'none';
+    });
+}); 
+
+document.querySelectorAll('.btn-edit').forEach(button => {
+    button.addEventListener('click', function() {
+        // Obtener la fila (tr) de donde proviene el botón
+        const row = this.closest('tr');
+        
+        // Capturar el ID del usuario desde el atributo data-user-id
+        const userId = row.getAttribute('data-user-id');
+        
+        // Obtener los datos de las celdas
+        const name = row.cells[1].textContent.trim();
+        const ap = row.cells[2].textContent.trim();
+        const am = row.cells[3].textContent.trim();
+        const rfc = row.cells[8].textContent.trim();
+        const email = row.cells[7].textContent.trim();
+        const phone = row.cells[6].textContent.trim();
+        const username = row.cells[4].textContent.trim();
+        const role = row.cells[9].textContent.trim();
+
+        // Ocultar el formulario de búsqueda (format2)
+        document.getElementById('format2').style.display = 'none';
+        
+        // Mostrar el formulario de edición (editUserForm)
+        document.getElementById('editUserForm').style.display = 'block';
+        
+        // Asignar el ID del usuario al campo oculto en el formulario
+        document.getElementById('userId-edit').value = userId;
+        
+        // Rellenar los campos del formulario de edición con los datos obtenidos
+        document.getElementById('name-edit').value = name;
+        document.getElementById('ap-edit').value = ap;
+        document.getElementById('am-edit').value = am;
+        document.getElementById('rfc-edit').value = rfc;
+        document.getElementById('email-edit').value = email;
+        document.getElementById('phone-edit').value = phone;
+        document.getElementById('username-edit').value = username;
+
+        const roleSelect = document.getElementById('role');
+        Array.from(roleSelect.options).forEach(option => {
+            if (option.textContent.trim() === role) {
+                option.selected = true;
+            }
+        });
     });
 });
 
