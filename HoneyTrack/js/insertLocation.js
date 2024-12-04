@@ -5,6 +5,7 @@
         // Obtener la fila (tr) de donde proviene el botón
         const row = this.closest('tr');
         
+        const code = row.cells[0].textContent;
         const container = row.cells[1].textContent;
         const aisle = row.cells[2].textContent;
         const side = row.cells[3].textContent;
@@ -14,7 +15,7 @@
         const length = parseFloat(row.cells[8].textContent);
         const height = parseFloat(row.cells[9].textContent);
         const width = parseFloat(row.cells[10].textContent);
-        const area = row.cells[11].textContent;
+        const area = row.cells[12].textContent;
         // Ocultar el formulario de búsqueda (format2)
         document.getElementById('format2').style.display = 'none';
         
@@ -22,6 +23,7 @@
         document.getElementById('editUserForm').style.display = 'block';
         
         // Rellenar los campos del formulario de edición con los datos obtenidos
+        document.getElementById('code-edit').value = code;
         document.getElementById('aisle-edit').value = aisle;
         document.getElementById('side-edit').value = side;
         document.getElementById('bay-edit').value = bay;
